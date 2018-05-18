@@ -37,14 +37,22 @@ dependencies {
 	// add for fix jsp file build error
 	providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 	
-    // add bootstrap
+    // bootstrap
     compile group: 'org.webjars', name: 'bootstrap', version: '3.2.0'
     
-    // add jquery
+    // jquery
     compile group: 'org.webjars', name: 'jquery', version: '3.3.1'
     
-    // add spring framework
+    // spring framework
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.17.RELEASE'
     
+    // mysql connector
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.45'
+    
+    // jdbc
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '3.0.7.RELEASE'
+    
+    // json
+    compile group: 'org.json', name: 'json', version: '20160810'
 }
 

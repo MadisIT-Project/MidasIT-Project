@@ -18,8 +18,8 @@
 <body>
 	MadisIT - Project
 	<div>
-		<a href="/btnClick">next1</a> <a href="views/btnClick.jsp">next2</a> <a
-			href="WEB-INF/views/btnClick.jsp">next3</a>
+		<a href="btnClick">btnClick</a> 
+		<a href="join/create">creatUser</a>
 	</div>
 
 </body>
