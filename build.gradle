@@ -9,6 +9,7 @@
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java-library'
 
+/* user dependencies */
 // add web project plugin
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
@@ -22,8 +23,6 @@ repositories {
 }
 
 dependencies {
-	// add for fix jsp file build error
-	providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 	
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api 'org.apache.commons:commons-math3:3.6.1'
@@ -33,5 +32,19 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    
+    /* user dependencies */
+	// add for fix jsp file build error
+	providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+	
+    // add bootstrap
+    compile group: 'org.webjars', name: 'bootstrap', version: '3.2.0'
+    
+    // add jquery
+    compile group: 'org.webjars', name: 'jquery', version: '3.3.1'
+    
+    // add spring framework
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.17.RELEASE'
+    
 }
 
