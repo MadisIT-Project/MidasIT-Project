@@ -12,7 +12,7 @@
 <script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		console.log("test");
+		console.log("---test");
 	});
 
 	$('#checkIdBtn').click(function() {
@@ -22,12 +22,17 @@
 	function myFunction() {
 		console.log("myFunction test");
 		// 		console.log($("#checkId"));
+		console.log($("#checkId").val());
 		$.ajax({
 			type : "POST",
 			url : "/join/checkValidation",
 			dataType : "json",
-			success : function(result) {
-				var data = JSON.parse(result);
+			data:{
+				"id" : $("#checkId").val()
+			},
+			success : function(re) {
+				console.log(re);
+				var data = JSON.parse(re);
 				console.log(data);
 				console.log("success");
 			},

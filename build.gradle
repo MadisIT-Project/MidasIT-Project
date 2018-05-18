@@ -54,5 +54,9 @@ dependencies {
     
     // json
     compile group: 'org.json', name: 'json', version: '20160810'
+    
+    // json converter
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.4'
+    
 }
 
