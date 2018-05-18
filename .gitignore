@@ -1,7 +1,6 @@
 
 *.bin
 *.class
-.settings/org.eclipse.wst.common.component
 .classpath
 .gradle/4.3/fileHashes/fileHashes.bin
 .gradle/4.3/fileHashes/fileHashes.lock
@@ -9,3 +8,9 @@
 .gradle/4.3/taskHistory/taskHistory.lock
 .gradle/buildOutputCleanup/buildOutputCleanup.lock
 .settings/org.eclipse.wst.common.component
+.settings/org.eclipse.buildship.core.prefs
+.settings/org.eclipse.wst.common.project.facet.core.xml
+.project
+.gradle/buildOutputCleanup/cache.properties
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
