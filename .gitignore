@@ -1,2 +1,4 @@
 
 *.bin
+*.class
+.settings/org.eclipse.wst.common.component
