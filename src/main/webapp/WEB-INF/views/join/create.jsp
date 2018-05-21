@@ -23,12 +23,17 @@
 			url : "/join/checkValidation",
 			dataType : "json",
 			data:{
-				"dupicatedIdCheck" : $("#checkId").val()
+				"id" : $("#checkId").val()
 			},
 			success : function(result) {
 				console.log(result);
 				console.log(result.data.id);
 				console.log("success");
+				if(result.data.id == 1){
+					alert("existed id");
+				}else{
+					alert("possible id");
+				}
 			},
 			complete : function(result) {
 				console.log("complete");

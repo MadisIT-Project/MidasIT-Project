@@ -17,6 +17,7 @@ public class JoinService {
 	public UserInfo checkValidation(UserInfo info) {
 		int cntUserId = userInfoDao.checkId(info);
 		System.out.println("checkValidation: " + cntUserId);
+		
 		info.setId(String.valueOf(cntUserId));
 		
 		return info;
