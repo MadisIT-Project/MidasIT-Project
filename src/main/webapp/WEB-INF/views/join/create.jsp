@@ -12,28 +12,22 @@
 <script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		console.log("---test");
+		console.log("---enter create.jsp page---");
 	});
 
-	$('#checkIdBtn').click(function() {
-		console.log("id click");
-	});
-
-	function myFunction() {
+	function checkId() {
 		console.log("myFunction test");
-		// 		console.log($("#checkId"));
 		console.log($("#checkId").val());
 		$.ajax({
-			type : "POST",
+			type : "GET",
 			url : "/join/checkValidation",
 			dataType : "json",
 			data:{
-				"id" : $("#checkId").val()
+				"dupicatedIdCheck" : $("#checkId").val()
 			},
-			success : function(re) {
-				console.log(re);
-				var data = JSON.parse(re);
-				console.log(data);
+			success : function(result) {
+				console.log(result);
+				console.log(result.data.id);
 				console.log("success");
 			},
 			complete : function(result) {
@@ -45,30 +39,6 @@
 			}
 		});
 	}
-
-	$("input[name=checkIdBtn]").bind('click', function() {
-		console.log("btn click");
-		// 				jQuery.ajax({
-		// 						type:"GET",
-		// 						url:"/join/checkValidation",
-		// 						dataType:"JSON",
-		// 						success: function(data){
-		// 							console.log("success");
-		// 						},
-		// 					complete: function(data){
-		// 						console.log("complete");
-
-		// 					},
-		// 					error: function(xhr, status, error){
-		// 						console.log("error");
-		// 					}
-		// 				});
-		// 				$.get('<spring:url value="/join/checkValidation" />', {
-		// 					"checkId" : $("#checkId").val()
-		// 				}, function(result) {
-		// 					console.log(result);
-		// 				});
-	});
 </script>
 <body>
 	create User
@@ -80,7 +50,7 @@
 		</tr>
 		<tr>
 			<td colspan="2"><input type="button" id="checkIdBtn"
-				name="checkIdBtn" value="submit" onclick="myFunction()" /></td>
+				name="checkIdBtn" value="submit" onclick="checkId()" /></td>
 		</tr>
 	</table>
 	<!-- 	</form> -->

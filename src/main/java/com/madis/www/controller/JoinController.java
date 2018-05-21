@@ -1,6 +1,5 @@
 package com.madis.www.controller;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,17 +22,19 @@ public class JoinController {
 		System.out.println("join test");
 		return "join/create";
 	}
-
-	@RequestMapping(value = "/checkValidation", method = RequestMethod.POST)
-	public @ResponseBody String checkValidation(UserInfo info) {
+	
+	@RequestMapping(value = "/checkValidation", method = RequestMethod.GET)
+	public @ResponseBody ResultVO checkValidation(UserInfo info)
+	{
 
 		System.out.println("-------------");
 		System.out.println(info.getId());
 		System.out.println("-------------");
-		ResultVO result = joinService.checkValidation(info);
-
+		UserInfo userInfo = joinService.checkValidation(info);
+		ResultVO result = new ResultVO(userInfo);
+				
 		System.out.println("join Controller checkValidation");
-		System.out.println("result.toString():" + result.toString());
-		return result.toString();
+		
+		return result;
 	}
 }
