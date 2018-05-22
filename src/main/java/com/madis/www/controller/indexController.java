@@ -13,7 +13,7 @@ public class indexController {
 
 	private static final Logger logger = Logger.getLogger("indexController");
 
-	@RequestMapping(value = { "/index", "/" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String home(HttpServletRequest request) {
 		logger.info("logger test");
 		System.out.println("---system out test---");

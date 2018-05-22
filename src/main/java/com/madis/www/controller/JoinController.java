@@ -16,6 +16,12 @@ public class JoinController {
 
 	@Autowired
 	private JoinService joinService;
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		System.out.println("login test");
+		return "join/login";
+	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String join() {
