@@ -15,10 +15,17 @@ public class JoinService {
 
 	@Transactional
 	public UserInfo checkValidation(UserInfo info) {
-		int cntUserId = userInfoDao.checkId(info);
+		int cntUserId = userInfoDao.checkEmail(info);
 		System.out.println("checkValidation: " + cntUserId);
 		
-		info.setId(String.valueOf(cntUserId));
+		info.setEmail(String.valueOf(cntUserId));
+		
+		return info;
+	}
+	
+	@Transactional
+	public UserInfo creatUser(UserInfo info) {
+		userInfoDao.createUser(info);
 		
 		return info;
 	}

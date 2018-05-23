@@ -33,12 +33,28 @@ public class JoinController {
 	public @ResponseBody ResultVO checkValidation(UserInfo info) {
 
 		System.out.println("-------------");
-		System.out.println(info.getId());
+		System.out.println(info.getEmail());
 		System.out.println("-------------");
 		UserInfo userInfo = joinService.checkValidation(info);
 		ResultVO result = new ResultVO(userInfo);
 
 		System.out.println("join Controller checkValidation");
+
+		return result;
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public @ResponseBody ResultVO register(UserInfo info) {
+
+		System.out.println("-------------");
+		System.out.println(info.getEmail());
+		System.out.println(info.getAge());
+		System.out.println(info.getId());
+		System.out.println(info.getName());
+		System.out.println(info.getPassword());
+		System.out.println("-------------");
+		UserInfo userInfo = joinService.creatUser(info);
+		ResultVO result = new ResultVO(userInfo);
 
 		return result;
 	}

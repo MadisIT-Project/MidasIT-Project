@@ -20,18 +20,14 @@ public class UserDaoImpl implements UserInfoDao {
 	}
 
 	@Override
-	public int createUser(UserInfo info) {
-		return 0;
+	public void createUser(UserInfo info) {
+		this.jdbcTemplate.update("insert into users(email, password, name, age) values(?,?,?,?)", info.getEmail(),
+				info.getPassword(), info.getName(), info.getAge());
 	}
 
 	@Override
-	public UserInfo getUserInfo(UserInfo info) {
-		return null;
-	}
-
-	@Override
-	public int checkId(UserInfo info) {
-		return this.jdbcTemplate.queryForInt("select count(*) from userinfo where id = ?", info.getId());
+	public int checkEmail(UserInfo info) {
+		return this.jdbcTemplate.queryForInt("select count(*) from users where email = ?", info.getEmail());
 	}
 
 }
