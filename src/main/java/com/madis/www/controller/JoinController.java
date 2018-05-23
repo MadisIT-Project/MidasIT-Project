@@ -16,7 +16,7 @@ public class JoinController {
 
 	@Autowired
 	private JoinService joinService;
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		System.out.println("login test");
@@ -28,19 +28,18 @@ public class JoinController {
 		System.out.println("join test");
 		return "join/create";
 	}
-	
+
 	@RequestMapping(value = "/checkValidation", method = RequestMethod.GET)
-	public @ResponseBody ResultVO checkValidation(UserInfo info)
-	{
+	public @ResponseBody ResultVO checkValidation(UserInfo info) {
 
 		System.out.println("-------------");
 		System.out.println(info.getId());
 		System.out.println("-------------");
 		UserInfo userInfo = joinService.checkValidation(info);
 		ResultVO result = new ResultVO(userInfo);
-				
+
 		System.out.println("join Controller checkValidation");
-		
+
 		return result;
 	}
 }

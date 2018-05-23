@@ -9,6 +9,7 @@
 <!-- 	href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" /> -->
 <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script type="text/javascript">
 	$(function() {
 		$(".nav").mouseenter(function() {
@@ -28,8 +29,8 @@
 		<div class="top_area">
 			<div class="top_area_wrap">
 				<ul class="left">
-					<li><a href="#">KOREA</a></li>
-					<li><a href="#">ENGLISH</a></li>
+					<li><a href="?lang=ko">KOREA</a></li>
+					<li><a href="?lang=en">ENGLISH</a></li>
 				</ul>
 				<ul class="right">
 					<li><a href="/join/login">login</a></li>
@@ -48,7 +49,7 @@
 							<!--<img src="/main_code/images/nav_promotion.png">-->
 						</li>
 					</ul></li>
-				<li class="list01"><a href="#" id="menu1">회사소개</a>
+				<li class="list01"><a href="#" id="menu1"><spring:message code="post.title" /></a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
 						<li><a href="#">회사개요</a></li>
 						<li><a href="#">회사비전</a></li>
