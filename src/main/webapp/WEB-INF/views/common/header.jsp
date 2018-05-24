@@ -49,7 +49,7 @@
 							<!--<img src="/main_code/images/nav_promotion.png">-->
 						</li>
 					</ul></li>
-				<li class="list01"><a href="#" id="menu1"><spring:message code="post.title" /></a>
+				<li class="list01"><a href="/board/getBoardList" id="menu1">게시판</a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
 						<li><a href="#">회사개요</a></li>
 						<li><a href="#">회사비전</a></li>
