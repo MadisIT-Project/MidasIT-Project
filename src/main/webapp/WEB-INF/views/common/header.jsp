@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,8 +21,14 @@
 			$(".nav_bg").fadeOut(300);
 		});
 	});
+// 	function logout(){
+// 		logoutForm.submit();
+// 	}
 </script>
 <body>
+<!-- 	<form action="/join/logout" method="post" id="logoutForm"> -->
+<%-- 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
+<!-- 	</form> -->
 	<div class="nav_bg" id="gnb_depth" style="opacity: 1; display: none;"></div>
 	<div class="header">
 		<div class="top_area">
@@ -34,13 +39,13 @@
 				</ul>
 				<ul class="right">
 					<li><a href="/join/login">login</a></li>
+					<li>${email}님 반갑습니다.<a href="/join/logout" onclick="">logout</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="header_wrap">
 			<p class="logo">
-				<a href="#"><img src="/resources/image/common/logo.gif"
-					alt="마이다스아이티"></a>
+				<a href="#"><img src="/resources/image/common/logo.gif" alt="마이다스아이티"></a>
 			</p>
 			<ul class="nav" id="nav">
 				<li class="list00"><a href="#" id="menu0">광고배너</a>
@@ -49,7 +54,7 @@
 							<!--<img src="/main_code/images/nav_promotion.png">-->
 						</li>
 					</ul></li>
-				<li class="list01"><a href="/board/getBoardList" id="menu1">게시판</a>
+				<li class="list01"><a href="#" id="menu1"><spring:message code="post.title" /></a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
 						<li><a href="#">회사개요</a></li>
 						<li><a href="#">회사비전</a></li>
@@ -66,8 +71,7 @@
 					</ul></li>
 				<li class="list04"><a href="#" id="menu4">홍보센터</a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
-						<li><a href="#"><span class="nav_span">MIDAS IT
-									News</span></a></li>
+						<li><a href="#"><span class="nav_span">MIDAS IT News</span></a></li>
 						<li><a href="#">홍보동영상</a></li>
 					</ul></li>
 				<li class="list05"><a href="#" id="menu5">인재채용</a>
