@@ -29,5 +29,12 @@ public class JoinService {
 		
 		return info;
 	}
+	
+	@Transactional
+	public UserInfo getUserInfo(String email) {
+		UserInfo getInfo = userInfoDao.getUser(email);
+		
+		return getInfo;
+	}
 
 }

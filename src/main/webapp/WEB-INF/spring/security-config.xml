@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	<security:http auto-config="true" use-expressions="true">
+<!-- 		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" /> -->
+<!-- 		<security:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" /> -->
+		<security:intercept-url pattern="/**" access="permitAll" />
+		<security:form-login 
+			login-processing-url="/join/loginProcess" 
+			login-page="/main" 
+			default-target-url="/main" 
+			authentication-failure-url="/join/login?fail=true"
+			authentication-success-handler-ref="authenticationSuccessHandler"
+			always-use-default-target='true' 
+		/>
+		
+		<security:logout invalidate-session="true" logout-url="/join/logout" logout-success-url="/" />
+		<security:csrf />
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="CustomUserDetailsService" />
+	</security:authentication-manager>
+
+	<bean id="CustomUserDetailsService" class="com.madis.www.common.mvc.service.CustomUserDetailsService">
+	</bean>
+
+	<bean id="authenticationSuccessHandler" class="com.madis.www.common.mvc.service.CustomUserAuthenticationSuccessHandler">
+	</bean>
+	
+</beans>

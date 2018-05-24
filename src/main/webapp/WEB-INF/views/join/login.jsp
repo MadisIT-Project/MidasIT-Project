@@ -19,11 +19,11 @@
 </style>
 <script type="text/javascript">
 	function isValidation(check) {
-		if(!check){
+		if (!check) {
 			alert("이메일 중복체크를 하지 않았습니다.");
 			return false;
 		}
-		
+
 		if ($("#name").val() == "") {
 			alert("name에 값이 없습니다.");
 			return false;
@@ -51,25 +51,30 @@
 
 		return true;
 	}
+	
+	function login(){
+		console.log("login function");
+		loginform.submit();
+	}
 
 	$(function() {
 		var check = false;
-		$("#btn-duplicatedCheck").click(function(){
+		$("#btn-duplicatedCheck").click(function() {
 			$.ajax({
 				type : "GET",
 				url : "/join/checkValidation",
 				dataType : "json",
-				data:{
+				data : {
 					"email" : $("#email").val()
 				},
 				success : function(result) {
-					if(result.data.email == 1){
+					if (result.data.email == 1) {
 						alert("이미 존재하는 이메일입니다. 다시 확인해 주세요.");
-					}else{
-						if(confirm("사용가능한 이메일 입니다. 사용하시겠습니까? ")){
+					} else {
+						if (confirm("사용가능한 이메일 입니다. 사용하시겠습니까? ")) {
 							check = true;
-							$("#email").attr("readonly",true);
-							$("#btn-duplicatedCheck").attr("disabled",true);
+							$("#email").attr("readonly", true);
+							$("#btn-duplicatedCheck").attr("disabled", true);
 						}
 					}
 				},
@@ -82,12 +87,12 @@
 				}
 			});
 		});
-		
+
 		$("#btn-signup").click(function() {
 			if (!isValidation(check)) {
 				return false;
 			}
-			
+
 			console.log($("#email").val());
 			console.log($("#name").val());
 			console.log($("#age").val());
@@ -106,7 +111,7 @@
 				success : function(result) {
 					console.log(result);
 					console.log("success");
-					if(result.result == 1000){
+					if (result.result == 1000) {
 						alert("회원가입이 완료되었습니다.");
 						location.replace('/');
 					}
@@ -137,10 +142,10 @@
 
 				<div style="padding-top: 30px" class="panel-body">
 					<div style="display: none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-					<form id="loginform" class="form-horizontal" role="form">
+					<form id="loginform" name="loginform" class="form-horizontal" role="form" action="/join/loginProcess" method="post">
 
 						<div style="margin-bottom: 25px" class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> <input id="login-username" type="text" class="form-control" name="username" placeholder="email">
 						</div>
 
 						<div style="margin-bottom: 25px" class="input-group">
@@ -159,9 +164,10 @@
 							<!-- Button -->
 
 							<div class="col-sm-12 controls">
-								<a id="btn-login" href="#" class="btn btn-success">Login</a>
+								<a id="btn-login" href="#" class="btn btn-success" onclick="login()">Login</a>
 							</div>
 						</div>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 						<div class="form-group">
 							<div class="col-md-12 control">

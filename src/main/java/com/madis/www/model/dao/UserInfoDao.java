@@ -6,4 +6,6 @@ public interface UserInfoDao {
 	public void createUser(UserInfo info);
 	
 	public int checkEmail(UserInfo info);
+
+	public UserInfo getUser(String email);
 }
