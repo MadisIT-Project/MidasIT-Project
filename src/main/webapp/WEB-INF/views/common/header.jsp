@@ -45,7 +45,7 @@
 		</div>
 		<div class="header_wrap">
 			<p class="logo">
-				<a href="#"><img src="/resources/image/common/logo.gif" alt="마이다스아이티"></a>
+				<a href="/"><img src="/resources/image/common/logo.gif" alt="마이다스아이티"></a>
 			</p>
 			<ul class="nav" id="nav">
 				<li class="list00"><a href="#" id="menu0">광고배너</a>
@@ -54,7 +54,7 @@
 							<!--<img src="/main_code/images/nav_promotion.png">-->
 						</li>
 					</ul></li>
-				<li class="list01"><a href="#" id="menu1"><spring:message code="post.title" /></a>
+				<li class="list01"><a href="/board" id="menu1"><spring:message code="post.title" /></a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
 						<li><a href="#">회사개요</a></li>
 						<li><a href="#">회사비전</a></li>

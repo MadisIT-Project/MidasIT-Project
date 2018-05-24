@@ -29,7 +29,8 @@ public class CommentImpl implements CommentDao {
 	
 	@Override
 	public List<Comment> getCommentList(int index){
-		return jdbcTemplate.query(COMMENT_LIST, new CommentRowMapper());
+		Object[] args = {index};
+		return jdbcTemplate.query(COMMENT_LIST, args, new CommentRowMapper());
 	}
 }
 
@@ -37,7 +38,7 @@ class CommentRowMapper implements RowMapper<Comment>{
 	public Comment mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Comment comment = new Comment();
 		
-		comment.setIndex(rs.getInt("posts.index"));
+		comment.setIndex(rs.getInt("comments.index"));
 		comment.setContent(rs.getString("content"));
 		comment.setP_id(rs.getInt("p_id"));
 		comment.setU_id(rs.getInt("u_id"));
