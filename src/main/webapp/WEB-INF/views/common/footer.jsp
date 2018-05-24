@@ -12,9 +12,9 @@
 <div id="footer">
 	<ul class="information">
 		<li class="pdf_download"><a href="/resources/file/2018_midasit_challenge.pdf" title="MIDAS Challeng PDF 새창열기" target="_blank" style="color:#555;" ><i style="" class="xi-arrow-bottom"></i>MIDAS Challeng 설명서</a>&nbsp;&nbsp;&nbsp;l</li>
-		<li><a href="map" title="개인정보취급방침 새창열기" target="_blank" style="color:#555;" >개인정보취급방침</a>&nbsp;&nbsp;&nbsp;l</li>
-		<li><a href="#" title="이용약관 새창열기" target="_blank" style="color:#555;">이용약관</a>&nbsp;&nbsp;&nbsp;l</li>
-		<li><a href="#" title="이메일 주소 무단 수집 거부 새창열기" target="_blank" style="color:#555;" >이메일 주소 무단수집 거부</a></li>
+		<li><a href="map" title="오시는 길 새창열기" target="_blank" style="color:#555;" >오시는 길</a>&nbsp;&nbsp;&nbsp;</li>
+<!-- 		<li><a href="#" title="이용약관 새창열기" target="_blank" style="color:#555;">이용약관</a>&nbsp;&nbsp;&nbsp;l</li> -->
+<!-- 		<li><a href="#" title="이메일 주소 무단 수집 거부 새창열기" target="_blank" style="color:#555;" >이메일 주소 무단수집 거부</a></li> -->
 	</ul>
 	<div class="totop">
 		<a href="#" title="맨위로">▲ 맨위로</a>
