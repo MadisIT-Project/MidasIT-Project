@@ -27,11 +27,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-11">
-				<h1 style="display: inline">게시판</h1>
+				<h3 style="display: inline">게시판</h3>
 			</div>
 			<!-- BUTTON -->
 			<div class="col-lg-1">
-				<form action="writeBoard" method="get" class="form-inline">
+				<form action="board/write" method="get" class="form-inline">
 					<button type="submit" class="btn btn-default">글쓰기</button>
 				</form>
 			</div>
@@ -43,11 +43,13 @@
 	
 		<!--  LIST GROUP -->
 		<ul class="list-group">
-			<c:forEach items="${boardList}" var="board">
+			<c:forEach items="${boardList}" var="board" varStatus="status">
 				<li class="list-group-item">
 					<div>
-						<h4 style="display: inline"><a href="getBoard?index=${board.index}">${board.title}</a></h4>
-						<span class="badge">+14</span>
+						<h4 style="display: inline"><a href="board/${board.index}">${board.title}</a></h4>
+						<c:if test="${CommentCountList.get(status.index) ne 0}">
+						    <span class="badge">+${CommentCountList.get(status.index)}</span>
+						</c:if>
 					</div><p># created ${board.created_date} by ${board.u_index}</p>
 				</li>
 			</c:forEach>

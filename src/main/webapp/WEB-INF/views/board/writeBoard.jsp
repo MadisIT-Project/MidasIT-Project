@@ -12,20 +12,19 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
 <script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
 
-<!-- Not Working -->
-<script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/3.2.0/css/bootstrap.min.css"></script>
-<script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 
 <script>
 	window.onload = function() {
 		
 		if (${board.index} != 0){
 			$('#btn').html('글수정');
-			fo.action = "updateBoard";
+			fo.action = "${board.index}/update";
 		}
 	};
 </script>
@@ -44,7 +43,7 @@
 
 		<hr>
 
-		<form action="insertBoard" id = fo method="post" class="form-horizontal">
+		<form action="insert" id = fo method="post" class="form-horizontal">
 			<div class="form-group">
 				<label for="title" class="col-sm-1 control-label">제목</label>
 				<div class="col-sm-10">

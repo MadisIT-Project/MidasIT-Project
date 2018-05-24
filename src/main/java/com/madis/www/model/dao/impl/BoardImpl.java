@@ -45,13 +45,14 @@ public class BoardImpl implements BoardDao {
 	}
 
 	@Override
-	public void deleteBoard(Board board) {
-		jdbcTemplate.update(BOARD_DELETE, board.getIndex());
+	public void deleteBoard(int index) {
+		int ss = index;
+		jdbcTemplate.update(BOARD_DELETE, ss);
 	}
 
 	@Override
-	public Board getBoard(Board board) {
-		Object[] args = {board.getIndex()};
+	public Board getBoard(int index) {
+		Object[] args = {index};
 		return jdbcTemplate.queryForObject(BOARD_GET, args, new BoardRowMapper());
 	}
 

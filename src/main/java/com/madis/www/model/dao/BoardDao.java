@@ -14,10 +14,10 @@ public interface BoardDao {
 	void updateBoard(Board board);
 
 	// 글 삭제
-	void deleteBoard(Board board);
+	void deleteBoard(int index);
 
 	// 글 상세 조회
-	Board getBoard(Board board);
+	Board getBoard(int index);
 
 	// 글 목록 조회
 	List<Board> getBoardList(Board board);
