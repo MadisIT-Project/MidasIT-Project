@@ -68,21 +68,22 @@
 						<li><a href="#">회사개요</a></li>
 						<li><a href="#">회사비전</a></li>
 					</ul></li>
-				<li class="list02"><a href="#" id="menu3">사업분야</a>
-					<ul class="nav_depth" style="opacity: 1; display: none;">
-						<li><a href="#">사업소개</a></li>
-						<li><a href="#"><span class="nav_span">MIDAS</span> 사업</a></li>
-					</ul></li>
-				<li class="list03"><a href="#" id="menu2">회사문화</a>
-					<ul class="nav_depth" style="opacity: 1; display: none;">
-						<li><a href="#"><span class="nav_span">MIDAS</span> 문화</a></li>
-						<li><a href="#">경영철학</a></li>
-					</ul></li>
-				<li class="list04"><a href="#" id="menu4">홍보센터</a>
-					<ul class="nav_depth" style="opacity: 1; display: none;">
-						<li><a href="#"><span class="nav_span">MIDAS IT News</span></a></li>
-						<li><a href="#">홍보동영상</a></li>
-					</ul></li>
+				<!-- 				<li class="list02"><a href="#" id="menu3">사업분야</a> -->
+				<!-- 					<ul class="nav_depth" style="opacity: 1; display: none;"> -->
+				<!-- 						<li><a href="#">사업소개</a></li> -->
+				<!-- 						<li><a href="#"><span class="nav_span">MIDAS</span> 사업</a></li> -->
+				<!-- 					</ul></li> -->
+				<!-- 				<li class="list03"><a href="#" id="menu2">회사문화</a> -->
+				<!-- 					<ul class="nav_depth" style="opacity: 1; display: none;"> -->
+				<!-- 						<li><a href="#"><span class="nav_span">MIDAS</span> 문화</a></li> -->
+				<!-- 						<li><a href="#">경영철학</a></li> -->
+				<!-- 					</ul></li> -->
+				<!-- 				<li class="list04"><a href="#" id="menu4">홍보센터</a> -->
+				<!-- 					<ul class="nav_depth" style="opacity: 1; display: none;"> -->
+				<!-- 						<li><a href="#"><span class="nav_span">MIDAS IT News</span></a></li> -->
+				<!-- 						<li><a href="#">홍보동영상</a></li> -->
+				<!-- 					</ul> -->
+				<!-- 				</li> -->
 				<sec:authorize ifAnyGranted="ROLE_ADMIN">
 					<li class="list05"><a href="#" id="menu5">인재채용</a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
