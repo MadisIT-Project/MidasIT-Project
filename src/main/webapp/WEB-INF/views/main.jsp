@@ -11,5 +11,8 @@
 	<div class="wrap">
 		<jsp:include page="common/header.jsp"></jsp:include>
 	</div>
+	<div class="wrap">
+		<jsp:include page="common/footer.jsp"></jsp:include>
+	</div>
 </body>
 </html>

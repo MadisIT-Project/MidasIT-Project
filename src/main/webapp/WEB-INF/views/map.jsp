@@ -11,6 +11,6 @@
 </head>
 <body>
 	
-	<a href="#"><img src="/resources/image/mapimage/logo.gif" alt="locate"></a> 
+	<a href="#"><img src="/resources/image/common/tiger.jpg" alt="locate"></a> 
 </body>
 </html>
