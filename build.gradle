@@ -58,5 +58,11 @@ dependencies {
     // json converter
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.4'
     
+    // https://mvnrepository.com/artifact/taglibs/standard
+	compile group: 'taglibs', name: 'standard', version: '1.1.2'
+    
+    // https://mvnrepository.com/artifact/javax.servlet/jstl
+	compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+    
 }
 
