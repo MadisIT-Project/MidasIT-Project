@@ -9,6 +9,7 @@
 <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <script type="text/javascript">
 	$(function() {
 		$(".nav").mouseenter(function() {
@@ -21,14 +22,14 @@
 			$(".nav_bg").fadeOut(300);
 		});
 	});
-// 	function logout(){
-// 		logoutForm.submit();
-// 	}
+
+	function logout() {
+		console.log("logout");
+		logoutForm.submit();
+	}
 </script>
 <body>
-<!-- 	<form action="/join/logout" method="post" id="logoutForm"> -->
-<%-- 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
-<!-- 	</form> -->
+
 	<div class="nav_bg" id="gnb_depth" style="opacity: 1; display: none;"></div>
 	<div class="header">
 		<div class="top_area">
@@ -37,10 +38,18 @@
 					<li><a href="?lang=ko">KOREA</a></li>
 					<li><a href="?lang=en">ENGLISH</a></li>
 				</ul>
-				<ul class="right">
-					<li><a href="/join/login">login</a></li>
-					<li>${email}님 반갑습니다.<a href="/join/logout" onclick="">logout</a></li>
-				</ul>
+				<form action="/join/logout" method="post" id="logoutForm">
+					<ul class="right">
+						<sec:authorize access="isAnonymous()">
+							<li><a href="/join/login">login</a></li>
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<sec:authentication var="user" property="principal" />
+							<li>${user.username}님반갑습니다.<a href="#" onclick="logout()">logout</a></li>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						</sec:authorize>
+					</ul>
+				</form>
 			</div>
 		</div>
 		<div class="header_wrap">
@@ -74,16 +83,20 @@
 						<li><a href="#"><span class="nav_span">MIDAS IT News</span></a></li>
 						<li><a href="#">홍보동영상</a></li>
 					</ul></li>
-				<li class="list05"><a href="#" id="menu5">인재채용</a>
-					<ul class="nav_depth" style="opacity: 1; display: none;">
-						<li><a href="#"><span class="nav_span">MIDAS</span> 인사제도</a></li>
-						<li><a href="#">채용안내</a></li>
-						<li><a href="#" target="_blank">채용공고</a></li>
-					</ul></li>
-				<li class="list07"><a href="#" id="menu6">찾아오시는길</a>
-					<ul class="nav_depth" style="opacity: 1; display: none;">
-						<li><a href="#">찾아오시는길</a></li>
-					</ul></li>
+				<sec:authorize ifAnyGranted="ROLE_ADMIN">
+					<li class="list05"><a href="#" id="menu5">인재채용</a>
+						<ul class="nav_depth" style="opacity: 1; display: none;">
+							<li><a href="#"><span class="nav_span">MIDAS</span> 인사제도</a></li>
+							<li><a href="#">채용안내</a></li>
+							<li><a href="#" target="_blank">채용공고</a></li>
+						</ul></li>
+				</sec:authorize>
+				<sec:authorize ifAnyGranted="ROLE_USER">
+					<li class="list07"><a href="#" id="menu6">찾아오시는길</a>
+						<ul class="nav_depth" style="opacity: 1; display: none;">
+							<li><a href="#">찾아오시는길</a></li>
+						</ul></li>
+				</sec:authorize>
 			</ul>
 		</div>
 	</div>

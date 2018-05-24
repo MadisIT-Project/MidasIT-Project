@@ -72,10 +72,4 @@ public class JoinController {
 
 		return result;
 	}
-	
-	@RequestMapping(value = "/loginProcess")
-	public String loginSuccess() {
-		System.out.println("joinProcess");
-		return "/";
-	}
 }
