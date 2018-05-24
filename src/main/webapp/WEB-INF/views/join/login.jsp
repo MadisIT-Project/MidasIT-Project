@@ -51,8 +51,8 @@
 
 		return true;
 	}
-	
-	function login(){
+
+	function login() {
 		console.log("login function");
 		loginform.submit();
 	}
@@ -88,43 +88,48 @@
 			});
 		});
 
-		$("#btn-signup").click(function() {
-			if (!isValidation(check)) {
-				return false;
-			}
-
-			console.log($("#email").val());
-			console.log($("#name").val());
-			console.log($("#age").val());
-			console.log($("#password").val());
-
-			$.ajax({
-				type : "POST",
-				url : "/join/register",
-				dataType : "json",
-				data : {
-					"email" : $("#email").val(),
-					"name" : $("#name").val(),
-					"age" : $("#age").val(),
-					"password" : $("#password").val()
-				},
-				success : function(result) {
-					console.log(result);
-					console.log("success");
-					if (result.result == 1000) {
-						alert("회원가입이 완료되었습니다.");
-						location.replace('/');
+		$("#btn-signup").click(
+				function() {
+					if (!isValidation(check)) {
+						return false;
 					}
-				},
-				complete : function(result) {
-					console.log("complete");
 
-				},
-				error : function(xhr, status, error) {
-					console.log("error");
-				}
-			});
-		});
+					console.log($("#email").val());
+					console.log($("#name").val());
+					console.log($("#age").val());
+					console.log($("#password").val());
+
+					$.ajax({
+						type : "POST",
+						url : "/join/register",
+						dataType : "json",
+						data : {
+							"email" : $("#email").val(),
+							"name" : $("#name").val(),
+							"age" : $("#age").val(),
+							"password" : $("#password").val()
+						},
+						beforeSend : function(xhr) {
+							xhr.setRequestHeader("${_csrf.headerName}",
+									"${_csrf.token}");
+						},
+						success : function(result) {
+							console.log(result);
+							console.log("success");
+							if (result.result == 1000) {
+								alert("회원가입이 완료되었습니다.");
+								location.replace('/');
+							}
+						},
+						complete : function(result) {
+							console.log("complete");
+
+						},
+						error : function(xhr, status, error) {
+							console.log("error");
+						}
+					});
+				});
 	});
 </script>
 <body>
@@ -248,6 +253,7 @@
 								</div>
 							</div>
 						</div>
+						<%-- 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
 					</form>
 				</div>
 			</div>
