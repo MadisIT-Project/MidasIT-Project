@@ -53,3 +53,35 @@ a,a:link{color:#000;text-decoration:none}
 .nav_span {letter-spacing:-1px;font-size:13px;line-height:2;font-weight:normal !important;}
 
 
+
+/* 푸터 */
+#footer {width:960px; height:180px; margin: auto; border-top:1px #e1e1e1 solid; padding:20px 0 0;}
+#footer .information {float:left; width:600px; overflow:hidden; font-weight:bold;}
+#footer .information li {float:left; padding:3px 0 0 10px; overflow:hidden; height:20px;}
+#footer .information .pdf_download {--background:url('/img/common/footer_icon_pdf.gif') no-repeat;--}
+
+#footer .totop {float:right; width:360px; height:20px; overflow:hidden; text-align:right;}
+
+#footer .midas_info {float:left; width:554px; overflow:hidden;  margin:30px 0 0; line-height:20px; color:#848484;}
+#footer .midas_info span {letter-spacing:0;}
+#footer .midas_info li {float:left; width:600px;}
+
+#footer .muss_info {float:right; width:316px; overflow:hidden;  color:#848484; font-size:11px;}
+#footer .muss_info a {color:#848484;}
+#footer .muss_info a:hover {color:#52b8ef;}
+#footer .muss_info .title {float:left; width:316px; text-align:right; padding:0 0 12px; font-size:12px;}
+#footer .muss_info .biz_01 {float:left; width:40px; height:16px; padding:50px 0 0; margin:0 6px 0 0; text-align:center; background:url('/img/common/biz_01_nor.gif') center top no-repeat; color:#848484;}
+#footer .muss_info .biz_01:hover {background:url('/img/common/biz_01_over.gif') center top no-repeat; color:#52b8ef;}
+#footer .muss_info .biz_02 {float:left; width:40px; height:16px; padding:50px 0 0; margin:0 6px 0 0; text-align:center; background:url('/img/common/biz_02_nor.gif') center top no-repeat; color:#848484;}
+#footer .muss_info .biz_02:hover {background:url('/img/common/biz_02_over.gif') center top no-repeat; color:#52b8ef;}
+#footer .muss_info .biz_03 {float:left; width:40px; height:16px; padding:50px 0 0; margin:0 6px 0 0; text-align:center; background:url('/img/common/biz_03_nor.gif') center top no-repeat; color:#848484;}
+#footer .muss_info .biz_03:hover {background:url('/img/common/biz_03_over.gif') center top no-repeat; color:#52b8ef;}
+#footer .muss_info .biz_04 {float:left; width:40px; height:16px; padding:50px 0 0; margin:0 6px 0 0; text-align:center; background:url('/img/common/biz_04_nor.gif') center top no-repeat; color:#848484;}
+#footer .muss_info .biz_04:hover {background:url('/img/common/biz_04_over.gif') center top no-repeat; color:#52b8ef;}
+#footer .muss_info .biz_05 {float:left; width:40px; height:22px; padding:50px 0 0; margin:0 6px 0 0; text-align:center; background:url('/img/common/biz_05_nor.gif') center top no-repeat; color:#848484;}
+#footer .muss_info .biz_05:hover {background:url('/img/common/biz_05_over.gif') center top no-repeat; color:#52b8ef;}
+#footer .muss_info .biz_06 {float:left; width:40px; height:16px; padding:50px 0 0; text-align:center; background:url('/img/common/biz_06_nor.gif') center top no-repeat; color:#848484;}
+#footer .muss_info .biz_06:hover {background:url('/img/common/biz_06_over.gif') center top no-repeat; color:#52b8ef;}
+#footer .muss_info .biz_07 {float:left; width:40px; height:22px; padding:50px 0 0; margin:0 6px 0 0; text-align:center; background:url('/img/common/biz_07_nor.gif') center top no-repeat; color:#848484;}
+#footer .muss_info .biz_07:hover {background:url('/img/common/biz_07_over.gif') center top no-repeat; color:#52b8ef;}
+
