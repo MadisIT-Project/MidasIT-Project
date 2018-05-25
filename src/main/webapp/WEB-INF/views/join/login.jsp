@@ -150,15 +150,6 @@
 				});
 	});
 	
-function checkEmail() {
-       
-
-}
-function checkpasswd() {
-    
-
-}
-
 </script>
 <body>
 	<div class="container">
