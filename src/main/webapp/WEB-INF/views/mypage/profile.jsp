@@ -113,9 +113,9 @@ input {
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #28a745;
-    background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%);
+	color: #fff;
+	background-color: #28a745;
+	background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%);
 }
 </style>
 <body>
@@ -127,7 +127,7 @@ input {
 			<div class="Subhead mt-0 mb-0">
 				<h2 class="Subhead-heading">Profile</h2>
 			</div>
-			<form id="profile_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" novalidate="novalidate" data-alambic-owner-id="10431621" data-alambic-owner-type="User" action="/users/shfksekdrms2" accept-charset="UTF-8" method="post">
+			<form id="profile_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" action="/mypage/upload?${_csrf.parameterName}=${_csrf.token}" encType="multipart/form-data" method="post">
 				<dl class="form-group edit-profile-avatar mr-4 float-right">
 					<dt>
 						<label for="upload-profile-picture">Profile picture</label>
@@ -135,7 +135,7 @@ input {
 					<dd class="avatar-upload-container clearfix">
 						<img class="avatar rounded-2" src="https://avatars3.githubusercontent.com/u/10431621?s=400&amp;u=e470aef5ad902308677861c23e9f4277d147d0c5&amp;v=4" width="200" height="200" alt="@shfksekdrms2">
 						<div class="avatar-upload">
-							<label class="position-relative btn button-change-avatar mt-3 width-full text-center"> Upload new picture <input id="upload-profile-picture" type="file" class="manual-file-chooser width-full height-full ml-0 js-manual-file-chooser">
+							<label class="position-relative btn button-change-avatar mt-3 width-full text-center"> Upload new picture <input id="attachment1" name="attachment1" type="file" class="manual-file-chooser width-full height-full ml-0 js-manual-file-chooser">
 							</label>
 						</div>
 						<!-- /.avatar-upload -->
@@ -143,13 +143,14 @@ input {
 				</dl>
 
 				<sec:authentication var="user" property="principal" />
+				<input type="hidden" name="userId" value="${user.index}" />
 				<div class="column two-thirds">
 					<dl class="form-group">
 						<dt>
 							<label for="user_profile_name">Name</label>
 						</dt>
 						<dd>
-							<input class="form-control" type="text" name="user[profile_name]" id="user_profile_name" value="${user.name}">
+							<input class="form-control" type="text" name="name" id="name" value="${user.name}">
 						</dd>
 					</dl>
 					<dl class="form-group">
@@ -157,10 +158,9 @@ input {
 							<label for="user_profile_age">Age</label>
 						</dt>
 						<dd>
-							<input class="form-control" type="text" name="user[profile_age]" id="user_profile_age" value="${user.age}">
+							<input class="form-control" type="text" name="age" id="age" value="${user.age}">
 						</dd>
 					</dl>
-
 					<p>
 						<button type="submit" class="btn btn-primary">Update profile</button>
 					</p>
