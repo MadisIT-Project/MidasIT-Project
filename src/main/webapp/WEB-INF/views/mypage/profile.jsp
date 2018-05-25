@@ -121,7 +121,6 @@ input {
 </style>
 <script type="text/javascript">
 $(function() {
-// 	<img src=\"<spring:url value="/file/download/"/>" + product.IMG_PATH1 + "\" width='90px' height='80px'>
 
 });
 </script>

@@ -20,24 +20,25 @@ public class MypageService {
 
 	@Transactional
 	public int insertProfileImage(ImageInfo imageInfo) throws IOException {
-
+		
 		String name = imageInfo.getAttachment1().getOriginalFilename();
 
 		System.out.println("name:" + name);
 
 		System.out.println("imageInfo.getUserId(): " + imageInfo.getUserId());
 
-		
+		mypageDao.update(imageInfo);
+
 		imageInfo.setAttach1_Path(imageInfo.getUserId() + ".jpg");
-		System.out.println("path: "+imageInfo.getAttach1_Path());
-		
+		System.out.println("path: " + imageInfo.getAttach1_Path());
+
 		int isProfile = mypageDao.isProfile(imageInfo);
 		System.out.println("isProfile: " + isProfile);
 		if (isProfile == 0) {
 			mypageDao.insertAttachFile(imageInfo);
 			ImageInfo image = mypageDao.getImagesIndex(imageInfo);
 			System.out.println("imageIndex: " + image.getImageId());
-			
+
 			imageInfo.setImageId(image.getImageId());
 			mypageDao.insertUser_Image(imageInfo);
 		}

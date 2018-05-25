@@ -10,4 +10,6 @@ public interface MypageDao {
 	public void insertUser_Image(ImageInfo imageInfo);
 
 	public int isProfile(ImageInfo imageInfo);
+	
+	public void update(ImageInfo imageInfo);
 }

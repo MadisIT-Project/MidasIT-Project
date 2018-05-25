@@ -55,4 +55,10 @@ public class MypageDaoImpl implements MypageDao {
 		return this.jdbcTemplate.queryForInt("select count(*) from images where path=?", imageInfo.getAttach1_Path());
 	}
 
+	@Override
+	public void update(ImageInfo imageInfo) {
+		this.jdbcTemplate.update("update users set name = ?,age = ? where users.index = ? ", imageInfo.getName(),
+				imageInfo.getAge(), imageInfo.getUserId());
+	}
+
 }
