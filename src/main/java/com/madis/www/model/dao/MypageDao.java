@@ -5,7 +5,7 @@ import com.madis.www.model.dto.ImageInfo;
 public interface MypageDao {
 	public void insertAttachFile(ImageInfo imageInfo);
 
-	public int getImagesIndex(ImageInfo imageInfo);
+	public ImageInfo getImagesIndex(ImageInfo imageInfo);
 
 	public void insertUser_Image(ImageInfo imageInfo);
 

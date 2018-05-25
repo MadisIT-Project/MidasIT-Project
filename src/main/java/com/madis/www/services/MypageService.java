@@ -35,9 +35,10 @@ public class MypageService {
 		System.out.println("isProfile: " + isProfile);
 		if (isProfile == 0) {
 			mypageDao.insertAttachFile(imageInfo);
-			int imageIndex = mypageDao.getImagesIndex(imageInfo);
-			System.out.println("imageIndex: " + imageIndex);
-			imageInfo.setImageId(imageIndex);
+			ImageInfo image = mypageDao.getImagesIndex(imageInfo);
+			System.out.println("imageIndex: " + image.getImageId());
+			
+			imageInfo.setImageId(image.getImageId());
 			mypageDao.insertUser_Image(imageInfo);
 		}
 
