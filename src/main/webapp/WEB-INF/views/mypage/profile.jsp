@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/resources/css/common.css" />
 <link rel="stylesheet" href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" />
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <style type="text/css">
 .container {
@@ -118,6 +119,12 @@ input {
 	background-image: linear-gradient(-180deg, #34d058 0%, #28a745 90%);
 }
 </style>
+<script type="text/javascript">
+$(function() {
+// 	<img src=\"<spring:url value="/file/download/"/>" + product.IMG_PATH1 + "\" width='90px' height='80px'>
+
+});
+</script>
 <body>
 	<div class="wrap">
 		<jsp:include page="../common/header.jsp"></jsp:include>
@@ -133,7 +140,8 @@ input {
 						<label for="upload-profile-picture">Profile picture</label>
 					</dt>
 					<dd class="avatar-upload-container clearfix">
-						<img class="avatar rounded-2" src="https://avatars3.githubusercontent.com/u/10431621?s=400&amp;u=e470aef5ad902308677861c23e9f4277d147d0c5&amp;v=4" width="200" height="200" alt="@shfksekdrms2">
+						<sec:authentication var="user" property="principal" />
+						<img class="avatar rounded-2" src="/file/download/${user.index}.jpg" width="200" height="200">
 						<div class="avatar-upload">
 							<label class="position-relative btn button-change-avatar mt-3 width-full text-center"> Upload new picture <input id="attachment1" name="attachment1" type="file" class="manual-file-chooser width-full height-full ml-0 js-manual-file-chooser">
 							</label>
