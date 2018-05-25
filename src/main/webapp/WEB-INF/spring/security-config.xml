@@ -17,10 +17,11 @@
 	<security:http auto-config="true" use-expressions="true">
 <!-- 		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" /> -->
 <!-- 		<security:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" /> -->
+		<security:intercept-url pattern="/mypage/profile" access="isAuthenticated()"/>
 		<security:intercept-url pattern="/**" access="permitAll" />
 		<security:form-login 
 			login-processing-url="/join/loginProcess" 
-			login-page="/main" 
+			login-page="/join/login" 
 			default-target-url="/main" 
 			authentication-failure-url="/join/login?fail=true"
 			authentication-success-handler-ref="authenticationSuccessHandler"
