@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.madis.www.common.mvc.model.vo.UserDetailsVO;
 import com.madis.www.model.dto.UserInfo;
 import com.madis.www.services.JoinService;
 
@@ -44,9 +45,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 			System.out.println("user");
 			roles.add(new SimpleGrantedAuthority("ROLE_USER"));
 		}
+		System.out.println("age: "+userInfo.getAge());
+		System.out.println("name: "+userInfo.getName());
+		
+		UserDetailsVO userVO = new UserDetailsVO(userInfo.getEmail(), userInfo.getPassword(), true, true, true, true, roles, userInfo.getName(), userInfo.getAge());
 
-		UserDetails user = new User(userInfo.getEmail(), userInfo.getPassword(), roles);
-
-		return user;
+		return userVO;
 	}
 }
