@@ -19,6 +19,7 @@
 </style>
 <script type="text/javascript">
 	function isValidation(check) {
+		var regex= /^[a-z0-9_]{8,16}$/; 
 		if (!check) {
 			alert("이메일 중복체크를 하지 않았습니다.");
 			return false;
@@ -38,7 +39,10 @@
 			alert("password에 값이 없습니다.")
 			return false;
 		}
-
+		if(!regex.test($("#password").val())){
+			alert("비밀번호는 8-16자로 넣어주세요");
+		      return false
+		}
 		if ($("#passwordCheck").val() == "") {
 			alert("passwordCheck에 값이 없습니다.")
 			return false;
@@ -60,6 +64,14 @@
 	$(function() {
 		var check = false;
 		$("#btn-duplicatedCheck").click(function() {
+			var regex=/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			var email=$("#email").val();
+			if(!regex.test(email)){
+				alert("이메일 형식에 맞춰서 입력해주세요");
+			      return false
+			}
+			else{
+			
 			$.ajax({
 				type : "GET",
 				url : "/join/checkValidation",
@@ -68,6 +80,7 @@
 					"email" : $("#email").val()
 				},
 				success : function(result) {
+					
 					if (result.data.email == 1) {
 						alert("이미 존재하는 이메일입니다. 다시 확인해 주세요.");
 					} else {
@@ -77,6 +90,9 @@
 							$("#btn-duplicatedCheck").attr("disabled", true);
 						}
 					}
+
+						
+						
 				},
 				complete : function(result) {
 					console.log("complete");
@@ -85,7 +101,9 @@
 				error : function(xhr, status, error) {
 					console.log("error");
 				}
+			
 			});
+			}
 		});
 
 		$("#btn-signup").click(
@@ -131,6 +149,16 @@
 					});
 				});
 	});
+	
+function checkEmail() {
+       
+
+}
+function checkpasswd() {
+    
+
+}
+
 </script>
 <body>
 	<div class="container">
@@ -209,7 +237,7 @@
 						<div class="form-group">
 							<!-- Button -->
 							<div class="col-md-offset-3 col-md-9">
-								<button id="btn-duplicatedCheck" type="button" class="btn btn-success">
+								<button id="btn-duplicatedCheck" type="button" class="btn btn-success" >
 									<spring:message code="join.duplicated" />
 								</button>
 							</div>
@@ -232,8 +260,8 @@
 							<div class="col-md-9">
 								<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 							</div>
+							
 						</div>
-
 						<div class="form-group">
 							<label for="passwordCheck" class="col-md-3 control-label"><spring:message code="join.password.check" /></label>
 							<div class="col-md-9">
