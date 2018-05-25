@@ -12,16 +12,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" href="/resources/css/common.css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
 
-<!-- Not Working -->
-<script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/3.2.0/css/bootstrap.min.css"></script>
-<script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/webjars/bootstrap/3.2.0/css/bootstrap.css" />
+<script src="/webjars/jquery/3.3.1/jquery.js"></script>
+<script src="/webjars/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <script>
 

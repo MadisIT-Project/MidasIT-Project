@@ -40,4 +40,10 @@ public class staticTestContoller {
 		model.addAttribute("searchList", staticDaoImpl.getSearchList(searchFood));
 		return "staticTest";
 	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String getTest(){
+
+		return "board/test";
+	}
 }
