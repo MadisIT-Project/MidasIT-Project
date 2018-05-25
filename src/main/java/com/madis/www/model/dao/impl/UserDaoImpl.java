@@ -26,6 +26,7 @@ public class UserDaoImpl implements UserInfoDao {
 	private RowMapper<UserInfo> userMapper = new RowMapper<UserInfo>() {
 		public UserInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
 			UserInfo user = new UserInfo();
+			user.setNo(rs.getInt("users.index"));
 			user.setEmail(rs.getString("email"));
 			user.setAge(Integer.parseInt(rs.getString("age")));
 			user.setName(rs.getString("name"));
@@ -49,6 +50,11 @@ public class UserDaoImpl implements UserInfoDao {
 	@Override
 	public UserInfo getUser(String email) {
 		return this.jdbcTemplate.queryForObject("select * from users where email = ?", new Object[] { email }, this.userMapper);
+	}
+	
+	@Override
+	public UserInfo getUser2(int index) {
+		return this.jdbcTemplate.queryForObject("select * from users where users.index = ?", new Object[] { index }, this.userMapper);
 	}
 
 }

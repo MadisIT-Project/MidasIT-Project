@@ -8,4 +8,6 @@ public interface UserInfoDao {
 	public int checkEmail(UserInfo info);
 
 	public UserInfo getUser(String email);
+	
+	public UserInfo getUser2(int index);
 }

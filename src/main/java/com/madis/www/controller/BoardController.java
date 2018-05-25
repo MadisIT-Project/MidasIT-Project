@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,11 +19,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.madis.www.model.dao.impl.BoardImpl;
 import com.madis.www.model.dao.impl.CommentImpl;
+import com.madis.www.model.dao.impl.UserDaoImpl;
 import com.madis.www.model.dto.Board;
+import com.madis.www.model.dto.UserInfo;
 
 @Controller
 @RequestMapping("/board")
 public class BoardController {
+	
+	@Autowired
+	private	UserDaoImpl userImpl;
 	
 	@Autowired
 	private BoardImpl boardImpl;
@@ -85,8 +94,26 @@ public class BoardController {
 	// 글 상세 조회 (.jsp 출력)
 	@RequestMapping("/{index}")
 	public String getBoard(@PathVariable int index, Model model) {
+		
+		Board board = boardImpl.getBoard(index);
+		boolean isWriter = false;
+		
+		// 시큐리티 컨텍스트 객체를 얻습니다.
+		SecurityContext context = SecurityContextHolder.getContext();
+
+		// 인증 객체를 얻습니다.
+		Authentication authentication = context.getAuthentication();
+		
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			UserInfo user = userImpl.getUser(authentication.getName());
+			if (board.getU_index() == user.getNo()) {
+				isWriter = true;
+			}
+		}
+		
 		// Model 정보 저장
 		model.addAttribute("board", boardImpl.getBoard(index));
+		model.addAttribute("isWriter",isWriter);
 		model.addAttribute("CommentList", commentImpl.getCommentList(index));
 		return "board/getBoard";
 	}
@@ -103,9 +130,17 @@ public class BoardController {
 			commentCount.add(count);
 		}
 		
+		List<String> userList = new ArrayList<String>();
+		for(int i=0; i<boardList.size();i++) {
+			UserInfo user = userImpl.getUser2(boardList.get(i).getU_index());
+			String name = user.getName();
+			userList.add(name);
+		}
+		
 		// Model 정보 저장
 		model.addAttribute("boardList", boardImpl.getBoardList(board));
 		model.addAttribute("CommentCountList", commentCount);
+		model.addAttribute("UserList", userList);
 		return "board/getBoardList";
 	}
 }

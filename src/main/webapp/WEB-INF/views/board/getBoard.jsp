@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!DOCTYPE html>
 <html>
 <head>
 <title>MIDAS</title>
@@ -75,7 +77,7 @@
 	<div class="wrap">
 		<jsp:include page="../common/header.jsp"></jsp:include>
 	</div>
-
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8">
@@ -83,14 +85,18 @@
 			</div>
 			<!-- BUTTON -->
 			<div class="col-lg-4">
+				
 				<div class="btn-group" role="group" aria-label="First group">
 					<button type="button" class="btn btn-default"
 						onclick="window.location.href='http://localhost:8080/board'">글목록</button>
 					<button type="button" class="btn btn-default"
 						onclick="window.location.href='http://localhost:8080/board/write'">글쓰기</button>
-					<button type="button" class="btn btn-default"
-						onclick="window.location.href='http://localhost:8080/board/write?index=${board.index}'">글수정</button>
-					<button type="button" class="btn btn-default btn-delete">글삭제</button>
+						
+					<c:if test="${isWriter eq true}">
+						<button type="button" class="btn btn-default"
+							onclick="window.location.href='http://localhost:8080/board/write?index=${board.index}'">글수정</button>
+						<button type="button" class="btn btn-default btn-delete">글삭제</button>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -138,6 +144,7 @@
 					</div>
 					<input type="text" name="p_id" class="hidden" value='${board.index}'>
 					<input type="text" name="u_id" class="hidden" value=2>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<div class="col-sm-1">
 						<button type="submit" id="btn" class="btn btn-default">댓글 달기</button>
 					</div>

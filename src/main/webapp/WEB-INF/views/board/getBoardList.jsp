@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 	<title>MIDAS</title>
@@ -32,6 +31,7 @@
 			<!-- BUTTON -->
 			<div class="col-lg-1">
 				<form action="board/write" method="get" class="form-inline">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<button type="submit" class="btn btn-default">글쓰기</button>
 				</form>
 			</div>
@@ -50,7 +50,7 @@
 						<c:if test="${CommentCountList.get(status.index) ne 0}">
 						    <span class="badge">+${CommentCountList.get(status.index)}</span>
 						</c:if>
-					</div><p># created ${board.created_date} by ${board.u_index}</p>
+					</div><p># created ${board.created_date} by ${UserList.get(status.index)}</p>
 				</li>
 			</c:forEach>
 		</ul>
@@ -58,13 +58,13 @@
 	<center>
 		<div class="container">
 			<div class="btn-group" role="group" aria-label="First group">
-				<button type="button" class="btn btn-default"><</button>
+				<button type="button" class="btn btn-default">"<"</button>
 				<button type="button" class="btn btn-default">1</button>
 				<button type="button" class="btn btn-default">2</button>
 				<button type="button" class="btn btn-default">3</button>
 				<button type="button" class="btn btn-default">4</button>
 				<button type="button" class="btn btn-default">5</button>
-				<button type="button" class="btn btn-default">></button>
+				<button type="button" class="btn btn-default">">"</button>
 			</div>
 		</div>
 	</center>

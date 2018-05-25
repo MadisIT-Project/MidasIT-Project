@@ -48,8 +48,6 @@
 
 	<!-- 한글 문제 -->
 	<filter>
-		<!-- http://blog.naver.com/PostView.nhn?blogId=dlaelel1&logNo=100138643494 -->
-
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
