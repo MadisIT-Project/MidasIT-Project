@@ -12,14 +12,8 @@
 <!-- 푸터 -->
 <div id="footer">
 	<ul class="information">
-		<li class="pdf_download"><a href="#" title="회사소개서 PDF 새창열기" target="_blank" style="color:#555;" ><i style="" class="xi-arrow-bottom"></i> <spring:message code="introduce_company" /></a>&nbsp;&nbsp;&nbsp;l</li>
-		<li><a href="map" title="개인정보취급방침 새창열기" target="_blank" style="color:#555;" ><spring:message code="personal_info" /></a>&nbsp;&nbsp;&nbsp;l</li>
-		<li><a href="#" title="이용약관 새창열기" target="_blank" style="color:#555;"><spring:message code="access_term" /></a>&nbsp;&nbsp;&nbsp;l</li>
-		<li><a href="#" title="이메일 주소 무단 수집 거부 새창열기" target="_blank" style="color:#555;" ><spring:message code="email_permit" /></a></li>
-	</ul>
-	<ul class="information">
-		<li><a href="#" title="블로그 새창열기" target="_blank" style="color:#555;"><i style="" class="xi-home"></i> <spring:message code="midas_blog" /> </a>&nbsp;&nbsp;&nbsp;l</li>
-		<li><a href="#" title="채용페이스북" target="_blank" style="color:#555;"><i style="" class="xi-facebook"></i><spring:message code="email_recruit" /></a>&nbsp;&nbsp;&nbsp;</li>
+		<li class="pdf_download"><a href="/resources/file/2018_midasit_challenge.pdf" title="MIDAS Challeng PDF 새창열기" target="_blank" style="color:#555;" ><i style="" class="xi-arrow-bottom"></i>MIDAS Challeng 설명서</a>&nbsp;&nbsp;&nbsp;l</li>
+		<li><a href="map" title="오시는 길 새창열기" target="_blank" style="color:#555;" >오시는 길</a>&nbsp;&nbsp;&nbsp;</li>
 	</ul>
 	<div class="totop">
 		<a href="#" title="맨위로">▲ <spring:message code="on_top" /></a>
