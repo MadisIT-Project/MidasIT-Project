@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserInfoDao {
 			user.setAge(Integer.parseInt(rs.getString("age")));
 			user.setName(rs.getString("name"));
 			user.setPassword(rs.getString("password"));
-			user.setAdmin(Boolean.parseBoolean(rs.getString("admin")));
+			user.setAdmin(Integer.parseInt((rs.getString("admin"))));
 			return user;
 		}
 	};

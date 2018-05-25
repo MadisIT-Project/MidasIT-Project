@@ -8,13 +8,13 @@ public class UserInfo {
 	private String password;
 	private String email;
 	private int age;
-	private boolean admin;
+	private int admin;
 
-	public boolean isAdmin() {
+	public int getAdmin() {
 		return admin;
 	}
 
-	public void setAdmin(boolean admin) {
+	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
 
