@@ -45,10 +45,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 			System.out.println("user");
 			roles.add(new SimpleGrantedAuthority("ROLE_USER"));
 		}
+		System.out.println("index: "+userInfo.getNo());
 		System.out.println("age: "+userInfo.getAge());
 		System.out.println("name: "+userInfo.getName());
 		
-		UserDetailsVO userVO = new UserDetailsVO(userInfo.getEmail(), userInfo.getPassword(), true, true, true, true, roles, userInfo.getName(), userInfo.getAge());
+		UserDetailsVO userVO = new UserDetailsVO(userInfo.getEmail(), userInfo.getPassword(), true, true, true, true, roles, userInfo.getName(), userInfo.getAge(), userInfo.getNo());
 
 		return userVO;
 	}
