@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> 
 
+<sec:authentication var="user" property="principal" />
 
 <!DOCTYPE html>
 <html>
@@ -38,6 +39,44 @@
 	                console.log(error);
 	            }
 	        });
+		});
+		
+		$("#comment-insert").on("click", function(){
+			$.ajax({
+	            url: "/board/${board.index}/comment/insert",
+	            type: 'POST',
+	            data: {content : $("#comment").val(), p_id : $("#p_id").val()},
+	            beforeSend : function(xhr) {
+					xhr.setRequestHeader("${_csrf.headerName}",
+							"${_csrf.token}");
+				},
+	            success: function(){
+	            		history.go();
+	            },
+	            error: function(error){
+	                console.log(error);
+	            }
+	        });
+
+		});
+		
+		$(".comment-delete").on("click", function(){
+			$.ajax({
+	            url: "/board/${board.index}/comment/delete",
+	            type: 'POST',
+	            data: {index : $(this).val()},
+	            beforeSend : function(xhr) {
+					xhr.setRequestHeader("${_csrf.headerName}",
+							"${_csrf.token}");
+				},
+	            success: function(){
+	            		history.go();
+	            },
+	            error: function(error){
+	                console.log(error);
+	            }
+	        });
+
 		});
 	
 	    $(".btn-edit").on("click", function(){
@@ -122,15 +161,16 @@
 					<li class="list-group-item">
 						<div class="container">
 							<div class ="col-sm-10 comment">
-								${comment.content}
+								${comment.content} created by ${CommentUserList.get(status.index)}
 							</div>
-							<div class ="col-sm-2">
-								<div class="btn-group" role="group" aria-label="First group">
-									<button type="button" class="btn btn-default btn-edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
-									<button type="button" class="btn btn-default btn-delete"
-										onclick="window.location.href='http://localhost:8080/board/comment/deleteComment?index=${comment.index}&p_id=${board.index}'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
+							<c:if test="${CommentIsWriterList.get(status.index) eq true}">
+								<div class ="col-sm-2">
+									<div class="btn-group" role="group" aria-label="First group">
+										<button type="button" class="btn btn-default btn-edit"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+										<button type="button" class="btn btn-default comment-delete" id="comment-delete" value='${comment.index}'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+									</div>
 								</div>
-							</div>
+							</c:if>
 						</div>
 					</li>
 				</c:forEach>
@@ -138,17 +178,13 @@
 
 			<!-- Default panel contents -->
 			<div class="panel-body">
-				<form action="comment/insertComment" id=fo method="post" class="form-horizontal">
-					<div class="form-group col-sm-11">
-						<textarea class="form-control" id="content" name="content" rows="2" placeholder="댓글을 입력하세요."></textarea>
-					</div>
-					<input type="text" name="p_id" class="hidden" value='${board.index}'>
-					<input type="text" name="u_id" class="hidden" value=2>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					<div class="col-sm-1">
-						<button type="submit" id="btn" class="btn btn-default">댓글 달기</button>
-					</div>
-				</form>
+				<div class="form-group col-sm-11">
+					<textarea class="form-control" id="comment" name="content" rows="2" placeholder="댓글을 입력하세요."></textarea>
+				</div>
+				<input type="text" id="p_id" name="p_id" class="hidden" value='${board.index}'>
+				<div class="col-sm-1">
+					<button type="submit" id="comment-insert" class="btn btn-default">댓글 달기</button>
+				</div>
 			</div>
 		</div>
 	</div>

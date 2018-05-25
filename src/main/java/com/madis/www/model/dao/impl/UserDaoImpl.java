@@ -28,10 +28,10 @@ public class UserDaoImpl implements UserInfoDao {
 			UserInfo user = new UserInfo();
 			user.setNo(rs.getInt("users.index"));
 			user.setEmail(rs.getString("email"));
-			user.setAge(Integer.parseInt(rs.getString("age")));
+			user.setAge(rs.getInt("age"));
 			user.setName(rs.getString("name"));
 			user.setPassword(rs.getString("password"));
-			user.setAdmin(Integer.parseInt((rs.getString("admin"))));
+			user.setAdmin(rs.getInt("admin"));
 			return user;
 		}
 	};

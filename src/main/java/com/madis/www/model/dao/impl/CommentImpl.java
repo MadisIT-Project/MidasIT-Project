@@ -24,9 +24,26 @@ public class CommentImpl implements CommentDao {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
+	private final String COMMENT_INSERT = "insert into comments (content, p_id, u_id, created_date, modified_date) values (?, ?, ?, now(), now())";
 	private final String COMMENT_LIST = "select * from comments where p_id = ? order by comments.index desc";
+	private final String COMMENT_ALL_DELETE = "delete from comments where p_id = ?";
+	private final String COMMENT_DELETE = "delete from comments where comments.index = ?";
 	
-	
+	@Override
+	public void insertComment(Comment comment) {
+		jdbcTemplate.update(COMMENT_INSERT, comment.getContent(), comment.getP_id(), comment.getU_id());
+	}
+
+	@Override
+	public void deleteAllComment(int p_id) {
+		jdbcTemplate.update(COMMENT_ALL_DELETE, p_id);
+	}
+
+	@Override
+	public void deleteComment(int index) {
+		jdbcTemplate.update(COMMENT_DELETE, index);
+	}
+
 	@Override
 	public List<Comment> getCommentList(int index){
 		Object[] args = {index};

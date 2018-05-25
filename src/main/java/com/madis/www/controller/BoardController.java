@@ -21,6 +21,7 @@ import com.madis.www.model.dao.impl.BoardImpl;
 import com.madis.www.model.dao.impl.CommentImpl;
 import com.madis.www.model.dao.impl.UserDaoImpl;
 import com.madis.www.model.dto.Board;
+import com.madis.www.model.dto.Comment;
 import com.madis.www.model.dto.UserInfo;
 
 @Controller
@@ -94,6 +95,9 @@ public class BoardController {
 	public @ResponseBody Map<String, Object> deleteBoard(@PathVariable int index) {
 		System.out.println("board/{index}/delete");
 
+		// 글 삭제 이전에 comment 삭제
+		commentImpl.deleteAllComment(index);
+		
 		boardImpl.deleteBoard(index);
 		System.out.println("success");
 		
@@ -123,10 +127,38 @@ public class BoardController {
 			}
 		}
 		
+		List<Comment> commentList = commentImpl.getCommentList(index);
+		List<String> commentUserList = new ArrayList<String>();
+		List<Boolean> isWriterListForCom = new ArrayList<Boolean>();
+		for(int i=0; i<commentList.size();i++) {
+			System.out.println(commentList.get(i).getU_id());
+			// 댓글 작성자 이름 정보 저장
+			UserInfo user = userImpl.getUser2(commentList.get(i).getU_id());
+			System.out.println("a3");
+			String name = user.getName();
+			System.out.println("a3");
+			commentUserList.add(name);
+			
+			isWriter = false;
+			System.out.println("a3");
+			if (!(authentication instanceof AnonymousAuthenticationToken)) {
+				// 댓글 작성자가 현재 로그인 된 사람이 맞는지 저장
+				user = userImpl.getUser(authentication.getName());
+				if (commentList.get(i).getU_id() == user.getNo()) {
+					isWriter = true;
+				}
+			}
+			isWriterListForCom.add(isWriter);
+			System.out.println("a4");
+		}
+		System.out.println("aa2");
+		
 		// Model 정보 저장
 		model.addAttribute("board", boardImpl.getBoard(index));
 		model.addAttribute("isWriter",isWriter);
-		model.addAttribute("CommentList", commentImpl.getCommentList(index));
+		model.addAttribute("CommentList", commentList);
+		model.addAttribute("CommentUserList", commentUserList);
+		model.addAttribute("CommentIsWriterList", isWriterListForCom);
 		return "board/getBoard";
 	}
 	
