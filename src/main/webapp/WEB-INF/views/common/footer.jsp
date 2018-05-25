@@ -6,24 +6,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <body>
 
 <!-- 푸터 -->
 <div id="footer">
 	<ul class="information">
-		<li class="pdf_download"><a href="/resources/file/2018_midasit_challenge.pdf" title="MIDAS Challeng PDF 새창열기" target="_blank" style="color:#555;" ><i style="" class="xi-arrow-bottom"></i>MIDAS Challeng 설명서</a>&nbsp;&nbsp;&nbsp;l</li>
-		<li><a href="map" title="오시는 길 새창열기" target="_blank" style="color:#555;" >오시는 길</a>&nbsp;&nbsp;&nbsp;</li>
-<!-- 		<li><a href="#" title="이용약관 새창열기" target="_blank" style="color:#555;">이용약관</a>&nbsp;&nbsp;&nbsp;l</li> -->
-<!-- 		<li><a href="#" title="이메일 주소 무단 수집 거부 새창열기" target="_blank" style="color:#555;" >이메일 주소 무단수집 거부</a></li> -->
+		<li class="pdf_download"><a href="#" title="회사소개서 PDF 새창열기" target="_blank" style="color:#555;" ><i style="" class="xi-arrow-bottom"></i> <spring:message code="introduce_company" /></a>&nbsp;&nbsp;&nbsp;l</li>
+		<li><a href="map" title="개인정보취급방침 새창열기" target="_blank" style="color:#555;" ><spring:message code="personal_info" /></a>&nbsp;&nbsp;&nbsp;l</li>
+		<li><a href="#" title="이용약관 새창열기" target="_blank" style="color:#555;"><spring:message code="access_term" /></a>&nbsp;&nbsp;&nbsp;l</li>
+		<li><a href="#" title="이메일 주소 무단 수집 거부 새창열기" target="_blank" style="color:#555;" ><spring:message code="email_permit" /></a></li>
+	</ul>
+	<ul class="information">
+		<li><a href="#" title="블로그 새창열기" target="_blank" style="color:#555;"><i style="" class="xi-home"></i> <spring:message code="midas_blog" /> </a>&nbsp;&nbsp;&nbsp;l</li>
+		<li><a href="#" title="채용페이스북" target="_blank" style="color:#555;"><i style="" class="xi-facebook"></i><spring:message code="email_recruit" /></a>&nbsp;&nbsp;&nbsp;</li>
 	</ul>
 	<div class="totop">
-		<a href="#" title="맨위로">▲ 맨위로</a>
+		<a href="#" title="맨위로">▲ <spring:message code="on_top" /></a>
 	</div>
 	<ul class="midas_info">
-		<li class="address">경기도 성남시 분당구 판교로 228번길 17, <strong>마이다스아이티동</strong> <span class="postcode">(우:13487)</span></li>
-		<li class="contact">문의 <span class="tel">031-789-2000</span> / 팩스 <span class="fax">031-789-2001</span> / 이메일 <span class="e-mail"><a href="mailto:webmaster@midasit.com">webmaster@midasit.com</a></span></li>
+		<li class="address"><spring:message code="address" /> <span class="postcode">(13487)</span></li>
+		<li class="contact"><spring:message code="contact" /> <span class="tel">031-789-2000</span> /<spring:message code="fax" /><span class="fax">031-789-2001</span> /<spring:message code="email" /> <span class="e-mail"><a href="mailto:webmaster@midasit.com">webmaster@midasit.com</a></span></li>
 		<li class="copyright"><span class="copyright">Copyright &copy; SINCE 1989 MIDAS Information Technology Co., Ltd. All rights reserved.</span></li>
 	</ul>
+	
 </div>   
 </body>
 </html>
