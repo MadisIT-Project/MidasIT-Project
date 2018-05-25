@@ -57,6 +57,18 @@ public class BoardController {
 	public String insertBoard(Board board) throws IOException {
 		System.out.println("insertBoard");
 		System.out.println(board.getTitle());
+		
+		// 시큐리티 컨텍스트 객체를 얻습니다.
+		SecurityContext context = SecurityContextHolder.getContext();
+
+		// 인증 객체를 얻습니다.
+		Authentication authentication = context.getAuthentication();
+		
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			UserInfo user = userImpl.getUser(authentication.getName());
+			board.setU_index(user.getNo());
+		}
+		
 		/*
 		// 파일 업로드 처리
 		MultipartFile uploadFile = vo.getUploadFile();

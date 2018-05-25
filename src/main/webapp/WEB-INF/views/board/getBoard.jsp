@@ -152,5 +152,9 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="wrap">
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+	</div>
 </body>
 </html>

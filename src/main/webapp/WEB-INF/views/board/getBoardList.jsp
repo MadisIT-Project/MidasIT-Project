@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> 
 
 <!DOCTYPE html>
 <html>
@@ -29,12 +30,14 @@
 				<h3 style="display: inline">게시판</h3>
 			</div>
 			<!-- BUTTON -->
-			<div class="col-lg-1">
-				<form action="board/write" method="get" class="form-inline">
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					<button type="submit" class="btn btn-default">글쓰기</button>
-				</form>
-			</div>
+			<sec:authorize access="isAuthenticated()">
+				<div class="col-lg-1">
+					<form action="board/write" method="get" class="form-inline">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<button type="submit" class="btn btn-default">글쓰기</button>
+					</form>
+				</div>
+			</sec:authorize>
 		</div>
 	
 		<p />
@@ -68,5 +71,9 @@
 			</div>
 		</div>
 	</center>
+	
+	<div class="wrap">
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+	</div>
 </body>
 </html>

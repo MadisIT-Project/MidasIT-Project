@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> 
+
+<sec:authentication var="user" property="principal" />
 
 <!DOCTYPE html>
 <html>
@@ -63,7 +66,6 @@
 			</div>
 			<input type="text" name="index" class="hidden" value='${board.index}'>
 			<input type="text" name="b_index" class="hidden" value=2>
-			<input type="text" name="u_index" class="hidden" value=2>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<div class="form-group">
 				<div class="col-sm-offset-1 col-sm-10">
@@ -74,6 +76,10 @@
 		
 		<hr>
 
+	</div>
+	
+	<div class="wrap">
+		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>
