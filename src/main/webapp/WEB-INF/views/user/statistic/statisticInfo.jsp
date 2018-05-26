@@ -217,7 +217,7 @@
 				<span class="text-muted">Something else</span>
 			</div>
 			<div class="col-xs-6 col-sm-3 placeholder">
-				<<span class="text-muted""width: 50%"><div id="chart2_div"></div></span>
+				<span class="text-muted""width: 50%"><div id="chart2_div"></div></span>
 				<h4>Label</h4>
 				<span class="text-muted">Something else</span>
 			</div>
