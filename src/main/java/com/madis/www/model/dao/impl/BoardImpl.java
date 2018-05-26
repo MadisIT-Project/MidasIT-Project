@@ -81,7 +81,7 @@ class BoardRowMapper implements RowMapper<Board>{
 		board.setContent(rs.getString("content"));
 		board.setB_index(rs.getInt("b_index"));
 		board.setU_index(rs.getInt("u_index"));
-		board.setCreated_date(rs.getDate("created_date"));
+		board.setCreated_date(rs.getDate("createe_date"));
 		board.setModified_date(rs.getDate("modified_date"));
 		
 		return board;

@@ -1,5 +1,7 @@
 package com.madis.www.model.dto;
 
+import java.util.Date;
+
 public class UserInfo {
 
 	private int no;
@@ -9,6 +11,26 @@ public class UserInfo {
 	private String email;
 	private int age;
 	private int admin;
+	private Date date;
+	private int index;
+	
+	
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	public int getAdmin() {
 		return admin;

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.madis.www.model.dao.impl.MenuImpl;
+import com.madis.www.model.dao.impl.UserDaoImpl;
 import com.madis.www.model.dto.Menu;
 
 @Controller
@@ -18,6 +19,9 @@ public class AdminController {
 
 	@Autowired
 	private	MenuImpl menuImpl;
+	
+	@Autowired
+	private	UserDaoImpl userImpl;
 	
 	@RequestMapping(value = { "/menu/menuManage" })
 	public String menuManage(Menu menu, Model model) {
@@ -66,8 +70,29 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = { "/manage/memberManage" })
-	public String memberManage() {
+	public String memberManage(Model model) {
 		System.out.println("memberManage");
+		
+		model.addAttribute("memberList", userImpl.getUserList());
+		System.out.println("memberManage");
+		return "admin/manage/memberManage";
+	}
+	
+	@RequestMapping(value = { "/manage/memberManage/add" })
+	public String addManage() {
+		System.out.println("memberadd");
+		return "admin/manage/memberManage";
+	}
+	
+	@RequestMapping(value = { "/manage/memberManage/update" })
+	public String updateManage() {
+		System.out.println("memberupdate");
+		return "admin/manage/memberManage";
+	}
+	
+	@RequestMapping(value = { "/manage/memberManage/delete" })
+	public String deleteManage() {
+		System.out.println("deleteMmem");
 		return "admin/manage/memberManage";
 	}
 	

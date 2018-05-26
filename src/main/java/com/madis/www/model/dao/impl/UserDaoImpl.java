@@ -2,6 +2,7 @@ package com.madis.www.model.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -32,6 +33,7 @@ public class UserDaoImpl implements UserInfoDao {
 			user.setName(rs.getString("name"));
 			user.setPassword(rs.getString("password"));
 			user.setAdmin(rs.getInt("admin"));
+			user.setDate(rs.getDate("create_date"));
 			return user;
 		}
 	};
@@ -55,6 +57,11 @@ public class UserDaoImpl implements UserInfoDao {
 	@Override
 	public UserInfo getUser2(int index) {
 		return this.jdbcTemplate.queryForObject("select * from users where users.index = ?", new Object[] { index }, this.userMapper);
+	}
+	
+	@Override
+	public List<UserInfo> getUserList() {
+		return this.jdbcTemplate.query("select * from users where users.admin <> 2", this.userMapper);
 	}
 
 }
