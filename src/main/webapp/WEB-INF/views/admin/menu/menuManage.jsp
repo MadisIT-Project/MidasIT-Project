@@ -2,63 +2,69 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> 
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/resources/css/common.css" />
-<link rel="stylesheet" href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" />
 <title>MIDAS</title>
 <script src="/webjars/jquery/3.3.1/jquery.js"></script>
 <script src="/webjars/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <style type="text/css">
-.image-upload{
-	width:50;
-	}
-#plus{
- display : none;
+.image-upload {
+	width: 50;
 }
-#plusbtn{
-	float:right;
-	display : inline;
-	display :none;
+
+#plus {
+	display: none;
 }
-#minusbtn{
-	float:right;
-	display : inline;
-	display :none;
+
+#plusbtn {
+	float: right;
+	display: inline;
+	display: none;
 }
-#add{
-float: right;
-display :none;
+
+#minusbtn {
+	float: right;
+	display: inline;
+	display: none;
+}
+
+#add {
+	float: right;
+	display: none;
 }
 </style>
 
 <script>
 
-function menu(){
-	$("#plus").hide();
-	$("#add").hide();
-	$("#plusbtn").hide();
-	$("#minusbtn").hide();
-	$("#info").show();
+	function menu() {
+		$("#plus").hide();
+		$("#add").hide();
+		$("#plusbtn").hide();
+		$("#minusbtn").hide();
+		$("#info").show();
 
-}
-function plus(){
-	$("#info").hide();
-	$("#add").show();
-	$("#plusbtn").show();
-	$("#minusbtn").show();
-	$("#plus").show();
+	}
+	function plus() {
+		$("#info").hide();
+		$("#add").show();
+		$("#plusbtn").show();
+		$("#minusbtn").show();
+		$("#plus").show();
 
-}
+	}
 
-function plusmenu() {
+	function plusmenu() {
 		var table = document.getElementById("plusmenu");
-	  // Get the output text
-	  var len=table.rows.length;
+		// Get the output text
+		var len = table.rows.length;
 		var row = table.insertRow(len);
 		var cell1 = row.insertCell(0);
 		var cell2 = row.insertCell(1);
@@ -69,84 +75,89 @@ function plusmenu() {
 		cell2.innerHTML = "<input name='price' class='price' value='price' placeholder='price'  class='form-control' />";
 		cell3.innerHTML = "<input name='detail' type='textarea' class='detail' value='detail' placeholder='detail'  class='form-control' />";
 		cell4.innerHTML = '<form id="profile_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" action="/mypage/upload?${_csrf.parameterName}=${_csrf.token}" encType="multipart/form-data" method="post"><div class=""><input class="attachment" name="attachment" type="file" class=""></div></form>';
-}
-function minusmenu() {
-	var table = document.getElementById("plusmenu");
-  // Get the output text
-  var len=table.rows.length;
-  table.deleteRow(len-1);
-}
+	}
+	function minusmenu() {
+		var table = document.getElementById("plusmenu");
+		// Get the output text
+		var len = table.rows.length;
+		table.deleteRow(len - 1);
+	}
 
-$(document).ready(function() {
-	
-	$('.modi-btn').on("click", function(){
-		var pa = $(this).parent().parent();
-		console.log(pa.html());
-		console.log(pa.find('.name').children().val());
-		
-		$.ajax({
-            url: "/admin/menu/menuManage/update",
-            type: 'POST',
-            data: { index : $(this).val(),
-            		  name : pa.find('.name').children().val(),
-            		  price : pa.find('.price').children().val(),
-            		  detail : pa.find('.detail').children().val()},
-            beforeSend : function(xhr) {
-				xhr.setRequestHeader("${_csrf.headerName}",
-						"${_csrf.token}");
-			},
-            success: function(){
-            		history.go();
-            },
-            error: function(error){
-                console.log(error);
-            }
-        });
-		
-	});
-	
-	$('.remove-btn').on("click", function(){
-		$.ajax({
-            url: "/admin/menu/menuManage/delete",
-            type: 'POST',
-            data: {index : $(this).val()},
-            beforeSend : function(xhr) {
-				xhr.setRequestHeader("${_csrf.headerName}",
-						"${_csrf.token}");
-			},
-            success: function(){
-            		history.go();
-            },
-            error: function(error){
-                console.log(error);
-            }
-        });
-	});
-	
-	$('#add').on("click", function(){
-		console.log("add");
-		console.log( $('#add-name').val());
-		
-		$.ajax({
-            url: "/admin/menu/menuManage/add",
-            type: 'POST',
-            data: {name : $('#add-name').val(),
-            		  price : $('#add-price').val(),
-            		  detail : $('#add-detail').val()},
-            beforeSend : function(xhr) {
-				xhr.setRequestHeader("${_csrf.headerName}",
-						"${_csrf.token}");
-			},
-            success: function(){
-            		history.go();
-            },
-            error: function(error){
-                console.log(error);
-            }
-        });
-	});
-});
+	$(document).ready(function() {
 
+		$('.modi-btn').on("click", function() {
+			var pa = $(this).parent().parent();
+			console.log(pa.html());
+			console.log(pa.find('.name').children().val());
+
+			$.ajax({
+				url : "/admin/menu/menuManage/update",
+				type : 'POST',
+				data : {
+					index : $(this).val(),
+					name : pa.find('.name').children().val(),
+					price : pa.find('.price').children().val(),
+					detail : pa.find('.detail').children().val()
+				},
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader("${_csrf.headerName}",
+						"${_csrf.token}");
+				},
+				success : function() {
+					history.go();
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			});
+
+		});
+
+		$('.remove-btn').on("click", function() {
+			$.ajax({
+				url : "/admin/menu/menuManage/delete",
+				type : 'POST',
+				data : {
+					index : $(this).val()
+				},
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader("${_csrf.headerName}",
+						"${_csrf.token}");
+				},
+				success : function() {
+					history.go();
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			});
+		});
+
+		$('#add').on("click", function() {
+			console.log("add");
+			console.log($('#add-name').val());
+
+			$.ajax({
+				url : "/admin/menu/menuManage/add",
+				type : 'POST',
+				data : {
+					name : $('#add-name').val(),
+					price : $('#add-price').val(),
+					detail : $('#add-detail').val()
+				},
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader("${_csrf.headerName}",
+						"${_csrf.token}");
+				},
+				success : function() {
+					history.go();
+				},
+				error : function(error) {
+					console.log(error);
+				}
+			});
+		});
+	});
 </script>
 
 </head>
@@ -156,75 +167,85 @@ $(document).ready(function() {
 	</div>
 
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	<div class="container">
-	  <h3>메뉴 관리</h3>
-	  <ul class="list-inline">
-	    <li><a href="#" onclick="menu()">조회</a></li>
-	    <li><a href="#" onclick="plus()">추가</a></li>
-	    <li id="plusbtn"><button onclick="plusmenu()"  value="plus">+</button></li>
-	    <li id="minusbtn"><button onclick="minusmenu()"  value="minus">-</button></li>  
-	  </ul>
-	 </div>
-	 
-	 <div id="info" class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  
-                  <th>name</th>
-                  <th>price</th>
-                  <th>detail</th>
-				  <th>image</th>
-				  <th>#</th>
-              </thead>
-              <tbody>
-              <!-- 조회 -->
-              <c:forEach items="${menuList}" var="menu" varStatus="status">
-				<tr class='${menu.index}'>
-                  <td class="name"><input type="text" name="fname" class="name-1" value='${menu.name}'></td>
-                  <td class="price"><input type="text" name="fname" class="price-1"  value='${menu.price}'></td>
-                  <td class="detail"><input type="text" name="fname" class="detail-1"  value='${menu.detail}'></td>
-                  <td class="path"><input type="text" name="fname" class="path-1" value='${menu.path}'></td>
-                  <td><button class="modi-btn"  value='${menu.index}'>Modified</button></td>
-                  <td><button class="remove-btn"  value='${menu.index}'>Remove</button></td>
-                </tr>
-			</c:forEach>
-              </tbody>
-            </table>
-          </div>
-           <div id="plus" class="table-responsive" >
-            <table id="plusmenu" class="table table-striped">
-              <thead>
-                <tr>
-                  
-                  <th>name</th>
-                  <th>price</th>
-                  <th>detail</th>
-				  <th>image</th>
-				  <th>#</th>
-              </thead>
-              <tbody>
-               
-                 <tr>
-                  <!- 추가 -->
-                  <td><input name="name" id="add-name" value='name' placeholder="name"  class="form-control" /></td>
-                  <td><input name="price" id="add-price" value='1234' placeholder="1234"  class="form-control" /></td>
-                  <td><input name="detail" id="add-detail" type="textarea" class="detail" value='detail' placeholder="detail"  class="form-control" /></td>
-                  <td><form id="profile_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" action="/mypage/upload?${_csrf.parameterName}=${_csrf.token}" encType="multipart/form-data" method="post">
-                 		<div class="">
-							<input class="attachment" name="attachment" type="file" class="">
-						</div>
-						</form>
-				</td>
-                  
-               
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <button id="add"  value="add">add</button>
-	 </div>
-	
+		<div class="container">
+			<h3>메뉴 관리</h3>
+			<ul class="list-inline">
+				<li><a href="#" onclick="menu()">조회</a></li>
+				<li><a href="#" onclick="plus()">추가</a></li>
+				<li id="plusbtn"><button onclick="plusmenu()" value="plus">+</button></li>
+				<li id="minusbtn"><button onclick="minusmenu()" value="minus">-</button></li>
+			</ul>
+		</div>
+
+		<div id="info" class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+
+						<th>name</th>
+						<th>price</th>
+						<th>detail</th>
+						<th>image</th>
+						<th>#</th>
+				</thead>
+				<tbody>
+					<!-- 조회 -->
+					<c:forEach items="${menuList}" var="menu" varStatus="status">
+						<tr class='${menu.index}'>
+							<td class="name"><input type="text" name="fname"
+								class="name-1" value='${menu.name}'></td>
+							<td class="price"><input type="text" name="fname"
+								class="price-1" value='${menu.price}'></td>
+							<td class="detail"><input type="text" name="fname"
+								class="detail-1" value='${menu.detail}'></td>
+							<td class="path"><input type="text" name="fname"
+								class="path-1" value='${menu.path}'></td>
+							<td><button class="modi-btn" value='${menu.index}'>Modified</button></td>
+							<td><button class="remove-btn" value='${menu.index}'>Remove</button></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+		<div id="plus" class="table-responsive">
+			<table id="plusmenu" class="table table-striped">
+				<thead>
+					<tr>
+
+						<th>name</th>
+						<th>price</th>
+						<th>detail</th>
+						<th>image</th>
+						<th>#</th>
+				</thead>
+				<tbody>
+
+					<tr>
+						<!- 추가 -->
+						<td><input name="name" id="add-name" value='name'
+							placeholder="name" class="form-control" /></td>
+						<td><input name="price" id="add-price" value='1234'
+							placeholder="1234" class="form-control" /></td>
+						<td><input name="detail" id="add-detail" type="textarea"
+							class="detail" value='detail' placeholder="detail"
+							class="form-control" /></td>
+						<td><form id="profile_frm"
+								class="columns js-uploadable-container js-upload-avatar-image is-default"
+								action="/mypage/upload?${_csrf.parameterName}=${_csrf.token}"
+								encType="multipart/form-data" method="post">
+								<div class="">
+									<input class="attachment" name="attachment" type="file"
+										class="">
+								</div>
+							</form></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<button id="add" value="add">add</button>
+	</div>
+
 
 
 	<div class="wrap">

@@ -85,28 +85,48 @@ public class AdminController {
 	@RequestMapping(value = { "/manage/memberManage" })
 	public String memberManage(Model model) {
 		System.out.println("memberManage");
-
+		
 		model.addAttribute("memberList", userImpl.getUserList());
 		System.out.println("memberManage");
 		return "admin/manage/memberManage";
 	}
-
+	
 	@RequestMapping(value = { "/manage/memberManage/add" })
-	public String addManage() {
+	public @ResponseBody Map<String, Object> addManage(UserInfo user) {
 		System.out.println("memberadd");
-		return "admin/manage/memberManage";
+		
+		userImpl.addUser(user);
+		System.out.println(user.getIndex());
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", 1);
+		
+		return resultMap;
 	}
-
+	
 	@RequestMapping(value = { "/manage/memberManage/update" })
-	public String updateManage() {
+	public @ResponseBody Map<String, Object> updateManage(UserInfo user) {
 		System.out.println("memberupdate");
-		return "admin/manage/memberManage";
+		
+		userImpl.updateUser(user);
+		System.out.println(user.getIndex());
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", 1);
+		
+		return resultMap;
 	}
-
+	
 	@RequestMapping(value = { "/manage/memberManage/delete" })
-	public String deleteManage() {
+	public @ResponseBody Map<String, Object> deleteManage(UserInfo user) {
 		System.out.println("deleteMmem");
-		return "admin/manage/memberManage";
+		
+		System.out.println(user.getNo());
+		userImpl.deleteUser(user);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", 1);
+		
+		return resultMap;
 	}
 
 	@RequestMapping(value = { "/reservation/reservManage" })

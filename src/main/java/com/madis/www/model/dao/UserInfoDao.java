@@ -14,4 +14,10 @@ public interface UserInfoDao {
 	public UserInfo getUser2(int index);
 	
 	public List<UserInfo> getUserList();
+	
+	public void deleteUser(UserInfo info);
+	
+	public void updateUser(UserInfo info);
+	
+	public void addUser(UserInfo info);
 }

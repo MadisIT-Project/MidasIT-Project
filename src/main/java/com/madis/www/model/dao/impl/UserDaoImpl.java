@@ -64,4 +64,19 @@ public class UserDaoImpl implements UserInfoDao {
 		return this.jdbcTemplate.query("select * from users where users.admin <> 2", this.userMapper);
 	}
 
+	@Override
+	public void deleteUser(UserInfo info) {
+		this.jdbcTemplate.update("delete from users where users.index= ?", info.getNo());
+	}
+	
+	@Override
+	public void updateUser(UserInfo info) {
+		this.jdbcTemplate.update("update users set name = ?, age = ?, admin = ? where users.index = ?", info.getName(), info.getAge(), info.getAdmin(), info.getNo());
+	}
+	
+	@Override
+	public void addUser(UserInfo info) {
+		this.jdbcTemplate.update("insert into users(email, password, name, age, admin) values(?,?,?,?,?)", info.getEmail(),
+				info.getPassword(), info.getName(), info.getAge(), info.getAdmin());
+	}
 }
