@@ -36,10 +36,14 @@
 	$(document).ready(function() {
 
 		$('#month-btn').on("click", function() {
+			var yearSelect = document.getElementById("year");
+			var year = yearSelect.options[yearSelect.selectedIndex].value;
+			var monthSelect = document.getElementById("month");
+			var month = monthSelect.options[monthSelect.selectedIndex].value;
 			$.ajax({
 	            url: "/user/statistic/getMonth",
 	            type: 'POST',
-	            data: {user_id : 4 , month : "2018-06-03" },
+	            data: {user_id : 4 , month : year+"-"+month+"-01" },
 	            beforeSend : function(xhr) {
 					xhr.setRequestHeader("${_csrf.headerName}",
 							"${_csrf.token}");
@@ -222,27 +226,45 @@
 		var selectText = langSelect.options[langSelect.selectedIndex].text;
 	}
 </script>
+<style>
+#selected{
+margin-top:10px;
+}
+</style>
 </head>
 <body>
 	<div class="wrap">
 		<jsp:include page="../../common/header.jsp"></jsp:include>
 	</div>
 
-	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-		<select id="term" name="term" onchange="changetermSelect()">
-			<option value="" selected disabled>월/기간</option>
-			<option value="month">월</option>
-			<option value="during">기간</option>
+	<div id="selected" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<select id="year" name="term" >
+			<option value="2018">2018</option>
+			<option value="2017">2017</option>
+			<option value="2016">2016</option>
+			<option value="2015">2015</option>
 		</select>
-	</div>
-
-	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<span>년  </span>
+		<select id="month" name="term1" >
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			
+		</select>
+		<span>월  </span>
 		<button id="month-btn" type="button" class="btn btn-default">월별 버튼</button>
 	</div>
-	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-		<button id="between-btn" type="button" class="btn btn-default">사이 버튼</button>
-	</div>
 
+	
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<h1 class="page-header">Dashboard</h1>
 
