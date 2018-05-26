@@ -32,7 +32,7 @@ public class AdminController {
 
 	@Autowired
 	private UserDaoImpl userImpl;
-	
+
 	@Autowired
 	private ReverImpl reverImpl;
 
@@ -85,47 +85,47 @@ public class AdminController {
 	@RequestMapping(value = { "/manage/memberManage" })
 	public String memberManage(Model model) {
 		System.out.println("memberManage");
-		
+
 		model.addAttribute("memberList", userImpl.getUserList());
 		System.out.println("memberManage");
 		return "admin/manage/memberManage";
 	}
-	
+
 	@RequestMapping(value = { "/manage/memberManage/add" })
 	public @ResponseBody Map<String, Object> addManage(UserInfo user) {
 		System.out.println("memberadd");
-		
+
 		userImpl.addUser(user);
 		System.out.println(user.getIndex());
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", 1);
-		
+
 		return resultMap;
 	}
-	
+
 	@RequestMapping(value = { "/manage/memberManage/update" })
 	public @ResponseBody Map<String, Object> updateManage(UserInfo user) {
 		System.out.println("memberupdate");
-		
+
 		userImpl.updateUser(user);
 		System.out.println(user.getIndex());
-		
+
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", 1);
-		
+
 		return resultMap;
 	}
-	
+
 	@RequestMapping(value = { "/manage/memberManage/delete" })
 	public @ResponseBody Map<String, Object> deleteManage(UserInfo user) {
 		System.out.println("deleteMmem");
-		
+
 		System.out.println(user.getNo());
 		userImpl.deleteUser(user);
-		
+
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", 1);
-		
+
 		return resultMap;
 	}
 
@@ -145,12 +145,17 @@ public class AdminController {
 		cusum.setIndex(user.getNo());
 
 		System.out.println("user.getNo():" + user.getNo());
-		List<Cusum> info = reverImpl.getReverListByUser(cusum);
+		List<Cusum> info = null;
+		try {
+			info = reverImpl.getReverListByUser(cusum);
+			mav.addObject("product", info);
 
-		mav.addObject("product", info);
-
-		System.out.println(info.get(0).getIndex());
-		System.out.println(info.get(0).getMenu_id());
+			System.out.println(info.get(0).getIndex());
+			System.out.println(info.get(0).getMenu_id());
+		} catch (Exception e) {
+			System.out.println("null");
+			mav.addObject("error", true);
+		}
 
 		return mav;
 	}

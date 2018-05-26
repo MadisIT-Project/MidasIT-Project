@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -52,46 +51,47 @@
 		<h2 class="sub-header">
 			<spring:message code="reserveinfo" />
 		</h2>
-		<div class="table-responsive">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th><spring:message code="reservenum" /></th>
-						<th><spring:message code="name" /></th>
-						<th><spring:message code="price" /></th>
-						<th><spring:message code="timestamp" /></th>
-						<th><spring:message code="number" /></th>
-						<th><spring:message code="state" /></th>
-						<th>change state</th>
-					</tr>
-				</thead>
-				<tbody id="productList">
-					<c:forEach items="${product}" var="product" varStatus="status">
+		<c:if test="${error == false }">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
 						<tr>
-							<td>${product.index}</td>
-							<td>${product.user_id}</td>
-							<td>${product.menu_id}</td>
-							<td>${product.date}</td>
-							<td>${product.num}</td>
-							<td>
-								<c:if test="${product.state == '1'}">
+							<th><spring:message code="reservenum" /></th>
+							<th><spring:message code="name" /></th>
+							<th><spring:message code="price" /></th>
+							<th><spring:message code="timestamp" /></th>
+							<th><spring:message code="number" /></th>
+							<th><spring:message code="state" /></th>
+							<th>change state</th>
+						</tr>
+					</thead>
+					<tbody id="productList">
+						<c:forEach items="${product}" var="product" varStatus="status">
+							<tr>
+								<td>${product.index}</td>
+								<td>${product.user_id}</td>
+								<td>${product.menu_id}</td>
+								<td>${product.date}</td>
+								<td>${product.num}</td>
+								<td><c:if test="${product.state == '1'}">
 									ready
 								</c:if> <c:if test="${product.state == '2'}">
 									making
 								</c:if> <c:if test="${product.state == '3'}">
 									finish
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${product.state != '3'}">
-									<input type="button" onclick="changeNextState(${product.state}, ${product.index})" value="next Step" />
-								</c:if>
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+								</c:if></td>
+								<td><c:if test="${product.state != '3'}">
+										<input type="button" onclick="changeNextState(${product.state}, ${product.index})" value="next Step" />
+									</c:if></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</c:if>
+		<c:if test="${error == true }">
+			자료가 없습니다.
+		</c:if>
 	</div>
 
 	<jsp:include page="../../common/footer.jsp"></jsp:include>
