@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.madis.www.model.dao.CusumDao;
+import com.madis.www.model.dao.ForStaticDao;
 import com.madis.www.model.dto.Cusum;
 
 @Repository
@@ -36,6 +37,9 @@ public class CusumImpl implements CusumDao {
 	// 사용자가 사용할 쿼리 (월별 검색 , 기간별 검색)
 	private final String CUSUM_LIST_BY_MONTH_FOR_USER = "select * from cusums where (user_id = ? and (DATE_FORMAT(date,'%Y-%m') = DATE_FORMAT(?,'%Y-%m'))) order by cusums.index";
 	private final String CUSUM_LIST_BY_BETWEEN_FOR_USER = "select * from cusums where (user_id = ? and (date between ? and ?)) order by cusums.index";
+	
+	// 사용자별 메뉴 많이 사용한거 찾기
+	private final String MOST_MENU_LIST_BY_USER = "select c.menu_id, count(*) from (menus as m inner join (select * from cusums where (user_id = ? and (DATE_FORMAT(date,'%Y-%m') = DATE_FORMAT(?,'%Y-%m')))) as c on m.index = c.menu_id) group by c.menu_id limit 5";
 	
 	// 시간대별
 	// 요일별
@@ -75,7 +79,7 @@ public class CusumImpl implements CusumDao {
 	}
 
 	@Override
-	public List<Cusum> getCusumListByMonthForUser(Cusum cusum, Date month) {
+	public List<Cusum> getCusumListByMonthForUser(Cusum cusum, String month) {
 		Object[] args = {cusum.getUser_id(), month};
 		return jdbcTemplate.query(CUSUM_LIST_BY_MONTH_FOR_USER, args, new CusumRowMapper());
 	}
@@ -84,6 +88,13 @@ public class CusumImpl implements CusumDao {
 	public List<Cusum> getCusumListByBetweenForUser(Cusum cusum, Date s_date, Date e_date) {
 		Object[] args = {cusum.getUser_id(), s_date, e_date};
 		return jdbcTemplate.query(CUSUM_LIST_BY_BETWEEN_FOR_USER, args, new CusumRowMapper());
+	}
+	
+	// 월별 가장 많이 먹은 메뉴 5개
+	@Override
+	public List<ForStaticDao> getMostMenuByUser(Cusum cusum, String month) {
+		Object[] args = {cusum.getUser_id(), month};
+		return jdbcTemplate.query(MOST_MENU_LIST_BY_USER, args, new ForStaticRowMapper());
 	}
 
 	
@@ -100,5 +111,14 @@ class CusumRowMapper implements RowMapper<Cusum>{
 		cusum.setState(rs.getInt("state"));
 		
 		return cusum;
+	}
+}
+
+class ForStaticRowMapper implements RowMapper<ForStaticDao>{
+	public ForStaticDao mapRow(ResultSet rs, int rowNum) throws SQLException {
+		ForStaticDao a = new ForStaticDao();
+		a.setA(rs.getInt("menu_id"));
+		a.setB(rs.getInt("count(*)"));
+		return a;
 	}
 }
