@@ -116,4 +116,18 @@ public class UserController {
 		
 		return resultMap;
 	}
+	
+	@RequestMapping(value = { "/reservation/deleteReady" })
+	public @ResponseBody Map<String, Object> deletesReady(Cusum cusum) {
+
+		System.out.println("dddde");
+
+
+		reverImpl.deleteRever(cusum);
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", 1);
+
+		return resultMap;
+	}
 }
