@@ -50,7 +50,7 @@
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
 							<sec:authentication var="user" property="principal" />
-							<li>${user.username}님반갑습니다.&nbsp;<a href="#" onclick="logout()">Logout</a>&nbsp;
+							<li>${user.username} <spring:message code="welcome" /><a href="#" onclick="logout()">Logout</a>&nbsp;
 							</li>
 							<li><a href="/mypage/profile">MyPage</a></li>
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
