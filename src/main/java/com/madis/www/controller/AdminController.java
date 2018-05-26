@@ -40,6 +40,30 @@ public class AdminController {
 		
 		return resultMap;
 	}
+	
+	@RequestMapping(value = { "/menu/menuManage/add" })
+	public @ResponseBody Map<String, Object> insertManage(Menu menu) {
+		System.out.println("addmenu");
+		System.out.println(menu.getIndex());
+		menuImpl.insertMenu(menu);
+		System.out.println(menu.getIndex());
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", 1);
+		
+		return resultMap;
+	}
+	
+	@RequestMapping(value = { "/menu/menuManage/update" })
+	public @ResponseBody Map<String, Object> updateManage(Menu menu) {
+		System.out.println("modimenu");
+		System.out.println(menu.getIndex());
+		menuImpl.updateMenu(menu);
+		System.out.println(menu.getIndex());
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", 1);
+		
+		return resultMap;
+	}
 
 	@RequestMapping(value = { "/manage/memberManage" })
 	public String memberManage() {

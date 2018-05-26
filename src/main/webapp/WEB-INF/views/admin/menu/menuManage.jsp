@@ -44,8 +44,7 @@ function menu(){
 	$("#plusbtn").hide();
 	$("#minusbtn").hide();
 	$("#info").show();
-	
-	
+
 }
 function plus(){
 	$("#info").hide();
@@ -53,8 +52,7 @@ function plus(){
 	$("#plusbtn").show();
 	$("#minusbtn").show();
 	$("#plus").show();
-	
-	
+
 }
 
 function plusmenu() {
@@ -81,15 +79,60 @@ function minusmenu() {
 
 $(document).ready(function() {
 	
-	$('#modi-btn').on("click", function(){
+	$('.modi-btn').on("click", function(){
+		var pa = $(this).parent().parent();
+		console.log(pa.html());
+		console.log(pa.find('.name').children().val());
+		
+		$.ajax({
+            url: "/admin/menu/menuManage/update",
+            type: 'POST',
+            data: { index : $(this).val(),
+            		  name : pa.find('.name').children().val(),
+            		  price : pa.find('.price').children().val(),
+            		  detail : pa.find('.detail').children().val()},
+            beforeSend : function(xhr) {
+				xhr.setRequestHeader("${_csrf.headerName}",
+						"${_csrf.token}");
+			},
+            success: function(){
+            		history.go();
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
 		
 	});
 	
-	$('#remove-btn').on("click", function(){
+	$('.remove-btn').on("click", function(){
 		$.ajax({
             url: "/admin/menu/menuManage/delete",
             type: 'POST',
             data: {index : $(this).val()},
+            beforeSend : function(xhr) {
+				xhr.setRequestHeader("${_csrf.headerName}",
+						"${_csrf.token}");
+			},
+            success: function(){
+            		history.go();
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+	});
+	
+	$('#add').on("click", function(){
+		console.log("add");
+		console.log( $('#add-name').val());
+		
+		$.ajax({
+            url: "/admin/menu/menuManage/add",
+            type: 'POST',
+            data: {name : $('#add-name').val(),
+            		  price : $('#add-price').val(),
+            		  detail : $('#add-detail').val()},
             beforeSend : function(xhr) {
 				xhr.setRequestHeader("${_csrf.headerName}",
 						"${_csrf.token}");
@@ -137,13 +180,13 @@ $(document).ready(function() {
               <tbody>
               <!-- 조회 -->
               <c:forEach items="${menuList}" var="menu" varStatus="status">
-				<tr>
-                  <td>${menu.name}</td>
-                  <td>${menu.price}</td>
-                  <td>${menu.detail}</td>
-                  <td>${menu.path}</td>
-                  <td><button id="modi-btn"  value='${menu.index}'>Modified</button></td>
-                  <td><button id="remove-btn"  value='${menu.index}'>Remove</button></td>
+				<tr class='${menu.index}'>
+                  <td class="name"><input type="text" name="fname" class="name-1" value='${menu.name}'></td>
+                  <td class="price"><input type="text" name="fname" class="price-1"  value='${menu.price}'></td>
+                  <td class="detail"><input type="text" name="fname" class="detail-1"  value='${menu.detail}'></td>
+                  <td class="path"><input type="text" name="fname" class="path-1" value='${menu.path}'></td>
+                  <td><button class="modi-btn"  value='${menu.index}'>Modified</button></td>
+                  <td><button class="remove-btn"  value='${menu.index}'>Remove</button></td>
                 </tr>
 			</c:forEach>
               </tbody>
@@ -164,9 +207,9 @@ $(document).ready(function() {
                
                  <tr>
                   <!- 추가 -->
-                  <td><input name="name" class="name" value='name' placeholder="name"  class="form-control" /></td>
-                  <td><input name="price" class="price" value='price' placeholder="price"  class="form-control" /></td>
-                  <td><input name="detail" type="textarea" class="detail" value='detail' placeholder="detail"  class="form-control" /></td>
+                  <td><input name="name" id="add-name" value='name' placeholder="name"  class="form-control" /></td>
+                  <td><input name="price" id="add-price" value='1234' placeholder="1234"  class="form-control" /></td>
+                  <td><input name="detail" id="add-detail" type="textarea" class="detail" value='detail' placeholder="detail"  class="form-control" /></td>
                   <td><form id="profile_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" action="/mypage/upload?${_csrf.parameterName}=${_csrf.token}" encType="multipart/form-data" method="post">
                  		<div class="">
 							<input class="attachment" name="attachment" type="file" class="">
