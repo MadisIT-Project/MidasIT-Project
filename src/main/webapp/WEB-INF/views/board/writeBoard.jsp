@@ -55,7 +55,7 @@
 </head>
 <body>
 	<div class="wrap">
-		<jsp:include page="../common/header.jsp"></jsp:include>
+		<jsp:include page="../common/board_header.jsp"></jsp:include>
 	</div>
 
 	<div class="container">

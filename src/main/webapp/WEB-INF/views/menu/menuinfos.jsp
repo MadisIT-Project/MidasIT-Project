@@ -3,6 +3,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
+<sec:authentication var="user" property="principal" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,6 +25,8 @@ var selectCheck=0;
 							var table = document.getElementById("buy");
 							if ($(this).is(":checked")) {
 								var row = table.insertRow(1);
+								row.className = $(this).parent().parent().children(".menu-index").children().val();
+								console.log("className : " + $(this).parent().parent().children(".menu-index").children().val());
 								var cell1 = row.insertCell(0);
 								var cell2 = row.insertCell(1);
 								var cell3 = row.insertCell(2);
@@ -59,14 +63,16 @@ var selectCheck=0;
 					
 					for (var i = 1; i < rowNum; i++) {
 						var temp = $('#buy tr:eq(' + i + ')');
-						var name = temp.children(".menu-name").html();
-						var price = temp.children(".menu-price").html();
+						var user_id = ${user.index};
+						var menu_id = temp.attr('class');
+						//console.log("html : " + temp.attr('class'));
 						var num = temp.children(".menu-num").children(".num-1").val();
 						
+						console.log(user_id + "/" + menu_id + "/" + num)
 						$.ajax({
 						    url: "/user/reservation/insert",
 						    type: 'POST',
-						    data: {"name" : name, "price" : price, "num" : num},
+						    data: {"user_id" : user_id, "menu_id" : menu_id, "num" : num},
 						    beforeSend : function(xhr) {
 								xhr.setRequestHeader("${_csrf.headerName}",
 										"${_csrf.token}");
@@ -80,10 +86,10 @@ var selectCheck=0;
 						    }
 						});
 						
-						console.log(name +"/" +price + "/" + num);
+						//console.log(name +"/" +price + "/" + num);
 					}
 					
-					window.location.replace("http://localhost:8080/menu/menuInfo");
+					//window.location.replace("http://localhost:8080/menu/menuInfo");
 
 				});
 			
@@ -110,7 +116,7 @@ var selectCheck=0;
 				<tbody>
 					<c:forEach items="${menuList}" var="menu" varStatus="status">
 						<tr id='${status.index}'>
-							<td><input class="checkbox" type="checkbox" value=""></td>
+							<td class="menu-index"><input class="checkbox" type="checkbox" value='${menu.index}'></td>
 							<td class="menu-name">${menu.name}</td>
 							<td class="menu-image">image</td>
 							<td class="menu-price">${menu.price}</td>

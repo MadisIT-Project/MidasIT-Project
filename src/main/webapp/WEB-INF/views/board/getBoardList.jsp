@@ -61,13 +61,13 @@
 	<center>
 		<div class="container">
 			<div class="btn-group" role="group" aria-label="First group">
-				<button type="button" class="btn btn-default">"<"</button>
+				<button type="button" class="btn btn-default"><</button>
 				<button type="button" class="btn btn-default">1</button>
 				<button type="button" class="btn btn-default">2</button>
 				<button type="button" class="btn btn-default">3</button>
 				<button type="button" class="btn btn-default">4</button>
 				<button type="button" class="btn btn-default">5</button>
-				<button type="button" class="btn btn-default">">"</button>
+				<button type="button" class="btn btn-default">></button>
 			</div>
 		</div>
 	</center>
