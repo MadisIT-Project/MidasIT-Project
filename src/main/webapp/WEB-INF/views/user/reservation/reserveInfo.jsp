@@ -61,6 +61,7 @@
 						<th><spring:message code="timestamp" /></th>
 						<th><spring:message code="number" /></th>
 						<th><spring:message code="state" /></th>
+						<th>Remove</th>
 					</tr>
 				</thead>
 				<tbody id="productList">
