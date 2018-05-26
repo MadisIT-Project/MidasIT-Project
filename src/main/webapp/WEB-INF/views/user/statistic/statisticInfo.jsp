@@ -92,9 +92,10 @@
 	
             	          var data = google.visualization.arrayToDataTable(temp);
 	            	        var options = {
-	            	          title: 'My Daily Activities'
+	            	          title: 'My Daily Activities',
+	            	          width: 600,
+          	    	        	height: 400
 	            	        };
-	
 	            	        var chart = new google.visualization.PieChart(document.getElementById('chart1_div'));
 	
 	            	        chart.draw(data, options);
