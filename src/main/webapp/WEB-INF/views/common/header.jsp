@@ -45,7 +45,8 @@
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
 							<sec:authentication var="user" property="principal" />
-							<li>${user.username}님반갑습니다.&nbsp;<a href="#" onclick="logout()">Logout</a>&nbsp;</li>
+							<li>${user.username}님반갑습니다.&nbsp;<a href="#" onclick="logout()">Logout</a>&nbsp;
+							</li>
 							<li><a href="/mypage/profile">MyPage</a></li>
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</sec:authorize>
@@ -64,56 +65,54 @@
 							<!--<img src="/main_code/images/nav_promotion.png">-->
 						</li>
 					</ul></li>
-				
+
 				<li class="list01"><a href="/board" id="menu1"><spring:message code="post.title" /></a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
 						<li><a href="#">회사개요</a></li>
 						<li><a href="#">회사비전</a></li>
 					</ul></li>
-				<sec:authorize ifAnyGranted="ROLE_ADMIN">
-					<li class="list05"><a href="#" id="menu5">인재채용</a>
+
+				<%-- 				<sec:authorize ifAnyGranted="ROLE_ADMIN"> --%>
+				<!-- 					<li class="list05"><a href="#" id="menu5">인재채용</a> -->
+				<!-- 						<ul class="nav_depth" style="opacity: 1; display: none;"> -->
+				<!-- 							<li><a href="#"><span class="nav_span">MIDAS</span> 인사제도</a></li> -->
+				<!-- 							<li><a href="#">채용안내</a></li> -->
+				<!-- 							<li><a href="#" target="_blank">채용공고</a></li> -->
+				<!-- 						</ul> -->
+				<!-- 					</li> -->
+				<%-- 				</sec:authorize> --%>
+				<%-- 				<sec:authorize ifAnyGranted="ROLE_USER"> --%>
+				<!-- 					<li class="list07"><a href="#" id="menu6">찾아오시는길</a> -->
+				<!-- 						<ul class="nav_depth" style="opacity: 1; display: none;"> -->
+				<!-- 							<li><a href="#">찾아오시는길</a></li> -->
+				<!-- 						</ul></li> -->
+				<%-- 				</sec:authorize> --%>
+
+				<li class="list02"><a href="/menu/menuInfo" id="menu2">메뉴</a>
+					<ul class="nav_depth" style="opacity: 1; display: none;">
+						<li><a href="/menu/menuInfo">조회</a></li>
+					</ul></li>
+					<!-- 사용자 -->
+<%-- 				<sec:authorize ifAnyGranted="ROLE_USER"> --%>
+
+					<li class="list03"><a href="/user/reservation/reserveInfo" id="menu3">예약 현황</a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
-							<li><a href="#"><span class="nav_span">MIDAS</span> 인사제도</a></li>
-							<li><a href="#">채용안내</a></li>
-							<li><a href="#" target="_blank">채용공고</a></li>
-						</ul>
-					</li>
-				</sec:authorize>
-				<sec:authorize ifAnyGranted="ROLE_USER">
-					<li class="list07"><a href="#" id="menu6">찾아오시는길</a>
-						<ul class="nav_depth" style="opacity: 1; display: none;">
-							<li><a href="#">찾아오시는길</a></li>
+							<li><a href="/user/reservation/reserveInfo">예약 현황</a></li>
 						</ul></li>
-				</sec:authorize>
-				
-				<!-- 사용자 -->
-					<li class="list08"><a href="/menu/info" id="menu7">메뉴</a>
+					<li class="list4"><a href="/user/statistic/statisticInfo" id="menu4">구매 내역</a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
-							<li><a href="/menu/info">조회</a></li>
+							<li><a href="/user/statistic/statisticInfo">구매 내역</a></li>
 						</ul></li>
-					<li class="list09"><a href="#" id="menu8">예약 현황 확인</a>
+<%-- 				</sec:authorize> --%>
+					<!--  관리자  -->
+<%-- 				<sec:authorize ifAnyGranted="ROLE_ADMIN"> --%>
+					<li class="list05"><a href="/admin/menu/menuManage" id="menu10">관리</a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
-							<li><a href="#"></a></li>
+							<li><a href="/admin/menu/menuManage">메뉴 관리</a></li>
+							<li><a href="/admin/manage/memberManage">회원 관리</a></li>
+							<li><a href="/admin/reservation/reservManage">예약 관리</a></li>
 						</ul></li>
-					<li class="list10"><a href="#" id="menu9">월별 구매 내역</a>
-						<ul class="nav_depth" style="opacity: 1; display: none;">
-							<li><a href="#"></a></li>
-						</ul></li>
-						
-					
-					<!-- 관리자 -->
-					<li class="list11"><a href="#" id="menu10">메뉴 관리</a>
-						<ul class="nav_depth" style="opacity: 1; display: none;">
-							<li><a href="#"></a></li>
-						</ul></li>
-					<li class="list12"><a href="#" id="menu11">회원 관리</a>
-						<ul class="nav_depth" style="opacity: 1; display: none;">
-							<li><a href="#"></a></li>
-						</ul></li>	
-					<li class="list13"><a href="#" id="menu12">예약 관리</a>
-						<ul class="nav_depth" style="opacity: 1; display: none;">
-							<li><a href="#"></a></li>
-						</ul></li>	
+<%-- 				</sec:authorize> --%>
 			</ul>
 		</div>
 	</div>
