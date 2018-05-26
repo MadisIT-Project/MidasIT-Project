@@ -13,7 +13,7 @@
 <div id="footer">
 	<ul class="information">
 		<li class="pdf_download"><a href="/resources/file/2018_midasit_challenge.pdf" title="MIDAS Challeng PDF 새창열기" target="_blank" style="color:#555;" ><i style="" class="xi-arrow-bottom"></i>MIDAS Challeng 설명서</a>&nbsp;&nbsp;&nbsp;l</li>
-		<li><a href="map" style="color:#555;" >오시는 길</a>&nbsp;&nbsp;&nbsp;</li>
+		<li><a href="/map" style="color:#555;" >오시는 길</a>&nbsp;&nbsp;&nbsp;</li>
 	</ul>
 	<div class="totop">
 		<a href="#" title="맨위로">▲ <spring:message code="on_top" /></a>
