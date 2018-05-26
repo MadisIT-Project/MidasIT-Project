@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,6 +10,8 @@
 <link rel="stylesheet" href="/resources/css/common.css" />
 <link rel="stylesheet" href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" />
 <title>MIDAS</title>
+<script src="/webjars/jquery/3.3.1/jquery.js"></script>
+<script src="/webjars/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <style type="text/css">
 .image-upload{
@@ -74,6 +79,31 @@ function minusmenu() {
   table.deleteRow(len-1);
 }
 
+$(document).ready(function() {
+	
+	$('#modi-btn').on("click", function(){
+		
+	});
+	
+	$('#remove-btn').on("click", function(){
+		$.ajax({
+            url: "/admin/menu/menuManage/delete",
+            type: 'POST',
+            data: {index : $(this).val()},
+            beforeSend : function(xhr) {
+				xhr.setRequestHeader("${_csrf.headerName}",
+						"${_csrf.token}");
+			},
+            success: function(){
+            		history.go();
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+	});
+});
+
 </script>
 
 </head>
@@ -84,10 +114,10 @@ function minusmenu() {
 
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 	<div class="container">
-	  <h3>�޴� ����</h3>
+	  <h3>메뉴 관리</h3>
 	  <ul class="list-inline">
-	    <li><a href="#" onclick="menu()">��ȸ</a></li>
-	    <li><a href="#" onclick="plus()">�߰�</a></li>
+	    <li><a href="#" onclick="menu()">조회</a></li>
+	    <li><a href="#" onclick="plus()">추가</a></li>
 	    <li id="plusbtn"><button onclick="plusmenu()"  value="plus">+</button></li>
 	    <li id="minusbtn"><button onclick="minusmenu()"  value="minus">-</button></li>  
 	  </ul>
@@ -105,16 +135,17 @@ function minusmenu() {
 				  <th>#</th>
               </thead>
               <tbody>
-                <tr>
-                  
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                  <td><button id="list1"  value="Modified">Modified</button></td>
-                  <td><button id="list2"  value="Remove">Remove</button></td>
+              <!-- 조회 -->
+              <c:forEach items="${menuList}" var="menu" varStatus="status">
+				<tr>
+                  <td>${menu.name}</td>
+                  <td>${menu.price}</td>
+                  <td>${menu.detail}</td>
+                  <td>${menu.path}</td>
+                  <td><button id="modi-btn"  value='${menu.index}'>Modified</button></td>
+                  <td><button id="remove-btn"  value='${menu.index}'>Remove</button></td>
                 </tr>
-                
+			</c:forEach>
               </tbody>
             </table>
           </div>
@@ -132,7 +163,7 @@ function minusmenu() {
               <tbody>
                
                  <tr>
-                  
+                  <!- 추가 -->
                   <td><input name="name" class="name" value='name' placeholder="name"  class="form-control" /></td>
                   <td><input name="price" class="price" value='price' placeholder="price"  class="form-control" /></td>
                   <td><input name="detail" type="textarea" class="detail" value='detail' placeholder="detail"  class="form-control" /></td>
