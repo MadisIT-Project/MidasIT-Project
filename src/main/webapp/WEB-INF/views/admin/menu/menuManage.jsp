@@ -10,8 +10,6 @@
 <link rel="stylesheet" href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" />
 <title>MIDAS</title>
 <script src="/webjars/jquery/3.3.1/jquery.js"></script>
-<script src="/webjars/bootstrap/3.3.5/js/bootstrap.js"></script>
-
 <style type="text/css">
 .image-upload {
 	width: 50;
@@ -140,30 +138,29 @@
 						function() {
 							console.log("add");
 							console.log($('#add-name').val());
-							//file upload
-							document.getElementById("imageName").value=document.getElementById("name").value;
 							
-							menu_frm.submit();
-							
-// 							$.ajax({
-// 								url : "/admin/menu/menuManage/add",
-// 								type : 'POST',
-// 								data : {
-// 									name : $('#add-name').val(),
-// 									price : $('#add-price').val(),
-// 									detail : $('#add-detail').val()
-// 								},
-// 								beforeSend : function(xhr) {
-// 									xhr.setRequestHeader("${_csrf.headerName}",
-// 											"${_csrf.token}");
-// 								},
-// 								success : function() {
-// 									history.go();
-// 								},
-// 								error : function(error) {
-// 									console.log(error);
-// 								}
-// 							});
+							$.ajax({
+								url : "/admin/menu/menuManage/add",
+								type : 'POST',
+								data : {
+									name : $('#add-name').val(),
+									price : $('#add-price').val(),
+									detail : $('#add-detail').val()
+								},
+								beforeSend : function(xhr) {
+									xhr.setRequestHeader("${_csrf.headerName}",
+											"${_csrf.token}");
+								},
+								success : function() {
+									//file upload
+// 									document.getElementById("imageName").value = $('#add-name').val();
+// 									menu_frm.submit();
+									history.go();
+								},
+								error : function(error) {
+									console.log(error);
+								}
+							});
 						});
 			});
 </script>
@@ -229,10 +226,10 @@
 						<td><input name="price" id="add-price" class="form-control" /></td>
 						<td><input name="detail" id="add-detail" class="detail" class="form-control" /></td>
 						<td>
-							<form id="menu_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" action="/file/menuImageUpload?${_csrf.parameterName}=${_csrf.token}" encType="multipart/form-data" method="post">
-								<input type="hidden" id="imageName"  name="imageName" />
-								<input class="attachment1" name="attachment1" type="file">
-							</form>
+<%-- 							<form id="menu_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" action="/file/menuImageUpload?${_csrf.parameterName}=${_csrf.token}" encType="multipart/form-data" method="post"> --%>
+<!-- 								<input type="hidden" id="imageName"  name="imageName" /> -->
+<!-- 								<input class="attachment1" name="attachment1" type="file"> -->
+<!-- 							</form> -->
 						</td>
 
 					</tr>
