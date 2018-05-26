@@ -23,9 +23,7 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script> 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript">
-
 google.charts.load('current', {'packages':['corechart']});
-
 // Draw charts when Charts is loaded.
 google.charts.setOnLoadCallback(drawchart1);
 function drawchart1() {
@@ -36,15 +34,12 @@ function drawchart1() {
           ['2006',  660,       1120],
           ['2007',  1030,      540]
         ]);
-
     var options = {
       title: 'Company Performance',
       curveType: 'function',
       legend: { position: 'bottom' }
     };
-
     var chart = new google.visualization.LineChart(document.getElementById('chart1_div'));
-
     chart.draw(data, options);
 }
 function changetermSelect(){
@@ -55,7 +50,6 @@ var selectValue = langSelect.options[langSelect.selectedIndex].value;
               
 var selectText = langSelect.options[langSelect.selectedIndex].text;
 }
-
 </script>
 
 <title>MIDAS</title>
