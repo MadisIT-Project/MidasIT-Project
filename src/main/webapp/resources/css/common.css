@@ -32,7 +32,7 @@ a,a:link{color:#000;text-decoration:none}
 .nav li a .txt_ls{letter-spacing:-2px}
 .nav li a:hover .txt_ls{letter-spacing:-3px}
 .nav li.on a, .nav li a:hover{color:#0064b5;font-weight:bold;text-decoration:none;letter-spacing:-1px;}
-.nav_depth{display:none;position:relative;z-index:999;margin:39px 9px 0 -9px;padding:10px 0 0 9px;height:220px;*height:220px;letter-spacing:-1px; border-right:1px #e5e5e5 solid;}
+.nav_depth{display:none;position:relative;z-index:999;margin:39px 9px 0 -9px;padding:10px 0 0 9px;height:100px;*height:100px;letter-spacing:-1px; border-right:1px #e5e5e5 solid;}
 .nav_depth.on{display:block}
 .nav_depth li{float:none;padding-bottom:0px;letter-spacing:-1px;}
 .nav_depth li a{margin:0px;padding:0px;color:#636363 !important;letter-spacing:-1px;font-size:12px;line-height:2;font-weight:normal !important;}
@@ -45,7 +45,7 @@ a,a:link{color:#000;text-decoration:none}
 .nav .list05{width:117px;}
 .nav .list07{width:110px;}
 .nav .list07 .nav_depth{margin-right:0;}
-.nav_bg{display:none; position:absolute; z-index:1; margin:140px 0 0; width:100%; min-width:960px; height:230px; background:#ffffff; box-shadow: 0 5px 5px rgba(0,0,0,0.06); border-top:1px #e5e5e5 solid; border-bottom:1px #e5e5e5 solid; background:#f7f7f7;}
+.nav_bg{display:none; position:absolute; z-index:1; margin:140px 0 0; width:100%; min-width:960px; height:110px; background:#ffffff; box-shadow: 0 5px 5px rgba(0,0,0,0.06); border-top:1px #e5e5e5 solid; border-bottom:1px #e5e5e5 solid; background:#f7f7f7;}
 .nav_bg.over{display:block;}
 .nav_bg_in{margin:0 auto;width:960px;overflow:hidden;}
 .prd_area{padding-left:0px;}
