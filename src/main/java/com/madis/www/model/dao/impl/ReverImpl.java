@@ -77,7 +77,7 @@ public class ReverImpl implements ReverDao {
 	@Override
 	public List<Cusum> getReverListByUser(Cusum cusum) {
 		Object[] args = {cusum.getIndex()};
-		return jdbcTemplate.query(REVER_LIST_BY_USER, args, new CusumRowMapper());
+		return jdbcTemplate.query(REVER_LIST_BY_USER, args, new ReservRowMapper());
 	}
 
 }
