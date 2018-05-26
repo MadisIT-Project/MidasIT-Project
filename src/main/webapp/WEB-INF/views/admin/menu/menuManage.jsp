@@ -175,25 +175,25 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-
 						<th>name</th>
 						<th>price</th>
 						<th>detail</th>
 						<th>image</th>
-						<th>#</th>
+						<th>modify</th>
+						<th>remove</th>
 				</thead>
 				<tbody>
 					<!-- 조회 -->
 					<c:forEach items="${menuList}" var="menu" varStatus="status">
 						<tr class='${menu.index}'>
-							<td class="name"><input type="text" name="fname" class="name-1" value='${menu.name}'></td>
-							<td class="price"><input type="text" name="fname" class="price-1" value='${menu.price}'></td>
-							<td class="detail"><input type="text" name="fname" class="detail-1" value='${menu.detail}'></td>
-							<td class="path">
+							<td class="name" style="vertical-align: middle;"><input type="text" name="fname" class="name-1" value='${menu.name}'></td>
+							<td class="price" style="vertical-align: middle;"><input type="text" name="fname" class="price-1" value='${menu.price}'></td>
+							<td class="detail" style="vertical-align: middle;"><input type="text" name="fname" class="detail-1" value='${menu.detail}'></td>
+							<td class="path" style="vertical-align: middle;">
 								<img class="avatar rounded-2" src="/file/menu/${menu.name}" width="50" height="50">
 							</td>
-							<td><button class="modi-btn" value='${menu.index}'>Modified</button></td>
-							<td><button class="remove-btn" value='${menu.index}'>Remove</button></td>
+							<td style="vertical-align: middle;"><button class="modi-btn btn btn-success" value='${menu.index}'>Modified</button></td>
+							<td style="vertical-align: middle;"><button class="remove-btn btn btn-success" value='${menu.index}'>Remove</button></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -207,16 +207,15 @@
 						<th>price</th>
 						<th>detail</th>
 						<th>image</th>
-						<th>#</th>
 				</thead>
 				<tbody>
 
 					<tr>
 						<!- 추가 -->
-						<td><input id="add-name" name="name" class="form-control" /></td>
-						<td><input name="price" id="add-price" class="form-control" /></td>
-						<td><input name="detail" id="add-detail" class="detail" class="form-control" /></td>
-						<td>
+						<td style="vertical-align: middle;"><input id="add-name" name="name" class="form-control" /></td>
+						<td style="vertical-align: middle;"><input name="price" id="add-price" class="form-control" /></td>
+						<td style="vertical-align: middle;"><input name="detail" id="add-detail" class="form-control"/></td>
+						<td style="vertical-align: middle;">
 							<form id="menu_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" action="/file/menuImageUpload?${_csrf.parameterName}=${_csrf.token}" encType="multipart/form-data" method="post">
 								<input type="hidden" id="imageName" name="imageName" /> <input class="attachment1" name="attachment1" type="file">
 							</form>
@@ -226,7 +225,7 @@
 				</tbody>
 			</table>
 		</div>
-		<button id="add" value="add">add</button>
+		<button id="add" value="add" class="btn btn-success">add</button>
 	</div>
 
 
