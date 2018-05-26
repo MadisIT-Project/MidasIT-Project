@@ -47,6 +47,7 @@ public class MenuController {
 		model.addAttribute("cusumList", cusumList);
 		model.addAttribute("cusumMenuList", cusumMenuList);
 		*/
-		return "/menu/menuInfo";
+		return "menu/menuinfos";
+		
 	}
 }

@@ -104,6 +104,9 @@ public class UserController {
 	public @ResponseBody Map<String, Object> reservation(Cusum cusum) {
 		System.out.println("/reservation/insert");
 		
+		System.out.println(cusum.getUser_id());
+		System.out.println(cusum.getMenu_id());
+		
 		reverImpl.insertRever(cusum);
 		
 		System.out.println("success");
