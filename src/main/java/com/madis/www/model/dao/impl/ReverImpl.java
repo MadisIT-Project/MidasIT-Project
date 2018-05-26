@@ -24,12 +24,14 @@ public class ReverImpl implements ReverDao {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	private final String REVER_INSERT = "insert into revers (user_id, menu_id, num, date) values (?, ?, ?, now())";
+	private final String REVER_INSERT = "insert into revers (user_id, menu_id, num, date, state) values (?, ?, ?, now(), 1)";
 	private final String REVER_UPDATE = "update revers set state = ? where revers.index = ?";
 	private final String REVER_DELETE = "delete from revers where revers.index = ?";
 	private final String REVER_GET = "select * from revers where revers.index = ?";
 	private final String REVER_ALL_LIST = "select * from revers order by revers.index";
 	private final String REVER_LIST_BY_USER = "select * from revers where user_id = ? order by revers.index";
+	
+	private final String REVER_LIST_ALL = "select * from revers where state <> 3 order by revers.index";
 	
 	@Override
 	public void insertRever(Cusum cusum) {
@@ -73,8 +75,8 @@ public class ReverImpl implements ReverDao {
 
 	@Override
 	public List<Cusum> getReverListByUser(Cusum cusum) {
-		Object[] args = {cusum.getIndex()};
-		return jdbcTemplate.query(REVER_LIST_BY_USER, args, new ReservRowMapper());
+		//Object[] args = {cusum.getIndex()};
+		return jdbcTemplate.query(REVER_LIST_ALL, new ReservRowMapper());
 	}
 
 }

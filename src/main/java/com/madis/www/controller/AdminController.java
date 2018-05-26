@@ -148,15 +148,15 @@ public class AdminController {
 		List<Cusum> info = null;
 		try {
 			info = reverImpl.getReverListByUser(cusum);
-			mav.addObject("product", info);
+			mav.addObject("productList", info);
 
-			System.out.println(info.get(0).getIndex());
-			System.out.println(info.get(0).getMenu_id());
+			System.out.println(info.size());
 		} catch (Exception e) {
 			System.out.println("null");
 			mav.addObject("error", true);
 		}
-
+		mav.addObject("error", false);
+		System.out.println("1111");
 		return mav;
 	}
 

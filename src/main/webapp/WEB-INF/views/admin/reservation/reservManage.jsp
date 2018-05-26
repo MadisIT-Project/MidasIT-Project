@@ -51,7 +51,7 @@
 		<h2 class="sub-header">
 			<spring:message code="reserveinfo" />
 		</h2>
-		<c:if test="${error == false }">
+		<c:if test="${error eq false }">
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead>
@@ -66,18 +66,18 @@
 						</tr>
 					</thead>
 					<tbody id="productList">
-						<c:forEach items="${product}" var="product" varStatus="status">
+						<c:forEach items="${productList}" var="product" varStatus="status">
 							<tr>
 								<td>${product.index}</td>
 								<td>${product.user_id}</td>
 								<td>${product.menu_id}</td>
 								<td>${product.date}</td>
 								<td>${product.num}</td>
-								<td><c:if test="${product.state == '1'}">
+								<td><c:if test="${product.state eq 1}">
 									ready
-								</c:if> <c:if test="${product.state == '2'}">
+								</c:if> <c:if test="${product.state eq 2}">
 									making
-								</c:if> <c:if test="${product.state == '3'}">
+								</c:if> <c:if test="${product.state eq 3}">
 									finish
 								</c:if></td>
 								<td><c:if test="${product.state != '3'}">
