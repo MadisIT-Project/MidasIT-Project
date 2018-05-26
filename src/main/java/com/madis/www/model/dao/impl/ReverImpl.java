@@ -1,16 +1,20 @@
 package com.madis.www.model.dao.impl;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.madis.www.model.dao.ReverDao;
 import com.madis.www.model.dto.Cusum;
+import com.madis.www.model.dto.UserInfo;
 
 @Repository
 public class ReverImpl implements ReverDao {
@@ -54,6 +58,20 @@ public class ReverImpl implements ReverDao {
 	@Override
 	public List<Cusum> getReverAllList(Cusum cusum) {
 		return jdbcTemplate.query(REVER_ALL_LIST, new CusumRowMapper());
+	}
+	
+	class ReservRowMapper implements RowMapper<Cusum>{
+		public Cusum mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Cusum cusum = new Cusum();
+			cusum.setIndex(rs.getInt("revers.index"));
+			cusum.setUser_id(rs.getInt("user_id"));
+			cusum.setMenu_id(rs.getInt("menu_id"));
+			cusum.setNum(rs.getInt("num"));
+			cusum.setDate(rs.getDate("date"));
+			cusum.setState(rs.getInt("state"));
+			
+			return cusum;
+		}
 	}
 
 	@Override
