@@ -120,9 +120,11 @@ input {
 }
 </style>
 <script type="text/javascript">
-$(function() {
+function update(){
+// 	location.replace("/mypage/profile");
+	history.go();history.go();history.go();
+} 
 
-});
 </script>
 <body>
 	<div class="wrap">
@@ -157,7 +159,7 @@ $(function() {
 							<label for="user_profile_name">Name</label>
 						</dt>
 						<dd>
-							<input class="form-control" type="text" name="name" id="name" value="${user.name}">
+							<input class="form-control" type="text" name="name" id="name" value="${name}">
 						</dd>
 					</dl>
 					<dl class="form-group">
@@ -165,11 +167,11 @@ $(function() {
 							<label for="user_profile_age">Age</label>
 						</dt>
 						<dd>
-							<input class="form-control" type="text" name="age" id="age" value="${user.age}">
+							<input class="form-control" type="text" name="age" id="age" value="${age}">
 						</dd>
 					</dl>
 					<p>
-						<button type="submit" class="btn btn-primary">Update profile</button>
+						<button type="submit" class="btn btn-primary" onclick="update();">Update profile</button>
 					</p>
 				</div>
 			</form>
