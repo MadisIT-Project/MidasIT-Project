@@ -89,7 +89,7 @@ var selectCheck=0;
 						//console.log(name +"/" +price + "/" + num);
 					}
 					
-					//window.location.replace("http://localhost:8080/menu/menuInfo");
+					window.location.replace("http://localhost:8080/menu/menuInfo");
 
 				});
 			

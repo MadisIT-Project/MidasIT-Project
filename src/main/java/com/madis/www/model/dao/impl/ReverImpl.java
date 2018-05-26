@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import com.madis.www.model.dao.ReverDao;
 import com.madis.www.model.dto.Cusum;
-import com.madis.www.model.dto.UserInfo;
 
 @Repository
 public class ReverImpl implements ReverDao {
@@ -25,7 +24,7 @@ public class ReverImpl implements ReverDao {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	private final String REVER_INSERT = "insert into revers (user_id, menu_id, num, date, state) values (?, ?, ?, now(), 0)";
+	private final String REVER_INSERT = "insert into revers (user_id, menu_id, num, date) values (?, ?, ?, now())";
 	private final String REVER_UPDATE = "update revers set state = ? where revers.index = ?";
 	private final String REVER_DELETE = "delete from revers where revers.index = ?";
 	private final String REVER_GET = "select * from revers where revers.index = ?";
