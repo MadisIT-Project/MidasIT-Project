@@ -7,7 +7,7 @@ public class Cusum {
 	private int user_id;
 	private int menu_id;
 	private int num;
-	private Date created_date;
+	private Date date;
 	private int state;
 	
 	public int getIndex() {
@@ -34,11 +34,11 @@ public class Cusum {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public Date getCreated_date() {
-		return created_date;
+	public Date getDate() {
+		return date;
 	}
-	public void setCreated_date(Date created_date) {
-		this.created_date = created_date;
+	public void setDate(Date created_date) {
+		this.date = created_date;
 	}
 	public int getState() {
 		return state;
