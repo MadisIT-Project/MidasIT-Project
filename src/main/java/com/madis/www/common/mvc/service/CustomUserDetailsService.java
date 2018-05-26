@@ -24,8 +24,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		UserInfo userInfo = null;
-		System.out.println("email: "+email);
-		
+		System.out.println("email: " + email);
+
 		try {
 			userInfo = joinService.getUserInfo(email);
 		} catch (Exception e) {
@@ -38,18 +38,22 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		Collection<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
 
-		if (userInfo.getAdmin() == 1) {
+		if (userInfo.getAdmin() == 2) {
+			System.out.println("super Admin");
+			roles.add(new SimpleGrantedAuthority("ROLE_SUPER"));
+		} else if (userInfo.getAdmin() == 1) {
 			System.out.println("admin");
 			roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		} else {
 			System.out.println("user");
 			roles.add(new SimpleGrantedAuthority("ROLE_USER"));
 		}
-		System.out.println("index: "+userInfo.getNo());
-		System.out.println("age: "+userInfo.getAge());
-		System.out.println("name: "+userInfo.getName());
-		
-		UserDetailsVO userVO = new UserDetailsVO(userInfo.getEmail(), userInfo.getPassword(), true, true, true, true, roles, userInfo.getName(), userInfo.getAge(), userInfo.getNo());
+		System.out.println("index: " + userInfo.getNo());
+		System.out.println("age: " + userInfo.getAge());
+		System.out.println("name: " + userInfo.getName());
+
+		UserDetailsVO userVO = new UserDetailsVO(userInfo.getEmail(), userInfo.getPassword(), true, true, true, true,
+				roles, userInfo.getName(), userInfo.getAge(), userInfo.getNo());
 
 		return userVO;
 	}

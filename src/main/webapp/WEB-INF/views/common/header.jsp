@@ -22,7 +22,6 @@
 			$(".nav_bg").fadeOut(300);
 		});
 	});
-
 	function logout() {
 		console.log("logout");
 		logoutForm.submit();
@@ -68,33 +67,15 @@
 
 				<li class="list01"><a href="/board" id="menu1"><spring:message code="post.title" /></a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
-						<li><a href="#">회사개요</a></li>
-						<li><a href="#">회사비전</a></li>
+						<li><a href="/board"><spring:message code="post.title" /></a></li>
 					</ul></li>
-
-				<%-- 				<sec:authorize ifAnyGranted="ROLE_ADMIN"> --%>
-				<!-- 					<li class="list05"><a href="#" id="menu5">인재채용</a> -->
-				<!-- 						<ul class="nav_depth" style="opacity: 1; display: none;"> -->
-				<!-- 							<li><a href="#"><span class="nav_span">MIDAS</span> 인사제도</a></li> -->
-				<!-- 							<li><a href="#">채용안내</a></li> -->
-				<!-- 							<li><a href="#" target="_blank">채용공고</a></li> -->
-				<!-- 						</ul> -->
-				<!-- 					</li> -->
-				<%-- 				</sec:authorize> --%>
-				<%-- 				<sec:authorize ifAnyGranted="ROLE_USER"> --%>
-				<!-- 					<li class="list07"><a href="#" id="menu6">찾아오시는길</a> -->
-				<!-- 						<ul class="nav_depth" style="opacity: 1; display: none;"> -->
-				<!-- 							<li><a href="#">찾아오시는길</a></li> -->
-				<!-- 						</ul></li> -->
-				<%-- 				</sec:authorize> --%>
 
 				<li class="list02"><a href="/menu/menuInfo" id="menu2">메뉴</a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
 						<li><a href="/menu/menuInfo">조회</a></li>
 					</ul></li>
-					<!-- 사용자 -->
-<%-- 				<sec:authorize ifAnyGranted="ROLE_USER"> --%>
-
+				<!-- 사용자 -->
+				<sec:authorize ifAnyGranted="ROLE_USER">
 					<li class="list03"><a href="/user/reservation/reserveInfo" id="menu3">예약 현황</a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
 							<li><a href="/user/reservation/reserveInfo">예약 현황</a></li>
@@ -103,16 +84,16 @@
 						<ul class="nav_depth" style="opacity: 1; display: none;">
 							<li><a href="/user/statistic/statisticInfo">구매 내역</a></li>
 						</ul></li>
-<%-- 				</sec:authorize> --%>
-					<!--  관리자  -->
-<%-- 				<sec:authorize ifAnyGranted="ROLE_ADMIN"> --%>
+				</sec:authorize>
+				<!--  관리자  -->
+				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_SUPER">
 					<li class="list05"><a href="/admin/menu/menuManage" id="menu5">관리</a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
 							<li><a href="/admin/menu/menuManage">메뉴 관리</a></li>
 							<li><a href="/admin/manage/memberManage">회원 관리</a></li>
 							<li><a href="/admin/reservation/reservManage">예약 관리</a></li>
 						</ul></li>
-<%-- 				</sec:authorize> --%>
+				</sec:authorize>
 			</ul>
 		</div>
 	</div>
