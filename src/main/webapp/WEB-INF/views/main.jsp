@@ -9,6 +9,7 @@
 	href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/resources/css/flexslider.css"
 	type="text/css" media="screen" />
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script>
@@ -71,37 +72,23 @@
 			</div>
 			</section>
 			<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2">
-				<h1 class="entry-title">
-					<a href="#">Strawberries
-						&#038; Matcha Smoothie</a>
-				</h1>
+				<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2">
+					<h1>
+						<spring:message code="main.title"/>
+					</h1>
+			    </div>
 				<div id="content1" class="entry-content">
 					<p>
-						<a
-							href="#"><img
-							src="/resources/image/cafe/cafemoca.png"
-							alt="3月20日" width="300" height="240"
-							class="alignnone size-medium wp-image-194" /></a>
+						<img
+							src="/resources/image/cafe/cafemoca.png" width="300" height="240"
+							class="alignnone size-medium wp-image-194" />
 					</p>
 				</div>
-				<div id="content2" class="entry-content">
-	
-					<p>
-						<strong>A perfect drink to celebrate spring ♪</strong><br />
-						Strawberries blended with honey &#038; matcha!
-					</p>
-					<p>
-						<em>Ingredients for one serving:</em><br /> 15 small sized
-						strawberries<br /> 150ml almond milk<br /> 3g matcha<br /> 1
-						teaspoon honey
-					</p>
-					<p>
-						<em>Directions:</em><br /> ①Cut strawberries and place in electric
-						blender.<br /> ②Add almond milk, matcha and honey.<br /> ③Blend
-						until smooth and enjoy!
-					</p>
-					<p>
-						<strong>Garnish with mint leaves for decoration★ </strong>
+				<div id="content2" class="entry-content col-md-5">
+					<p style="width: 300px;">
+						<spring:message code="main.context1"/><br>
+						<spring:message code="main.context2"/><br>
+						<spring:message code="main.context3"/>
 					</p>
 				</div>
 			</div>
