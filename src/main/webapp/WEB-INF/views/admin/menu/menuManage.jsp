@@ -84,10 +84,10 @@ function minusmenu() {
 
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 	<div class="container">
-	  <h3>¸Þ´º °ü¸®</h3>
+	  <h3>ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½</h3>
 	  <ul class="list-inline">
-	    <li><a href="#" onclick="menu()">Á¶È¸</a></li>
-	    <li><a href="#" onclick="plus()">Ãß°¡</a></li>
+	    <li><a href="#" onclick="menu()">ï¿½ï¿½È¸</a></li>
+	    <li><a href="#" onclick="plus()">ï¿½ß°ï¿½</a></li>
 	    <li id="plusbtn"><button onclick="plusmenu()"  value="plus">+</button></li>
 	    <li id="minusbtn"><button onclick="minusmenu()"  value="minus">-</button></li>  
 	  </ul>
@@ -154,7 +154,7 @@ function minusmenu() {
 
 
 	<div class="wrap">
-		<jsp:include page="../common/footer.jsp"></jsp:include>
+		<jsp:include page="../../common/footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>
