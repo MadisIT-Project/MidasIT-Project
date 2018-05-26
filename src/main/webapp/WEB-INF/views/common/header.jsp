@@ -10,6 +10,7 @@
 <script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
 <script type="text/javascript">
 	$(function() {
 		$(".nav").mouseenter(function() {
@@ -55,7 +56,7 @@
 		</div>
 		<div class="header_wrap">
 			<p class="logo">
-				<a href="/"><img src="/resources/image/common/logo.gif" alt="마이다스아이티"></a>
+				<a href="/"><img id="cafe" src="/resources/image/common/cafelogo.jpg" alt="마이다스아이티"></a>
 			</p>
 			<ul class="nav" id="nav">
 				<li class="list00"><a href="#" id="menu0"><spring:message code="banner" /></a>

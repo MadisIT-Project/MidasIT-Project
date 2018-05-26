@@ -10,7 +10,7 @@ a,a:link{color:#000;text-decoration:none}
 /* 헤더 영역 */
 .header_wrap{position:relative;margin:0 auto;width:960px;height:100px;background-color:#fff;}
 .logo{position:absolute;z-index:999999;padding-top:22px;}
-.top_area {width:100%; height:40px; background:#393d49;}
+.top_area {width:100%; height:40px; background:#89705b;}
 .top_area_wrap {width:960px; margin:0 auto; padding:13px 0 0; overflow:hidden; font-family:Tahoma;  color:#d7d7d7; letter-spacing:0;}
 .top_area_wrap a {color:#b3b3b3;}
 .top_area_wrap a:hover {color:#f2f2f2;}
