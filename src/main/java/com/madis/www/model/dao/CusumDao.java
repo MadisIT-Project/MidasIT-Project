@@ -27,9 +27,11 @@ public interface CusumDao {
 	
 	// 사용자 통계를 위한 Dao
 	// 월별
-	List<Cusum> getCusumListByMonthForUser(Cusum cusum, Date month);
+	List<Cusum> getCusumListByMonthForUser(Cusum cusum, String month);
 	
 	// 기간별
 	List<Cusum> getCusumListByBetweenForUser(Cusum cusum, Date s_date, Date e_date);
+	
+	List<ForStaticDao> getMostMenuByUser(Cusum cusum, String month);
 
 }

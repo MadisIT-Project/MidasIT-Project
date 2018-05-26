@@ -1,5 +1,6 @@
 package com.madis.www.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.madis.www.model.dao.ForStaticDao;
+import com.madis.www.model.dao.impl.CusumImpl;
+import com.madis.www.model.dao.impl.MenuImpl;
 import com.madis.www.model.dao.impl.ReverImpl;
 import com.madis.www.model.dao.impl.UserDaoImpl;
 import com.madis.www.model.dto.Cusum;
+import com.madis.www.model.dto.Menu;
 import com.madis.www.model.dto.UserInfo;
 
 @Controller
@@ -23,10 +28,16 @@ import com.madis.www.model.dto.UserInfo;
 public class UserController {
 
 	@Autowired
+	private	MenuImpl menuImpl;
+	
+	@Autowired
 	private UserDaoImpl userImpl;
 
 	@Autowired
 	private ReverImpl reverImpl;
+	
+	@Autowired
+	private	CusumImpl cusumImpl;
 
 	@RequestMapping(value = { "/reservation/reserveInfo" })
 	public ModelAndView reserveInfo() {
@@ -58,18 +69,41 @@ public class UserController {
 		System.out.println("statisticInfo");
 		return "user/statistic/statisticInfo";
 	}
-
+	
+	// 월별정보 가져오기
+	@RequestMapping(value = { "/statistic/getMonth" })
+	public @ResponseBody Map<String, Object> genMonth(Cusum cusum,String month) {
+		System.out.println("/statistic/statisticInfo/getMonth");
+		
+		List<ForStaticDao> static_list = cusumImpl.getMostMenuByUser(cusum,month);
+		List<Menu> menu_list = new ArrayList<Menu>();
+		System.out.println(static_list.size());
+		for(int i=0; i<static_list.size(); i++) {
+			Menu menu = new Menu();
+			menu.setIndex(static_list.get(i).getA());
+			menu = menuImpl.getMenu(menu);
+			menu_list.add(menu);
+		}
+		System.out.println("/statistic/statisticInfo/getMonth");
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("static_list", static_list);
+		resultMap.put("menu_list", menu_list);
+		
+		return resultMap;
+	}
+	
 	@RequestMapping(value = { "/reservation/insert" })
 	public @ResponseBody Map<String, Object> reservation(Cusum cusum) {
 		System.out.println("/reservation/insert");
-
+		
 		reverImpl.insertRever(cusum);
-
+		
 		System.out.println("success");
-
+		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("result", 1);
-
+		
 		return resultMap;
 	}
 }
