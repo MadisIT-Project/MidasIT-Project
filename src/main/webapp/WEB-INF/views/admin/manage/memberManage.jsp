@@ -176,7 +176,7 @@
 	</div>
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<div class="container">
-			<h3>메뉴 관리</h3>
+			<h3>회원 관리</h3>
 			<ul class="list-inline">
 				<li><a href="#" onclick="menu()">조회</a></li>
 				<li><a href="#" onclick="plus()">추가</a></li>
@@ -185,8 +185,6 @@
 			</ul>
 		</div>
 
-
-		<h2 class="sub-header">회원관리</h2>
 		<div id="info" class="table-responsive">
 			<div class="table-responsive">
 				<table class="table table-striped">
