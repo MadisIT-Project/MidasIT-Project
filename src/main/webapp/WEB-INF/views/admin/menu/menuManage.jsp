@@ -51,109 +51,90 @@
 		$("#plus").show();
 	}
 
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(
+			function() {
 
-						$('.modi-btn').on(
-								"click",
-								function() {
-									var pa = $(this).parent().parent();
-									console.log(pa.html());
-									console.log(pa.find('.name').children()
-											.val());
+				$('.modi-btn').on(
+						"click",
+						function() {
+							var pa = $(this).parent().parent();
+							console.log(pa.html());
+							console.log(pa.find('.name').children().val());
 
-									$.ajax({
-										url : "/admin/menu/menuManage/update",
-										type : 'POST',
-										data : {
-											index : $(this).val(),
-											name : pa.find('.name').children()
-													.val(),
-											price : pa.find('.price')
-													.children().val(),
-											detail : pa.find('.detail')
-													.children().val()
-										},
-										beforeSend : function(xhr) {
-											xhr.setRequestHeader(
-													"${_csrf.headerName}",
-													"${_csrf.token}");
-										},
-										success : function() {
-											history.go();
-										},
-										error : function(error) {
-											console.log(error);
-										}
-									});
-								});
-						$('.remove-btn').on(
-								"click",
-								function() {
-									$.ajax({
-										url : "/admin/menu/menuManage/delete",
-										type : 'POST',
-										data : {
-											index : $(this).val()
-										},
-										beforeSend : function(xhr) {
-											xhr.setRequestHeader(
-													"${_csrf.headerName}",
-													"${_csrf.token}");
-										},
-										success : function() {
-											history.go();
-										},
-										error : function(error) {
-											console.log(error);
-										}
-									});
-								});
+							$.ajax({
+								url : "/admin/menu/menuManage/update",
+								type : 'POST',
+								data : {
+									index : $(this).val(),
+									name : pa.find('.name').children().val(),
+									price : pa.find('.price').children().val(),
+									detail : pa.find('.detail').children()
+											.val()
+								},
+								beforeSend : function(xhr) {
+									xhr.setRequestHeader("${_csrf.headerName}",
+											"${_csrf.token}");
+								},
+								success : function() {
+									history.go();
+								},
+								error : function(error) {
+									console.log(error);
+								}
+							});
+						});
+				$('.remove-btn').on(
+						"click",
+						function() {
+							$.ajax({
+								url : "/admin/menu/menuManage/delete",
+								type : 'POST',
+								data : {
+									index : $(this).val()
+								},
+								beforeSend : function(xhr) {
+									xhr.setRequestHeader("${_csrf.headerName}",
+											"${_csrf.token}");
+								},
+								success : function() {
+									history.go();
+								},
+								error : function(error) {
+									console.log(error);
+								}
+							});
+						});
 
-						$('#add')
-								.on(
-										"click",
-										function() {
-											console.log("add");
-											console.log($('#add-name').val());
+				$('#add').on(
+						"click",
+						function() {
+							console.log("add");
+							console.log($('#add-name').val());
 
-											$
-													.ajax({
-														url : "/admin/menu/menuManage/add",
-														type : 'POST',
-														data : {
-															name : $(
-																	'#add-name')
-																	.val(),
-															price : $(
-																	'#add-price')
-																	.val(),
-															detail : $(
-																	'#add-detail')
-																	.val()
-														},
-														beforeSend : function(
-																xhr) {
-															xhr
-																	.setRequestHeader(
-																			"${_csrf.headerName}",
-																			"${_csrf.token}");
-														},
-														success : function() {
-															document
-																	.getElementById("imageName").value = $(
-																	'#add-name')
-																	.val()
-															menu_frm.submit();
-															history.go();
-														},
-														error : function(error) {
-															console.log(error);
-														}
-													});
-										});
-					});
+							document.getElementById("imageName").value = $('#add-name').val()
+							menu_frm.submit();
+
+							$.ajax({
+								url : "/admin/menu/menuManage/add",
+								type : 'POST',
+								data : {
+									name : $('#add-name').val(),
+									price : $('#add-price').val(),
+									detail : $('#add-detail').val()
+								},
+								beforeSend : function(xhr) {
+									xhr.setRequestHeader("${_csrf.headerName}",
+											"${_csrf.token}");
+								},
+								success : function() {
+									location.href("/");
+								},
+								error : function(error) {
+									console.log(error);
+								}
+							});
+						});
+			});
 </script>
 
 </head>
@@ -189,9 +170,7 @@
 							<td class="name" style="vertical-align: middle;"><input type="text" name="fname" class="name-1" value='${menu.name}'></td>
 							<td class="price" style="vertical-align: middle;"><input type="text" name="fname" class="price-1" value='${menu.price}'></td>
 							<td class="detail" style="vertical-align: middle;"><input type="text" name="fname" class="detail-1" value='${menu.detail}'></td>
-							<td class="path" style="vertical-align: middle;">
-								<img class="avatar rounded-2" src="/file/menu/${menu.name}" width="50" height="50">
-							</td>
+							<td class="path" style="vertical-align: middle;"><img class="avatar rounded-2" src="/file/menu/${menu.name}" width="50" height="50"></td>
 							<td style="vertical-align: middle;"><button class="modi-btn btn btn-success" value='${menu.index}'>Modified</button></td>
 							<td style="vertical-align: middle;"><button class="remove-btn btn btn-success" value='${menu.index}'>Remove</button></td>
 						</tr>
@@ -214,7 +193,7 @@
 						<!- 추가 -->
 						<td style="vertical-align: middle;"><input id="add-name" name="name" class="form-control" /></td>
 						<td style="vertical-align: middle;"><input name="price" id="add-price" class="form-control" /></td>
-						<td style="vertical-align: middle;"><input name="detail" id="add-detail" class="form-control"/></td>
+						<td style="vertical-align: middle;"><input name="detail" id="add-detail" class="form-control" /></td>
 						<td style="vertical-align: middle;">
 							<form id="menu_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" action="/file/menuImageUpload?${_csrf.parameterName}=${_csrf.token}" encType="multipart/form-data" method="post">
 								<input type="hidden" id="imageName" name="imageName" /> <input class="attachment1" name="attachment1" type="file">
