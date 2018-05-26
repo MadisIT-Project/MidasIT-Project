@@ -38,7 +38,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		Collection<SimpleGrantedAuthority> roles = new ArrayList<SimpleGrantedAuthority>();
 
-		if (userInfo.getAdmin() == 1) {
+		if(userInfo.getAdmin() == 2) {
+			System.out.println("super Admin");
+			roles.add(new SimpleGrantedAuthority("ROLE_SUPER"));
+			
+		}else if (userInfo.getAdmin() == 1) {
 			System.out.println("admin");
 			roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		} else {
