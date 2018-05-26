@@ -28,6 +28,13 @@
 		logoutForm.submit();
 	}
 </script>
+
+<style type="text/css">
+.nav > li > a:hover,
+.nav > li > a:focus{
+	background-color: #ffffff;
+}
+</style>
 <body>
 
 	<div class="nav_bg" id="gnb_depth" style="opacity: 1; display: none;"></div>
