@@ -74,14 +74,14 @@
 								<td>${product.date}</td>
 								<td>${product.num}</td>
 								<td><c:if test="${product.state == '1'}">
-									ready
+									<spring:message code="reserv.ready"/>
 								</c:if> <c:if test="${product.state == '2'}">
-									making
+									<spring:message code="reserv.make"/>
 								</c:if> <c:if test="${product.state == '3'}">
-									finish
+									<spring:message code="reserv.finish"/>
 								</c:if></td>
 								<td><c:if test="${product.state != '3'}">
-										<input type="button" onclick="changeNextState(${product.state}, ${product.index})" value="next Step" />
+										<input type="button" class="btn btn-success" onclick="changeNextState(${product.state}, ${product.index})" value="next Step" />
 									</c:if></td>
 							</tr>
 						</c:forEach>

@@ -352,7 +352,7 @@
 			<option value="12">12</option>
 
 		</select> <span>월 </span>
-		<button id="month-btn" type="button" class="btn btn-default">월별
+		<button id="month-btn" type="button" class="btn btn-success">월별
 			버튼</button>
 	</div>
 
