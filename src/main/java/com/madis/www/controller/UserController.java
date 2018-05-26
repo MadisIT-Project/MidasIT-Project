@@ -16,6 +16,6 @@ public class UserController {
 	@RequestMapping(value = { "/statistic/statisticInfo" })
 	public String statisticInfo() {
 		System.out.println("statisticInfo");
-		return "statistic/statisticInfo";
+		return "user/statistic/statisticInfo";
 	}
 }

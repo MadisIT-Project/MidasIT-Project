@@ -99,14 +99,14 @@
 						<ul class="nav_depth" style="opacity: 1; display: none;">
 							<li><a href="/user/reservation/reserveInfo">예약 현황</a></li>
 						</ul></li>
-					<li class="list4"><a href="/user/statistic/statisticInfo" id="menu4">구매 내역</a>
+					<li class="list04"><a href="/user/statistic/statisticInfo" id="menu4">구매 내역</a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
 							<li><a href="/user/statistic/statisticInfo">구매 내역</a></li>
 						</ul></li>
 <%-- 				</sec:authorize> --%>
 					<!--  관리자  -->
 <%-- 				<sec:authorize ifAnyGranted="ROLE_ADMIN"> --%>
-					<li class="list05"><a href="/admin/menu/menuManage" id="menu10">관리</a>
+					<li class="list05"><a href="/admin/menu/menuManage" id="menu5">관리</a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
 							<li><a href="/admin/menu/menuManage">메뉴 관리</a></li>
 							<li><a href="/admin/manage/memberManage">회원 관리</a></li>
