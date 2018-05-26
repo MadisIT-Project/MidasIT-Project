@@ -79,4 +79,10 @@ public class ReverImpl implements ReverDao {
 		return jdbcTemplate.query(REVER_LIST_ALL, new ReservRowMapper());
 	}
 
+	@Override
+	public Cusum getIndexRever(int index) {
+		System.out.println("getin!!! cusums");
+		Object[] args = {index};
+		return jdbcTemplate.queryForObject(REVER_GET, args, new CusumRowMapper());
+	}
 }

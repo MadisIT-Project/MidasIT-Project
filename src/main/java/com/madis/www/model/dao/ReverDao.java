@@ -18,6 +18,9 @@ public interface ReverDao {
 	// revers table get one object
 	Cusum getRever(Cusum cusum);
 	
+	// revers table get one object
+	Cusum getIndexRever(int index);
+	
 	// consumption table get all list
 	List<Cusum> getReverAllList(Cusum cusum);
 

@@ -102,7 +102,7 @@ public class CusumImpl implements CusumDao {
 class CusumRowMapper implements RowMapper<Cusum>{
 	public Cusum mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Cusum cusum = new Cusum();
-		cusum.setIndex(rs.getInt("cusums.index"));
+		cusum.setIndex(rs.getInt("index"));
 		cusum.setUser_id(rs.getInt("user_id"));
 		cusum.setMenu_id(rs.getInt("menu_id"));
 		cusum.setNum(rs.getInt("num"));
