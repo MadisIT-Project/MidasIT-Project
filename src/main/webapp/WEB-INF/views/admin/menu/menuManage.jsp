@@ -111,9 +111,6 @@
 							console.log("add");
 							console.log($('#add-name').val());
 
-							document.getElementById("imageName").value = $('#add-name').val()
-							menu_frm.submit();
-
 							$.ajax({
 								url : "/admin/menu/menuManage/add",
 								type : 'POST',
@@ -127,6 +124,9 @@
 											"${_csrf.token}");
 								},
 								success : function() {
+									
+									document.getElementById("imageName").value = $('#add-name').val()
+									menu_frm.submit();
 									location.href("/");
 								},
 								error : function(error) {

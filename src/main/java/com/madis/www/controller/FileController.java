@@ -106,10 +106,12 @@ public class FileController {
 	}
 
 	@RequestMapping(value = "/menuImageUpload", method = RequestMethod.POST)
-	public String menuImageUpload(ImageInfo imageInfo, @RequestParam("imageName") String fname) throws IOException {
+	public String menuImageUpload(ImageInfo imageInfo, @RequestParam("imageName") String fname, HttpServletResponse response) throws IOException {
 		System.out.println("enter image upload");
 		System.out.println("fname: " + fname);
 		fileService.uploadImageFile(imageInfo, fname);
+		
+		response.sendRedirect("/admin/menu/menuManage");
 
 		return "/admin/menu/menuManage";
 	}
