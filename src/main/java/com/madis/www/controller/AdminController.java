@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.madis.www.common.mvc.model.vo.ResultVO;
 import com.madis.www.model.dao.impl.CusumImpl;
 import com.madis.www.model.dao.impl.MenuImpl;
 import com.madis.www.model.dao.impl.ReverImpl;
@@ -165,7 +164,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = { "/reservation/nextState" })
-	public @ResponseBody ResultVO nextState(@RequestParam("state") int nextState,
+	public @ResponseBody Map<String, Object> nextState(@RequestParam("state") int nextState,
 			@RequestParam("productId") int productId) {
 
 		System.out.println("enter nextState");
@@ -178,11 +177,13 @@ public class AdminController {
 		reverImpl.updateRever(cusum);
 		
 		if (nextState == 3) {
-			cusumImpl.insertCusum(reverImpl.getRever(cusum));
+			cusum = reverImpl.getIndexRever(cusum.getIndex());
+			cusumImpl.insertCusum(cusum);
 		}
 
-		ResultVO resultVO = new ResultVO(cusum);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", 1);
 
-		return resultVO;
+		return resultMap;
 	}
 }

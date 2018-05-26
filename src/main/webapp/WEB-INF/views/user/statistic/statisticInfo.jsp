@@ -46,6 +46,7 @@
 			var year = yearSelect.options[yearSelect.selectedIndex].value;
 			var monthSelect = document.getElementById("month");
 			var month = monthSelect.options[monthSelect.selectedIndex].value;
+			$("#put").html('');
 			$.ajax({
 	            url: "/user/statistic/getMonth",
 	            type: 'POST',
@@ -98,7 +99,6 @@
 	
             	          var data = google.visualization.arrayToDataTable(temp);
 	            	        var options = {
-	            	          title: 'My Daily Activities',
 	            	          width: 600,
           	    	        	height: 400
 	            	        };
@@ -140,7 +140,6 @@
 	            	    	                       2,3]);
 						*/
 	            	    	      var options = {
-	            	    	        title: "Density of Precious Metals, in g/cm^3",
 	            	    	        width: 600,
 	            	    	        height: 400,
 	            	    	        bar: {groupWidth: "95%"},
@@ -151,7 +150,6 @@
 		            	      }
 	            		}
 	            		else{
-	            			$("#put").html('');
 	            			$("#section").html("출력이 되지 않습니다.");
 	            		}
 	            },
@@ -360,7 +358,7 @@
 
 
 	<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2 main">
-		<h1 class="page-header">Dashboard</h1>
+		<h1 class="page-header">통계그래프</h1>
 
 		<div class="row placeholders" id="section">
 			<div class="col-xs-4 col-sm-3 placeholder">
