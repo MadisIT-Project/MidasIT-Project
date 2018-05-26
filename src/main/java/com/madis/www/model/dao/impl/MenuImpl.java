@@ -52,7 +52,7 @@ public class MenuImpl implements MenuDao {
 	}
 
 	@Override
-	public List<Menu> getMenuList(Menu menu) {
+	public List<Menu> getMenuList() {
 		return jdbcTemplate.query(MENU_ALL_LIST, new MenuRowMapper());
 	}
 

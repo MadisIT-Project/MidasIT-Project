@@ -19,6 +19,6 @@ public interface MenuDao {
 	Menu getMenu(Menu menu);
 
 	// menu table get all list
-	List<Menu> getMenuList(Menu menu);
+	List<Menu> getMenuList();
 	
 }

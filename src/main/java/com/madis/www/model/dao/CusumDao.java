@@ -20,7 +20,7 @@ public interface CusumDao {
 	Cusum getCusum(Cusum cusum);
 
 	// consumption table get all list
-	List<Cusum> getCusumAllList(Cusum cusum);
+	List<Cusum> getCusumAllList();
 	
 	// consumption table get list by user
 	List<Cusum> getCusumListByUser(Cusum cusum);

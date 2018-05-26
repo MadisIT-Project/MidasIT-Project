@@ -64,7 +64,7 @@ public class CusumImpl implements CusumDao {
 	}
 
 	@Override
-	public List<Cusum> getCusumAllList(Cusum cusum) {
+	public List<Cusum> getCusumAllList() {
 		return jdbcTemplate.query(CUSUM_ALL_LIST, new CusumRowMapper());
 	}
 
