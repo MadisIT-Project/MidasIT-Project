@@ -39,7 +39,7 @@
 			$.ajax({
 	            url: "/user/statistic/getMonth",
 	            type: 'POST',
-	            data: {user_id : 1 , month : "2018-06-03" },
+	            data: {user_id : 4 , month : "2018-06-03" },
 	            beforeSend : function(xhr) {
 					xhr.setRequestHeader("${_csrf.headerName}",
 							"${_csrf.token}");
@@ -49,7 +49,16 @@
 	            		var menu_list = response.menu_list;
 	            		console.log(static_list);
 	            		console.log(menu_list);
+	            		console.log(response.isdata);
 	            		
+	            		if (response.isdata == 1){
+	            			
+	            			for (i=0 ; i < static_list.length; i++){
+		            			$("#put").append("<tr><td>" + menu_list[i].name + "</td><td>" + static_list[i].count +"</td><td>" + static_list[i].price*menu_list[i].price + "</td></tr>");
+		            		}
+	            			
+	            			console.log("getin");
+	            			
 	            		// 구글 그래프 가져오기
 	            		google.charts.load('current', {'packages':['corechart']});
 	            	      google.charts.setOnLoadCallback(drawChart1);
@@ -60,14 +69,18 @@
 						console.log(menu_list.name);
 	            	        
 	            	         var temp = [];
+	            	         var end = 5;
+	            	         if (end > static_list.length){
+	            	        	 	end = static_list.length
+	            	         }
 	            	         temp.push(['Task', 'Hours per Day']);
 	            		console.log(static_list.length);
-            	          for (i=0 ; i < static_list.length; i++){
-            	        	  	console.log("i : " + i);
+            	          for (i=0 ; i < end; i++){
+            	        	  	console.log("end :" + end + " i : " + i);
             	        	 	console.log(menu_list[i]);
             	        	  	var t = [];
             	        	  	t.push(menu_list[i].name);
-            	        	  	t.push(static_list[i].b);
+            	        	  	t.push(static_list[i].count);
             	          	temp.push(t);
             	          }
             	          
@@ -84,25 +97,48 @@
 	            	      }
 	            	      
 	            	      function drawChart2() {
+	            	    	  
+	            	    	  var temp = [];
+	            	    	  var color = ["#b87333", "silver","gold", "color: #e5e4e2","#b87333"  ];
+		            	         var end = 5;
+		            	         if (end > static_list.length){
+		            	        	 	end = static_list.length
+		            	         }
+		            	         temp.push(["Element", "Density", { role: "style" } ]);
+		            		console.log(static_list.length);
+	            	          for (i=0 ; i < end; i++){
+	            	        	  	console.log("end :" + end + " i : " + i);
+	            	        	 	console.log(menu_list[i]);
+	            	        	  	var t = [];
+	            	        	  	t.push(menu_list[i].name);
+	            	        	  	t.push(static_list[i].price * menu_list[i].price);
+	            	        	  	t.push(color[i]);
+	            	          	temp.push(t);
+	            	          }
+	            	    	  
 	            	    		
-		            	        var data = google.visualization.arrayToDataTable([
-		            	        	
-		            	          ['Task', 'Hours per Day'],
-		            	          ['Work',     11],
-		            	          ['Eat',      2],
-		            	          ['Commute',  2],
-		            	          ['Watch TV', 2],
-		            	          ['Sleep',    7]
-		            	        ]);
-		
-		            	        var options = {
-		            	          title: 'My Daily Activities'
-		            	        };
-		
-		            	        var chart = new google.visualization.PieChart(document.getElementById('chart2_div'));
-		
-		            	        chart.draw(data, options);
+	            	    	  var data = google.visualization.arrayToDataTable(temp);
+
+	            	    	      var view = new google.visualization.DataView(data);
+	            	    	      /*
+	            	    	      view.setColumns([0, 1,
+	            	    	                       { calc: "stringify",
+	            	    	                         sourceColumn: 1,
+	            	    	                         type: "string",
+	            	    	                         role: "annotation" },
+	            	    	                       2,3]);
+						*/
+	            	    	      var options = {
+	            	    	        title: "Density of Precious Metals, in g/cm^3",
+	            	    	        width: 600,
+	            	    	        height: 400,
+	            	    	        bar: {groupWidth: "95%"},
+	            	    	        legend: { position: "none" },
+	            	    	      };
+	            	    	      var chart = new google.visualization.ColumnChart(document.getElementById("chart2_div"));
+	            	    	      chart.draw(view, options);
 		            	      }
+	            		}
 	            },
 	            error: function(error){
 	                console.log(error);
@@ -214,24 +250,12 @@
 			<div class="col-xs-6 col-sm-3 placeholder">
 				<span class="text-muted""width: 50%"><div id="chart1_div"></div></span>
 				<h4>Label</h4>
-				<span class="text-muted">Something else</span>
+				<span class="text-muted">월별 차트</span>
 			</div>
 			<div class="col-xs-6 col-sm-3 placeholder">
 				<span class="text-muted""width: 50%"><div id="chart2_div"></div></span>
 				<h4>Label</h4>
-				<span class="text-muted">Something else</span>
-			</div>
-			<div class="col-xs-6 col-sm-3 placeholder">
-				<img data-src="holder.js/200x200/auto/sky" class="img-responsive"
-					alt="Generic placeholder thumbnail">
-				<h4>Label</h4>
-				<span class="text-muted">Something else</span>
-			</div>
-			<div class="col-xs-6 col-sm-3 placeholder">
-				<img data-src="holder.js/200x200/auto/vine" class="img-responsive"
-					alt="Generic placeholder thumbnail">
-				<h4>Label</h4>
-				<span class="text-muted">Something else</span>
+				<span class="text-muted">월별 차트</span>
 			</div>
 		</div>
 
@@ -240,22 +264,12 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>#</th>
-						<th>Header</th>
-						<th>Header</th>
-						<th>Header</th>
-						<th>Header</th>
+						<th>menu</th>
+						<th>num</th>
+						<th>price</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>1,001</td>
-						<td>Lorem</td>
-						<td>ipsum</td>
-						<td>dolor</td>
-						<td>sit</td>
-					</tr>
-
+				<tbody id="put">
 				</tbody>
 			</table>
 		</div>

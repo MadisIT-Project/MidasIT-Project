@@ -39,7 +39,7 @@ public class CusumImpl implements CusumDao {
 	private final String CUSUM_LIST_BY_BETWEEN_FOR_USER = "select * from cusums where (user_id = ? and (date between ? and ?)) order by cusums.index";
 	
 	// 사용자별 메뉴 많이 사용한거 찾기
-	private final String MOST_MENU_LIST_BY_USER = "select c.menu_id, count(*) from (menus as m inner join (select * from cusums where (user_id = ? and (DATE_FORMAT(date,'%Y-%m') = DATE_FORMAT(?,'%Y-%m')))) as c on m.index = c.menu_id) group by c.menu_id limit 5";
+	private final String MOST_MONTH_BY_USER = "select c.menu_id, count(*), sum(num) from (menus as m inner join (select * from cusums where (user_id = ? and (DATE_FORMAT(date,'%Y-%m') = DATE_FORMAT(?,'%Y-%m')))) as c on m.index = c.menu_id) group by c.menu_id";
 	
 	// 시간대별
 	// 요일별
@@ -92,11 +92,10 @@ public class CusumImpl implements CusumDao {
 	
 	// 월별 가장 많이 먹은 메뉴 5개
 	@Override
-	public List<ForStaticDao> getMostMenuByUser(Cusum cusum, String month) {
+	public List<ForStaticDao> getMonthByUser(Cusum cusum, String month) {
 		Object[] args = {cusum.getUser_id(), month};
-		return jdbcTemplate.query(MOST_MENU_LIST_BY_USER, args, new ForStaticRowMapper());
+		return jdbcTemplate.query(MOST_MONTH_BY_USER, args, new ForStaticRowMapper());
 	}
-
 	
 }
 
@@ -117,8 +116,9 @@ class CusumRowMapper implements RowMapper<Cusum>{
 class ForStaticRowMapper implements RowMapper<ForStaticDao>{
 	public ForStaticDao mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ForStaticDao a = new ForStaticDao();
-		a.setA(rs.getInt("menu_id"));
-		a.setB(rs.getInt("count(*)"));
+		a.setMenu_id(rs.getInt("menu_id"));
+		a.setCount(rs.getInt("count(*)"));
+		a.setPrice(rs.getInt("sum(num)"));
 		return a;
 	}
 }

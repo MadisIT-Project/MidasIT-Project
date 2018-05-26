@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -65,30 +66,36 @@ public class UserController {
 	}
 
 	@RequestMapping(value = { "/statistic/statisticInfo" })
-	public String statisticInfo() {
+	public String statisticInfo(String month, Model model) {
 		System.out.println("statisticInfo");
 		return "user/statistic/statisticInfo";
 	}
 	
 	// 월별정보 가져오기
 	@RequestMapping(value = { "/statistic/getMonth" })
-	public @ResponseBody Map<String, Object> genMonth(Cusum cusum,String month) {
+	public @ResponseBody Map<String, Object> genMonth(Cusum cusum, String month) {
 		System.out.println("/statistic/statisticInfo/getMonth");
 		
-		List<ForStaticDao> static_list = cusumImpl.getMostMenuByUser(cusum,month);
+		List<ForStaticDao> static_list = cusumImpl.getMonthByUser(cusum,month);
 		List<Menu> menu_list = new ArrayList<Menu>();
 		System.out.println(static_list.size());
 		for(int i=0; i<static_list.size(); i++) {
 			Menu menu = new Menu();
-			menu.setIndex(static_list.get(i).getA());
+			menu.setIndex(static_list.get(i).getMenu_id());
 			menu = menuImpl.getMenu(menu);
 			menu_list.add(menu);
 		}
 		System.out.println("/statistic/statisticInfo/getMonth");
 		
+		int isdata = 0;
+		if (static_list.size() != 0) {
+			isdata = 1;
+		}
+		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("static_list", static_list);
 		resultMap.put("menu_list", menu_list);
+		resultMap.put("isdata", isdata);
 		
 		return resultMap;
 	}

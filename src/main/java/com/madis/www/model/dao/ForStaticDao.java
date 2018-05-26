@@ -1,20 +1,28 @@
 package com.madis.www.model.dao;
 
 public class ForStaticDao {
-	private int a;
-	private int b;
+	private int menu_id;
+	private int count;
+	private int price;
+	public int getMenu_id() {
+		return menu_id;
+	}
+	public void setMenu_id(int menu_id) {
+		this.menu_id = menu_id;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	
-	public int getA() {
-		return a;
-	}
-	public void setA(int a) {
-		this.a = a;
-	}
-	public int getB() {
-		return b;
-	}
-	public void setB(int b) {
-		this.b = b;
-	}
+	
 
 }

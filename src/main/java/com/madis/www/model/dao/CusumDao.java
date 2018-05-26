@@ -32,6 +32,6 @@ public interface CusumDao {
 	// 기간별
 	List<Cusum> getCusumListByBetweenForUser(Cusum cusum, Date s_date, Date e_date);
 	
-	List<ForStaticDao> getMostMenuByUser(Cusum cusum, String month);
+	List<ForStaticDao> getMonthByUser(Cusum cusum, String month);
 
 }
