@@ -29,6 +29,42 @@ public class FileController {
 	@Autowired
 	private FileService fileService;
 
+	@RequestMapping(value = "/menu/{fname:.+}", method = RequestMethod.GET)
+	public void imageDown(@PathVariable String fname, HttpServletResponse response) {
+
+		String fileDir = "c:\\\\file\\\\menu\\\\";
+		System.out.println(fileDir);
+		System.out.println(fname);
+		
+		File file = null;
+		file = new File(fileDir + fname + ".jpg");
+
+		FileInputStream fis = null;
+
+		try {
+			fis = new FileInputStream(file);
+			OutputStream os = response.getOutputStream();
+			String fileName = URLEncoder.encode(fname, "utf-8");
+			response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+			byte[] b = new byte[1024];
+			while (fis.read(b) != -1) {
+				os.write(b);
+			}
+			os.flush();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fis != null)
+				try {
+					fis.close();
+				} catch (IOException e) {
+				}
+		}
+	}
+
 	@RequestMapping(value = "/download/{fname:.+}", method = RequestMethod.GET)
 	public void download(@PathVariable String fname, HttpServletResponse response) {
 
@@ -68,13 +104,13 @@ public class FileController {
 				}
 		}
 	}
-	
+
 	@RequestMapping(value = "/menuImageUpload", method = RequestMethod.POST)
 	public String menuImageUpload(ImageInfo imageInfo, @RequestParam("imageName") String fname) throws IOException {
 		System.out.println("enter image upload");
-		System.out.println("fname: "+fname);
+		System.out.println("fname: " + fname);
 		fileService.uploadImageFile(imageInfo, fname);
-		
+
 		return "/admin/menu/menuManage";
 	}
 }

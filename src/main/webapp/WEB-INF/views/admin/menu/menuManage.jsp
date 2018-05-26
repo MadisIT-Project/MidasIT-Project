@@ -43,127 +43,117 @@
 	function menu() {
 		$("#plus").hide();
 		$("#add").hide();
-		$("#plusbtn").hide();
-		$("#minusbtn").hide();
 		$("#info").show();
-
 	}
 	function plus() {
 		$("#info").hide();
 		$("#add").show();
-		$("#plusbtn").show();
-		$("#minusbtn").show();
 		$("#plus").show();
-
 	}
 
-	function plusmenu() {
-		var table = document.getElementById("plusmenu");
-		// Get the output text
-		var len = table.rows.length;
-		var row = table.insertRow(len);
-		var cell1 = row.insertCell(0);
-		var cell2 = row.insertCell(1);
-		var cell3 = row.insertCell(2);
-		var cell4 = row.insertCell(3);
+	$(document)
+			.ready(
+					function() {
 
-		cell1.innerHTML = "<input name='name' class='name' value='name' placeholder='name'  class='form-control' />";
-		cell2.innerHTML = "<input name='price' class='price' value='price' placeholder='price'  class='form-control' />";
-		cell3.innerHTML = "<input name='detail' type='textarea' class='detail' value='detail' placeholder='detail'  class='form-control' />";
-		cell4.innerHTML = '<form id="profile_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" action="/mypage/upload?${_csrf.parameterName}=${_csrf.token}" encType="multipart/form-data" method="post"><div class=""><input class="attachment" name="attachment" type="file" class=""></div></form>';
-	}
-	function minusmenu() {
-		var table = document.getElementById("plusmenu");
-		// Get the output text
-		var len = table.rows.length;
-		table.deleteRow(len - 1);
-	}
+						$('.modi-btn').on(
+								"click",
+								function() {
+									var pa = $(this).parent().parent();
+									console.log(pa.html());
+									console.log(pa.find('.name').children()
+											.val());
 
-	$(document).ready(
-			function() {
+									$.ajax({
+										url : "/admin/menu/menuManage/update",
+										type : 'POST',
+										data : {
+											index : $(this).val(),
+											name : pa.find('.name').children()
+													.val(),
+											price : pa.find('.price')
+													.children().val(),
+											detail : pa.find('.detail')
+													.children().val()
+										},
+										beforeSend : function(xhr) {
+											xhr.setRequestHeader(
+													"${_csrf.headerName}",
+													"${_csrf.token}");
+										},
+										success : function() {
+											history.go();
+										},
+										error : function(error) {
+											console.log(error);
+										}
+									});
+								});
+						$('.remove-btn').on(
+								"click",
+								function() {
+									$.ajax({
+										url : "/admin/menu/menuManage/delete",
+										type : 'POST',
+										data : {
+											index : $(this).val()
+										},
+										beforeSend : function(xhr) {
+											xhr.setRequestHeader(
+													"${_csrf.headerName}",
+													"${_csrf.token}");
+										},
+										success : function() {
+											history.go();
+										},
+										error : function(error) {
+											console.log(error);
+										}
+									});
+								});
 
-				$('.modi-btn').on(
-						"click",
-						function() {
-							var pa = $(this).parent().parent();
-							console.log(pa.html());
-							console.log(pa.find('.name').children().val());
+						$('#add')
+								.on(
+										"click",
+										function() {
+											console.log("add");
+											console.log($('#add-name').val());
 
-							$.ajax({
-								url : "/admin/menu/menuManage/update",
-								type : 'POST',
-								data : {
-									index : $(this).val(),
-									name : pa.find('.name').children().val(),
-									price : pa.find('.price').children().val(),
-									detail : pa.find('.detail').children()
-											.val()
-								},
-								beforeSend : function(xhr) {
-									xhr.setRequestHeader("${_csrf.headerName}",
-											"${_csrf.token}");
-								},
-								success : function() {
-									history.go();
-								},
-								error : function(error) {
-									console.log(error);
-								}
-							});
-
-						});
-
-				$('.remove-btn').on(
-						"click",
-						function() {
-							$.ajax({
-								url : "/admin/menu/menuManage/delete",
-								type : 'POST',
-								data : {
-									index : $(this).val()
-								},
-								beforeSend : function(xhr) {
-									xhr.setRequestHeader("${_csrf.headerName}",
-											"${_csrf.token}");
-								},
-								success : function() {
-									history.go();
-								},
-								error : function(error) {
-									console.log(error);
-								}
-							});
-						});
-
-				$('#add').on(
-						"click",
-						function() {
-							console.log("add");
-							console.log($('#add-name').val());
-							
-							$.ajax({
-								url : "/admin/menu/menuManage/add",
-								type : 'POST',
-								data : {
-									name : $('#add-name').val(),
-									price : $('#add-price').val(),
-									detail : $('#add-detail').val()
-								},
-								beforeSend : function(xhr) {
-									xhr.setRequestHeader("${_csrf.headerName}",
-											"${_csrf.token}");
-								},
-								success : function() {
-									document.getElementById("imageName").value = $('#add-name').val()
-									menu_frm.submit();
-									history.go();
-								},
-								error : function(error) {
-									console.log(error);
-								}
-							});
-						});
-			});
+											$
+													.ajax({
+														url : "/admin/menu/menuManage/add",
+														type : 'POST',
+														data : {
+															name : $(
+																	'#add-name')
+																	.val(),
+															price : $(
+																	'#add-price')
+																	.val(),
+															detail : $(
+																	'#add-detail')
+																	.val()
+														},
+														beforeSend : function(
+																xhr) {
+															xhr
+																	.setRequestHeader(
+																			"${_csrf.headerName}",
+																			"${_csrf.token}");
+														},
+														success : function() {
+															document
+																	.getElementById("imageName").value = $(
+																	'#add-name')
+																	.val()
+															menu_frm.submit();
+															history.go();
+														},
+														error : function(error) {
+															console.log(error);
+														}
+													});
+										});
+					});
 </script>
 
 </head>
@@ -172,14 +162,12 @@
 		<jsp:include page="../../common/header.jsp"></jsp:include>
 	</div>
 
-	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2 main">
 		<div class="container">
 			<h3>메뉴 관리</h3>
 			<ul class="list-inline">
 				<li><a href="#" onclick="menu()">조회</a></li>
 				<li><a href="#" onclick="plus()">추가</a></li>
-				<li id="plusbtn"><button onclick="plusmenu()" value="plus">+</button></li>
-				<li id="minusbtn"><button onclick="minusmenu()" value="minus">-</button></li>
 			</ul>
 		</div>
 
@@ -201,7 +189,9 @@
 							<td class="name"><input type="text" name="fname" class="name-1" value='${menu.name}'></td>
 							<td class="price"><input type="text" name="fname" class="price-1" value='${menu.price}'></td>
 							<td class="detail"><input type="text" name="fname" class="detail-1" value='${menu.detail}'></td>
-							<td class="path"><input type="text" name="fname" class="path-1" value='${menu.path}'></td>
+							<td class="path">
+								<img class="avatar rounded-2" src="/file/menu/${menu.name}" width="50" height="50">
+							</td>
 							<td><button class="modi-btn" value='${menu.index}'>Modified</button></td>
 							<td><button class="remove-btn" value='${menu.index}'>Remove</button></td>
 						</tr>
@@ -228,8 +218,7 @@
 						<td><input name="detail" id="add-detail" class="detail" class="form-control" /></td>
 						<td>
 							<form id="menu_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" action="/file/menuImageUpload?${_csrf.parameterName}=${_csrf.token}" encType="multipart/form-data" method="post">
-								<input type="hidden" id="imageName"  name="imageName" />
-								<input class="attachment1" name="attachment1" type="file">
+								<input type="hidden" id="imageName" name="imageName" /> <input class="attachment1" name="attachment1" type="file">
 							</form>
 						</td>
 
