@@ -19,6 +19,11 @@
 	<script src="/webjars/bootstrap/3.2.0/css/bootstrap.min.css"></script>
 	<script src="/webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
+<style>
+#board{
+margin-left:15%;
+}
+</style>
 <body>
 	<div class="wrap">
 		<jsp:include page="../common/header.jsp"></jsp:include>
@@ -26,7 +31,7 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-11">
+			<div id="board" class="col-lg-8">
 				<h3 style="display: inline">게시판</h3>
 			</div>
 			<!-- BUTTON -->

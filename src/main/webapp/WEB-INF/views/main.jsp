@@ -72,14 +72,14 @@
 			</section>
 			<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2">
 				<h1 class="entry-title">
-					<a href="https://www.brookscafe.com/learning/?p=193" rel="bookmark">Strawberries
+					<a href="#">Strawberries
 						&#038; Matcha Smoothie</a>
 				</h1>
 				<div id="content1" class="entry-content">
 					<p>
 						<a
-							href="https://www.brookscafe.com/learning/wp-content/uploads/2017/03/7b007ab793da0f5623de83990aaa318c.jpg"><img
-							src="https://www.brookscafe.com/learning/wp-content/uploads/2017/03/7b007ab793da0f5623de83990aaa318c-300x240.jpg"
+							href="#"><img
+							src="/resources/image/cafe/cafemoca.png"
 							alt="3月20日" width="300" height="240"
 							class="alignnone size-medium wp-image-194" /></a>
 					</p>
