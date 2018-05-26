@@ -35,9 +35,8 @@ var selectCheck=0;
 								cell2.innerHTML = $(this).parent().parent()
 										.children(".menu-price").html();
 								cell2.className = 'menu-price';
-								cell3.innerHTML = $(this).parent().parent()
-										.children(".menu-detail").html();
-								cell3.className = 'menu-detail';
+								cell3.innerHTML =  "<input type='text' class='num-1' name='count' value=1>";
+								cell3.className = 'menu-num';
 								selectCheck++;
 							} else {
 								var aa = $("#buy").find('#' + tr_id);
@@ -57,31 +56,37 @@ var selectCheck=0;
 					var rowNum = $('#buy >thead >tr').length;
 					console.log("get in click" + rowNum);
 
+					
 					for (var i = 1; i < rowNum; i++) {
 						var temp = $('#buy tr:eq(' + i + ')');
 						var name = temp.children(".menu-name").html();
 						var price = temp.children(".menu-price").html();
-						console.log(temp.children(".menu-name").html());
+						var num = temp.children(".menu-num").children(".num-1").val();
+						
+						$.ajax({
+						    url: "/user/reservation/insert",
+						    type: 'POST',
+						    data: {"name" : name, "price" : price, "num" : num},
+						    beforeSend : function(xhr) {
+								xhr.setRequestHeader("${_csrf.headerName}",
+										"${_csrf.token}");
+							},
+						    success: function(){
+						    		console.log("suceess");
+						    		//history.go();
+						    },
+						    error: function(error){
+						        console.log(error);
+						    }
+						});
+						
+						console.log(name +"/" +price + "/" + num);
 					}
-					/*
-					$.ajax({
-					    url: "/user/reservation/insert",
-					    type: 'POST',
-					    data: {user_id : $("#comment").val(), menu_id : $("#p_id").val(), num : 123 },
-					    beforeSend : function(xhr) {
-							xhr.setRequestHeader("${_csrf.headerName}",
-									"${_csrf.token}");
-						},
-					    success: function(){
-					    		history.go();
-					    },
-					    error: function(error){
-					        console.log(error);
-					    }
-					});
-					 */
+					
+					window.location.replace("http://localhost:8080/menu/menuInfo");
 
 				});
+			
 			});
 </script>
 <body>
