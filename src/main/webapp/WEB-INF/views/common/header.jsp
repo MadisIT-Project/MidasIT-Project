@@ -76,7 +76,7 @@
 						<li><a href="/menu/menuInfo">조회</a></li>
 					</ul></li>
 				<!-- 사용자 -->
-				<sec:authorize access="isAuthenticated()">
+				<sec:authorize ifAnyGranted="ROLE_USER">
 					<li class="list03"><a href="/user/reservation/reserveInfo" id="menu3">예약 현황</a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
 							<li><a href="/user/reservation/reserveInfo">예약 현황</a></li>
