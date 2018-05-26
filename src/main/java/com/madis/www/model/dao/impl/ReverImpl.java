@@ -1,6 +1,5 @@
 package com.madis.www.model.dao.impl;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -27,7 +26,7 @@ public class ReverImpl implements ReverDao {
 	}
 	
 	private final String REVER_INSERT = "insert into revers (user_id, menu_id, num, date, state) values (?, ?, ?, now(), 0)";
-	// private final String REVER_UPDATE = "update cusums set title = ?, content = ?, modified_date = now() where posts.index = ?";
+	private final String REVER_UPDATE = "update revers set state = ? where revers.index = ?";
 	private final String REVER_DELETE = "delete from revers where revers.index = ?";
 	private final String REVER_GET = "select * from revers where revers.index = ?";
 	private final String REVER_ALL_LIST = "select * from revers order by revers.index";
@@ -40,8 +39,7 @@ public class ReverImpl implements ReverDao {
 
 	@Override
 	public void updateRever(Cusum cusum) {
-		// TODO Auto-generated method stub
-
+		jdbcTemplate.update(REVER_UPDATE, cusum.getState(), cusum.getIndex());
 	}
 
 	@Override
