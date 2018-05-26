@@ -78,12 +78,12 @@
 						<li><a href="/board"><spring:message code="post.title" /></a></li>
 					</ul></li>
 
-				<li class="list02"><a href="/menu/menuInfo" id="menu2"><spring:message code="menu" /></a>
+				<!-- 사용자 -->
+				<sec:authorize ifAnyGranted="ROLE_USER">
+					<li class="list02"><a href="/menu/menuInfo" id="menu2"><spring:message code="menu" /></a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
 						<li><a href="/menu/menuInfo"><spring:message code="menusearch" /></a></li>
 					</ul></li>
-				<!-- 사용자 -->
-				<sec:authorize ifAnyGranted="ROLE_USER">
 					<li class="list03"><a href="/user/reservation/reserveInfo" id="menu3"><spring:message code="reserveinfo" /></a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
 							<li><a href="/user/reservation/reserveInfo"><spring:message code="reserveinfo" /></a></li>
