@@ -171,7 +171,9 @@
 							<th>email</th>
 							<th>name</th>
 							<th>age</th>
-							<th>admin</th>
+							<sec:authorize ifAnyGranted="ROLE_SUPER">
+								<th>admin</th>
+							</sec:authorize>
 							<th>date</th>
 							<th>update</th>
 							<th>remove</th>
@@ -186,17 +188,21 @@
 									class="name-1" value='${member.name}'></td>
 								<td class="age"><input type="text" name="fname"
 									class="age-1" value='${member.age}'></td>
-								<td class="admin"><select class="admin-1" id="admin"
-									name="admin" onchange="changeadminSelect()">
-										<c:if test="${member.admin eq 0}">
-											<option selected value="0">0</option>
-											<option value="1">1</option>
-										</c:if>
-										<c:if test="${member.admin eq 1}">
-											<option value="0">0</option>
-											<option selected value="1">1</option>
-										</c:if>
-								</select></td>
+									
+								<sec:authorize ifAnyGranted="ROLE_SUPER">
+									<td class="admin"><select class="admin-1" id="admin"
+										name="admin" onchange="changeadminSelect()">
+											<c:if test="${member.admin eq 0}">
+												<option selected value="0">0</option>
+												<option value="1">1</option>
+											</c:if>
+											<c:if test="${member.admin eq 1}">
+												<option value="0">0</option>
+												<option selected value="1">1</option>
+											</c:if>
+									</select></td>
+								</sec:authorize>
+								
 								<td>${member.date}</td>
 								<td><button class="btn-modi btn btn-success" value='${member.no}'>edit</button></td>
 								<td><button class="btn-delete btn btn-success" value='${member.no}'>x</button></td>
