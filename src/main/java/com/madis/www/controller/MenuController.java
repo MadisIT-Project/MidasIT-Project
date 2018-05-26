@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/menu")
 public class MenuController {
 
-	@RequestMapping(value = { "/search" })
+	@RequestMapping(value = { "/info" })
 	public String search() {
-		System.out.println("menu search");
+		System.out.println("menu info");
 		return "/menu/menuinfo";
 	}
 	
