@@ -58,7 +58,7 @@
 				<a href="/"><img src="/resources/image/common/logo.gif" alt="마이다스아이티"></a>
 			</p>
 			<ul class="nav" id="nav">
-				<li class="list00"><a href="#" id="menu0">광고배너</a>
+				<li class="list00"><a href="#" id="menu0"><spring:message code="banner" /></a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
 						<li class="nav_promotion">
 							<!--<img src="/main_code/images/nav_promotion.png">-->
@@ -70,28 +70,28 @@
 						<li><a href="/board"><spring:message code="post.title" /></a></li>
 					</ul></li>
 
-				<li class="list02"><a href="/menu/menuInfo" id="menu2">메뉴</a>
+				<li class="list02"><a href="/menu/menuInfo" id="menu2"><spring:message code="menu" /></a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
-						<li><a href="/menu/menuInfo">조회</a></li>
+						<li><a href="/menu/menuInfo"><spring:message code="menusearch" /></a></li>
 					</ul></li>
 				<!-- 사용자 -->
 				<sec:authorize ifAnyGranted="ROLE_USER">
-					<li class="list03"><a href="/user/reservation/reserveInfo" id="menu3">예약 현황</a>
+					<li class="list03"><a href="/user/reservation/reserveInfo" id="menu3"><spring:message code="reserveinfo" /></a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
-							<li><a href="/user/reservation/reserveInfo">예약 현황</a></li>
+							<li><a href="/user/reservation/reserveInfo"><spring:message code="reserveinfo" /></a></li>
 						</ul></li>
-					<li class="list04"><a href="/user/statistic/statisticInfo" id="menu4">구매 내역</a>
+					<li class="list04"><a href="/user/statistic/statisticInfo" id="menu4"><spring:message code="buylist" /></a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
-							<li><a href="/user/statistic/statisticInfo">구매 내역</a></li>
+							<li><a href="/user/statistic/statisticInfo"><spring:message code="buylist" /></a></li>
 						</ul></li>
 				</sec:authorize>
 				<!--  관리자  -->
 				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_SUPER">
-					<li class="list05"><a href="/admin/menu/menuManage" id="menu5">관리</a>
+					<li class="list05"><a href="/admin/menu/menuManage" id="menu5"><spring:message code="manage" /></a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
-							<li><a href="/admin/menu/menuManage">메뉴 관리</a></li>
-							<li><a href="/admin/manage/memberManage">회원 관리</a></li>
-							<li><a href="/admin/reservation/reservManage">예약 관리</a></li>
+							<li><a href="/admin/menu/menuManage"><spring:message code="menumanage" /></a></li>
+							<li><a href="/admin/manage/memberManage"><spring:message code="membermanage" /></a></li>
+							<li><a href="/admin/reservation/reservManage"><spring:message code="reservemanage" /></a></li>
 						</ul></li>
 				</sec:authorize>
 			</ul>
