@@ -59,27 +59,6 @@
 
 	}
 
-	function plusmenu() {
-		var table = document.getElementById("plusmenu");
-		// Get the output text
-		var len = table.rows.length;
-		var row = table.insertRow(len);
-		var cell1 = row.insertCell(0);
-		var cell2 = row.insertCell(1);
-		var cell3 = row.insertCell(2);
-		var cell4 = row.insertCell(3);
-
-		cell1.innerHTML = "<input name='name' class='name' value='name' placeholder='name'  class='form-control' />";
-		cell2.innerHTML = "<input name='price' class='price' value='price' placeholder='price'  class='form-control' />";
-		cell3.innerHTML = "<input name='detail' type='textarea' class='detail' value='detail' placeholder='detail'  class='form-control' />";
-		cell4.innerHTML = '<form id="profile_frm" class="columns js-uploadable-container js-upload-avatar-image is-default" action="/mypage/upload?${_csrf.parameterName}=${_csrf.token}" encType="multipart/form-data" method="post"><div class=""><input class="attachment" name="attachment" type="file" class=""></div></form>';
-	}
-	function minusmenu() {
-		var table = document.getElementById("plusmenu");
-		// Get the output text
-		var len = table.rows.length;
-		table.deleteRow(len - 1);
-	}
 
 	function changeadminSelect() {
 		var langSelect = document.getElementById("admin");
@@ -174,14 +153,12 @@
 	<div class="wrap">
 		<jsp:include page="../../common/header.jsp"></jsp:include>
 	</div>
-	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2 main">
 		<div class="container">
 			<h3>회원 관리</h3>
 			<ul class="list-inline">
 				<li><a href="#" onclick="menu()">조회</a></li>
 				<li><a href="#" onclick="plus()">추가</a></li>
-				<li id="plusbtn"><button onclick="plusmenu()" value="plus">+</button></li>
-				<li id="minusbtn"><button onclick="minusmenu()" value="minus">-</button></li>
 			</ul>
 		</div>
 
@@ -196,6 +173,8 @@
 							<th>age</th>
 							<th>admin</th>
 							<th>date</th>
+							<th>update</th>
+							<th>remove</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -219,8 +198,8 @@
 										</c:if>
 								</select></td>
 								<td>${member.date}</td>
-								<td><button class="btn-modi" value='${member.no}'>edit</button></td>
-								<td><button class="btn-delete" value='${member.no}'>x</button></td>
+								<td><button class="btn-modi btn btn-success" value='${member.no}'>edit</button></td>
+								<td><button class="btn-delete btn btn-success" value='${member.no}'>x</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -231,7 +210,6 @@
 			<table id="plusmenu" class="table table-striped">
 				<thead>
 					<tr>
-
 						<th>email</th>
 						<th>password</th>
 						<th>name</th>
@@ -242,21 +220,16 @@
 
 					<tr>
 						<!- 추가 -->
-						<td><input name="email" id="add-email" value='1234'
-							placeholder="1234" class="form-control" /></td>
-						<td><input name="passwod" id="add-passwd" value='1234'
-							placeholder="1234" class="form-control" /></td>
-						<td><input name="name" id="add-name" value='name'
-							placeholder="name" class="form-control" /></td>
-						<td><input name="age" id="add-age" value='12'
-							placeholder="12" class="form-control" /></td>
-						<td><input name="admin" id="add-age" value='0'
-							placeholder="0" class="form-control" /></td>
+						<td><input name="email" id="add-email" class="form-control" /></td>
+						<td><input name="passwod" id="add-passwd" class="form-control" /></td>
+						<td><input name="name" id="add-name" class="form-control" /></td>
+						<td><input name="age" id="add-age" class="form-control" /></td>
+						<td><input name="admin" id="add-age" class="form-control" /></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<button id="add" value="add">add</button>
+		<button id="add" value="add" class="btn btn-success">add</button>
 	</div>
 
 	<div class="wrap">
