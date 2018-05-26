@@ -2,6 +2,7 @@ package com.madis.www.model.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -31,6 +32,10 @@ public class CusumImpl implements CusumDao {
 	private final String CUSUM_ALL_LIST = "select * from cusums order by cusums.index";
 	private final String CUSUM_LIST_BY_USER = "select * from cusums where user_id = ? order by cusums.index";
 	private final String CUSUM_LIST_BY_MONTH = "select * from cusums where DATE_FORMAT(date,'%Y-%m') = ? order by cusums.index";
+	
+	// 사용자가 사용할 쿼리 (월별 검색 , 기간별 검색)
+	private final String CUSUM_LIST_BY_MONTH_FOR_USER = "select * from cusums where (user_id = ? and (DATE_FORMAT(date,'%Y-%m') = DATE_FORMAT(?,'%Y-%m'))) order by cusums.index";
+	private final String CUSUM_LIST_BY_BETWEEN_FOR_USER = "select * from cusums where (user_id = ? and (date between ? and ?)) order by cusums.index";
 	
 	// 시간대별
 	// 요일별
@@ -69,6 +74,19 @@ public class CusumImpl implements CusumDao {
 		return jdbcTemplate.query(CUSUM_LIST_BY_USER, args, new CusumRowMapper());
 	}
 
+	@Override
+	public List<Cusum> getCusumListByMonthForUser(Cusum cusum, Date month) {
+		Object[] args = {cusum.getUser_id(), month};
+		return jdbcTemplate.query(CUSUM_LIST_BY_MONTH_FOR_USER, args, new CusumRowMapper());
+	}
+
+	@Override
+	public List<Cusum> getCusumListByBetweenForUser(Cusum cusum, Date s_date, Date e_date) {
+		Object[] args = {cusum.getUser_id(), s_date, e_date};
+		return jdbcTemplate.query(CUSUM_LIST_BY_BETWEEN_FOR_USER, args, new CusumRowMapper());
+	}
+
+	
 }
 
 class CusumRowMapper implements RowMapper<Cusum>{
