@@ -64,6 +64,7 @@
 							<!--<img src="/main_code/images/nav_promotion.png">-->
 						</li>
 					</ul></li>
+				
 				<li class="list01"><a href="/board" id="menu1"><spring:message code="post.title" /></a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
 						<li><a href="#">회사개요</a></li>
@@ -99,6 +100,35 @@
 							<li><a href="#">찾아오시는길</a></li>
 						</ul></li>
 				</sec:authorize>
+				
+				<!-- 사용자 -->
+					<li class="list08"><a href="#" id="menu7">메뉴 조회</a>
+						<ul class="nav_depth" style="opacity: 1; display: none;">
+							<li><a href="#"></a></li>
+						</ul></li>
+					<li class="list09"><a href="#" id="menu8">예약 현황 확인</a>
+						<ul class="nav_depth" style="opacity: 1; display: none;">
+							<li><a href="#"></a></li>
+						</ul></li>
+					<li class="list10"><a href="#" id="menu9">월별 구매 내역</a>
+						<ul class="nav_depth" style="opacity: 1; display: none;">
+							<li><a href="#"></a></li>
+						</ul></li>
+						
+					
+					<!-- 관리자 -->
+					<li class="list11"><a href="#" id="menu10">메뉴 관리</a>
+						<ul class="nav_depth" style="opacity: 1; display: none;">
+							<li><a href="#"></a></li>
+						</ul></li>
+					<li class="list12"><a href="#" id="menu11">회원 관리</a>
+						<ul class="nav_depth" style="opacity: 1; display: none;">
+							<li><a href="#"></a></li>
+						</ul></li>	
+					<li class="list13"><a href="#" id="menu12">예약 관리</a>
+						<ul class="nav_depth" style="opacity: 1; display: none;">
+							<li><a href="#"></a></li>
+						</ul></li>	
 			</ul>
 		</div>
 	</div>

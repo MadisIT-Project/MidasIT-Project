@@ -40,7 +40,7 @@
 			return false;
 		}
 		if(!regex.test($("#password").val())){
-			alert("비밀번호는 8-16자로 넣어주세요");
+			alert("비밀번호는 8-16자입니다");
 		      return false
 		}
 		if ($("#passwordCheck").val() == "") {
