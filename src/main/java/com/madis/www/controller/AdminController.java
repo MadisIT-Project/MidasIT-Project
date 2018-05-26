@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.madis.www.common.mvc.model.vo.ResultVO;
+import com.madis.www.model.dao.impl.CusumImpl;
 import com.madis.www.model.dao.impl.MenuImpl;
 import com.madis.www.model.dao.impl.ReverImpl;
 import com.madis.www.model.dao.impl.UserDaoImpl;
@@ -35,6 +36,9 @@ public class AdminController {
 
 	@Autowired
 	private ReverImpl reverImpl;
+	
+	@Autowired
+	private CusumImpl cusumImpl;
 
 	@RequestMapping(value = { "/menu/menuManage" })
 	public String menuManage(Menu menu, Model model) {
@@ -172,6 +176,10 @@ public class AdminController {
 		cusum.setIndex(productId);
 		cusum.setState(nextState);
 		reverImpl.updateRever(cusum);
+		
+		if (nextState == 3) {
+			cusumImpl.insertCusum(reverImpl.getRever(cusum));
+		}
 
 		ResultVO resultVO = new ResultVO(cusum);
 
