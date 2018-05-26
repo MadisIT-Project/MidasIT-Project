@@ -4,13 +4,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <link rel="stylesheet" href="/resources/css/map.css" /> 
-<script type="text/javascript" src="/resources/js/maptest.js"></script> 
+<link rel="stylesheet" href="/resources/css/map.css" /> 
+<link rel="stylesheet" href="/resources/css/common.css" />
+<link rel="stylesheet" href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css" />
+<script async defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhGHFO9pQBtVbE4YBzAxn-78HUiozJwpg&callback=initMap"></script>
+<script>
+var map;
+var midas = {lat:37.400872, lng: 127.101356};
 
+function initMap() {
+    var cen ={lat:37.400872, lng: 127.101356};
+	map = new google.maps.Map(document.getElementById('googlemap'), {
+		center : cen,
+		zoom: 17
+	});
+	marker = new google.maps.Marker({
+		position : cen,
+		map: map
+	});
+}</script>
+<style>
+#googlemap{
+	margin-left: 20%;
+	width: 66.66666667%;
+	height: 500px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+</style>
 <title>Insert title here</title>
 </head>
-<body>
-	<a href="#"><img src="/resources/image/common/tiger.jpg" alt="locate"></a> 
-	<a href="#"><img src="/resources/image/common/aaaa.png" alt="locate"></a> 
+<body><div class="wrap">
+		<jsp:include page="common/header.jsp"></jsp:include>
+	</div>
+	<div id="googlemap" ></div>
+	<div class="wrap">
+		<jsp:include page="common/footer.jsp"></jsp:include>
+	</div>
+	
 </body>
 </html>
