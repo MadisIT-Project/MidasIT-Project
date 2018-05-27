@@ -99,7 +99,7 @@ var selectCheck=0;
 	<div class="wrap">
 		<jsp:include page="../common/header.jsp"></jsp:include>
 	</div>
-	<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2 main" style="height: 500px">
+	<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2 main" style="height: 1000px">
 
 		<h2 class="sub-header">Menu</h2>
 		<div class="table-responsive">
@@ -116,11 +116,12 @@ var selectCheck=0;
 				<tbody>
 					<c:forEach items="${menuList}" var="menu" varStatus="status">
 						<tr id='${status.index}'>
-							<td class="menu-index"><input class="checkbox" type="checkbox" value='${menu.index}'></td>
-							<td class="menu-name">${menu.name}</td>
-							<td class="menu-image">image</td>
-							<td class="menu-price">${menu.price}</td>
-							<td class="menu-detail">${menu.detail}</td>
+							<td class="menu-index" style="vertical-align: middle;"><input class="checkbox" type="checkbox" value='${menu.index}'></td>
+							<td class="menu-name" style="vertical-align: middle;">${menu.name}</td>
+							<td class="menu-name" style="vertical-align: middle;"><img class="avatar rounded-2" src="/file/menu/${menu.name}" width="50" height="50" /></td>
+							<td class="menu-image" style="vertical-align: middle;">image</td>
+							<td class="menu-price" style="vertical-align: middle;">${menu.price}</td>
+							<td class="menu-detail" style="vertical-align: middle;">${menu.detail}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

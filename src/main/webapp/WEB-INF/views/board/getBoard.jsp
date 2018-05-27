@@ -142,7 +142,7 @@
 			<div class="panel-heading">
 				<h2>${board.title}</h2>
 			</div>
-			<div class="panel-body" style="height: 500px">${board.content}</div>
+			<div class="panel-body" style="height: 1000px">${board.content}</div>
 		</div>
 
 		<div class="panel panel-default">

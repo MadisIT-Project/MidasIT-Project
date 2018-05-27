@@ -47,7 +47,7 @@
 	<div class="wrap">
 		<jsp:include page="../../common/header.jsp"></jsp:include>
 	</div>
-	<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2 main" style="height: 500px">
+	<div class="col-sm-9 col-sm-offset-3 col-md-8 col-md-offset-2 main" style="height: 1000px">
 		<h2 class="sub-header">
 			<spring:message code="reserveinfo" />
 		</h2>
