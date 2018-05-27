@@ -40,12 +40,33 @@
 <script type="text/javascript">
 	// 검색
 	$(document).ready(function() {
+		
+		$('#year').on("click", function() {
+			var v = $('this option:selected').index();
+			console.log(v);
+		});
+		
+		/*$('#month').on("change", function() {
+			/*
+			// value 값으로 선택
+			$(this).val("1").prop("selected", true);
+		 
+			// OR option 순서값으로 선택
+			$(this).find("option:eq(0)").prop("selected", true);
+
+			var val = $('#month option:selected').val()
+			var monthSelect = document.getElementById("month");
+			monthSelect.options[val].selected = true;
+			console.log("month : " + val);
+			
+		});*/
 
 		$('#month-btn').on("click", function() {
 			var yearSelect = document.getElementById("year");
 			var year = yearSelect.options[yearSelect.selectedIndex].value;
 			var monthSelect = document.getElementById("month");
 			var month = monthSelect.options[monthSelect.selectedIndex].value;
+			console.log(month);
 			$("#put").html('');
 			$.ajax({
 	            url: "/user/statistic/getMonth",
@@ -63,6 +84,8 @@
 	            		console.log(response.isdata);
 	            		
 	            		if (response.isdata == 1){
+	            			
+	            			$("#section").html("<div class='col-xs-4 col-sm-3 placeholder'><h4> 월별 상품 BEST 5</h4><span class='text-muted''width: 50%''><div id='chart1_div'></div></span><span class='text-muted'>월별로 가장 많이 쓴 상품 5개를 보여준다.</span></div><div class='col-xs-offset-3 col-xs-4 col-sm-3 placeholder'><h4> 월별 소비 내역 BEST 5</h4><span class='text-muted''width: 50%''><div id='chart2_div'></div></span><span class='text-muted'>월별로 가장 많이 소비한 상품 5개 보여준다.</span></div>"); 
 	            			
 	            			for (i=0 ; i < static_list.length; i++){
 		            			$("#put").append("<tr><td>" + menu_list[i].name + "</td><td>" + static_list[i].count +"</td><td>" + static_list[i].price*menu_list[i].price + "</td></tr>");
@@ -150,7 +173,8 @@
 		            	      }
 	            		}
 	            		else{
-	            			$("#section").html("출력이 되지 않습니다.");
+	            			$("#put").html('정보가 없습니다.');
+	            			$("#section").html("정보가 없습니다.");
 	            		}
 	            },
 	            error: function(error){
@@ -185,10 +209,10 @@
 		
 		var today = new Date();
 		console.log(today);
-		console.log(today.getMonth()+1);
+		console.log(today.getMonth());
 		
 		var monthSelect = document.getElementById("month");
-		monthSelect.options[today.getMonth()+1].selected = true;
+		monthSelect.options[today.getMonth()].selected = true;
 		
 		month = monthSelect.options[monthSelect.selectedIndex].value;
 		console.log(month);
@@ -213,6 +237,8 @@
             		console.log(response.isdata);
             		
             		if (response.isdata == 1){
+            			
+            			$("#section").html("<div class='col-xs-4 col-sm-3 placeholder'><h4> 월별 상품 BEST 5</h4><span class='text-muted''width: 50%''><div id='chart1_div'></div></span><span class='text-muted'>월별로 가장 많이 쓴 상품 5개를 보여준다.</span></div><div class='col-xs-offset-3 col-xs-4 col-sm-3 placeholder'><h4> 월별 소비 내역 BEST 5</h4><span class='text-muted''width: 50%''><div id='chart2_div'></div></span><span class='text-muted'>월별로 가장 많이 소비한 상품 5개 보여준다.</span></div>"); 
             			
             			for (i=0 ; i < static_list.length; i++){
 	            			$("#put").append("<tr><td>" + menu_list[i].name + "</td><td>" + static_list[i].count +"</td><td>" + static_list[i].price*menu_list[i].price + "</td></tr>");
@@ -309,15 +335,6 @@
             }
         });
 	}
-	
-	function changetermSelect() {
-		var langSelect = document.getElementById("term");
-
-		var selectValue = langSelect.options[langSelect.selectedIndex].value;
-
-
-		var selectText = langSelect.options[langSelect.selectedIndex].text;
-	}
 </script>
 <style>
 #selected {
@@ -361,16 +378,7 @@
 		<h1 class="page-header">통계그래프</h1>
 
 		<div class="row placeholders" id="section">
-			<div class="col-xs-4 col-sm-3 placeholder">
-				<h4> 월별 상품 BEST 5</h4>
-				<span class="text-muted""width: 50%"><div id="chart1_div"></div></span>
-				<span class="text-muted">월별로 가장 많이 쓴 상품 5개를 보여준다.</span>
-			</div>
-			<div class="col-xs-offset-3 col-xs-4 col-sm-3 placeholder">
-				<h4> 월별 소비 내역 BEST 5</h4>
-				<span class="text-muted""width: 50%"><div id="chart2_div"></div></span>
-				<span class="text-muted">월별로 가장 많이 소비한 상품 5개 보여준다.</span>
-			</div>
+			
 		</div>
 
 		<h2 class="sub-header">월별 구매내역</h2>
