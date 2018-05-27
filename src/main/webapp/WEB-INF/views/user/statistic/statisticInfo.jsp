@@ -40,26 +40,6 @@
 <script type="text/javascript">
 	// 검색
 	$(document).ready(function() {
-		
-		$('#year').on("click", function() {
-			var v = $('this option:selected').index();
-			console.log(v);
-		});
-		
-		/*$('#month').on("change", function() {
-			/*
-			// value 값으로 선택
-			$(this).val("1").prop("selected", true);
-		 
-			// OR option 순서값으로 선택
-			$(this).find("option:eq(0)").prop("selected", true);
-
-			var val = $('#month option:selected').val()
-			var monthSelect = document.getElementById("month");
-			monthSelect.options[val].selected = true;
-			console.log("month : " + val);
-			
-		});*/
 
 		$('#month-btn').on("click", function() {
 			var yearSelect = document.getElementById("year");
