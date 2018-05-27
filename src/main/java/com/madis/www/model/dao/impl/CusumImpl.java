@@ -41,6 +41,8 @@ public class CusumImpl implements CusumDao {
 	// 사용자별 메뉴 많이 사용한거 찾기
 	private final String MOST_MONTH_BY_USER = "select c.menu_id, count(*), sum(num) from (menus as m inner join (select * from cusums where (user_id = ? and (DATE_FORMAT(date,'%Y-%m') = DATE_FORMAT(?,'%Y-%m')))) as c on m.index = c.menu_id) group by c.menu_id";
 	
+	private final String MOST_MONTH_BY_ADMIN = "select c.menu_id, count(*), sum(num) from (menus as m inner join (select * from cusums where ((DATE_FORMAT(date,'%Y-%m') = DATE_FORMAT(?,'%Y-%m')))) as c on m.index = c.menu_id) group by c.menu_id";
+	
 	// 시간대별
 	// 요일별
 	// 월별 쿼리 받아오기
@@ -96,6 +98,13 @@ public class CusumImpl implements CusumDao {
 		Object[] args = {cusum.getUser_id(), month};
 		return jdbcTemplate.query(MOST_MONTH_BY_USER, args, new ForStaticRowMapper());
 	}
+	
+	// 월별 가장 많이 먹은 메뉴 5개
+		@Override
+		public List<ForStaticDao> getMonthByAdmin(Cusum cusum, String month) {
+			Object[] args = {month};
+			return jdbcTemplate.query(MOST_MONTH_BY_ADMIN, args, new ForStaticRowMapper());
+		}
 	
 }
 

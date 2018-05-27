@@ -50,7 +50,7 @@
 						</sec:authorize>
 						<sec:authorize access="isAuthenticated()">
 							<sec:authentication var="user" property="principal" />
-							<li>${user.username} <spring:message code="welcome" /><a href="#" onclick="logout()">Logout</a>&nbsp;
+							<li>${user.username} <spring:message code="welcome" />&nbsp;&nbsp;<a href="#" onclick="logout()">Logout</a>&nbsp;
 							</li>
 							<li><a href="/mypage/profile">MyPage</a></li>
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -76,12 +76,12 @@
 						<li><a href="/board"><spring:message code="post.title" /></a></li>
 					</ul></li>
 
-				<li class="list02"><a href="/menu/menuInfo" id="menu2"><spring:message code="menu" /></a>
+				<!-- 사용자 -->
+				<sec:authorize ifAnyGranted="ROLE_USER">
+					<li class="list02"><a href="/menu/menuInfo" id="menu2"><spring:message code="menu" /></a>
 					<ul class="nav_depth" style="opacity: 1; display: none;">
 						<li><a href="/menu/menuInfo"><spring:message code="menusearch" /></a></li>
 					</ul></li>
-				<!-- 사용자 -->
-				<sec:authorize ifAnyGranted="ROLE_USER">
 					<li class="list03"><a href="/user/reservation/reserveInfo" id="menu3"><spring:message code="reserveinfo" /></a>
 						<ul class="nav_depth" style="opacity: 1; display: none;">
 							<li><a href="/user/reservation/reserveInfo"><spring:message code="reserveinfo" /></a></li>
@@ -98,6 +98,7 @@
 							<li><a href="/admin/menu/menuManage"><spring:message code="menumanage" /></a></li>
 							<li><a href="/admin/manage/memberManage"><spring:message code="membermanage" /></a></li>
 							<li><a href="/admin/reservation/reservManage"><spring:message code="reservemanage" /></a></li>
+							<li><a href="/admin/statistic/statisticManage"><spring:message code="staticmanage" /></a></li>
 						</ul></li>
 				</sec:authorize>
 			</ul>

@@ -33,5 +33,7 @@ public interface CusumDao {
 	List<Cusum> getCusumListByBetweenForUser(Cusum cusum, Date s_date, Date e_date);
 	
 	List<ForStaticDao> getMonthByUser(Cusum cusum, String month);
+	
+	List<ForStaticDao> getMonthByAdmin(Cusum cusum, String month);
 
 }

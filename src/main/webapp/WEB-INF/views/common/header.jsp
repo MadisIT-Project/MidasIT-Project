@@ -100,6 +100,7 @@
 							<li><a href="/admin/menu/menuManage"><spring:message code="menumanage" /></a></li>
 							<li><a href="/admin/manage/memberManage"><spring:message code="membermanage" /></a></li>
 							<li><a href="/admin/reservation/reservManage"><spring:message code="reservemanage" /></a></li>
+							<li><a href="/admin/statistic/statisticManage"><spring:message code="staticmanage" /></a></li>
 						</ul></li>
 				</sec:authorize>
 			</ul>
