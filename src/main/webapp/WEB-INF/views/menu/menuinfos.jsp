@@ -119,7 +119,6 @@ var selectCheck=0;
 							<td class="menu-index" style="vertical-align: middle;"><input class="checkbox" type="checkbox" value='${menu.index}'></td>
 							<td class="menu-name" style="vertical-align: middle;">${menu.name}</td>
 							<td class="menu-name" style="vertical-align: middle;"><img class="avatar rounded-2" src="/file/menu/${menu.name}" width="50" height="50" /></td>
-							<td class="menu-image" style="vertical-align: middle;">image</td>
 							<td class="menu-price" style="vertical-align: middle;">${menu.price}</td>
 							<td class="menu-detail" style="vertical-align: middle;">${menu.detail}</td>
 						</tr>
